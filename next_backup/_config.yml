@@ -316,16 +316,16 @@ baidu_analytics: 5deff6bcbae525e8345fd2757421664e
 #duoshuo_shortname:
 
 # Disqus
-disqus:
-  enable: true
-  shortname: xiao xiong
-  count: true
+# disqus:
+#   enable: false
+#   shortname: xiao xiong
+#   count: true
 
 # Hypercomments
 #hypercomments_id:
 
 # Gentie productKey
-#gentie_productKey: #your-gentie-product-key
+gentie_productKey: c6143363517944778537a0314744d818
 
 # changyan
 changyan:

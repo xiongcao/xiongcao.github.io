@@ -228,7 +228,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Quick notes</p>
+        <p class="site-subtitle">坚持，习惯，喜欢</p>
       
   </div>
 
@@ -374,9 +374,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/05/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/05/hello-world/" itemprop="commentCount"></span>
+                <a class="cloud-tie-join-count" href="/2017/06/05/hello-world/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -527,12 +526,7 @@
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
     
   </div>
 
@@ -572,7 +566,7 @@
                alt="Xiong Chao" />
           <p class="site-author-name" itemprop="name">Xiong Chao</p>
            
-              <p class="site-description motion-element" itemprop="description">每天进步一点点</p>
+              <p class="site-description motion-element" itemprop="description">知识在世界的某个角落等你</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -805,26 +799,6 @@
 
   
 
-    
-      <script id="dsq-count-scr" src="https://xiao xiong.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/06/05/hello-world/';
-          this.page.identifier = '2017/06/05/hello-world/';
-          this.page.title = '小熊随笔';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://xiao xiong.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
 
 
 
@@ -835,12 +809,19 @@
 
 
   
-
-
-
-
-
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "c6143363517944778537a0314744d818",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
   
+
+
 
 
 
