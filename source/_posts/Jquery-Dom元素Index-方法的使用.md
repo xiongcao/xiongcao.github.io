@@ -4,6 +4,7 @@ tags:
   - jquery
 categories:
   - 笔记
+  - 前端
 keywords: index jquery
 date: 2017-06-10 12:30:00
 ---
@@ -31,7 +32,7 @@ date: 2017-06-10 12:30:00
   <div class="box">Coffee</div>
  </div>
 ```
-```JavaScript
+```js
 # js代码：
 $(".box").on("click",function(){
   $(this).index();//结果：如果点击的Milk则返回 0
@@ -78,7 +79,7 @@ $(".box").on("click",function(){
 </div>
 
 ```
-```JavaScript
+```js
 # js代码:
 $(".box").index($("#box2"));//结果: 2
 
