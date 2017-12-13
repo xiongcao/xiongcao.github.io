@@ -2,9 +2,9 @@ title: 使用gulp自动化构建前端项目
 author: 熊 超
 tags:
   - gulp
-  - ''
 categories:
   - 前端
+  - 构建工具
 date: 2017-07-09 10:30:00
 ---
 ---
