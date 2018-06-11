@@ -297,7 +297,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: night
+highlight_theme: normal
 
 
 # ---------------------------------------------------------------
@@ -337,9 +337,9 @@ gentie_productKey: c6143363517944778537a0314744d818
 
 # changyan
 changyan:
-  enable: false
-  appid:
-  appkey:
+  enable: true
+  appid: cytEY9tKr
+  appkey: 17c23f6bfab118786cb4ec5e64de74aa
 
 # Support for youyan comments system.
 # You can get your uid from http://www.uyan.cc
