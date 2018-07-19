@@ -5,6 +5,7 @@ tags:
   - date
 categories:
   - 前端
+  - javascript
 date: 2018-07-19 11:44:00
 ---
 ## 前言：
@@ -114,4 +115,71 @@ date.toTimeString(); => 11:58:45 GMT+0800 (中国标准时间)
 ```js
 var date = new Date();
 console.log(date.toDateString()); => Thu Jul 19 2018
+```
+
+
+## 二：Date()对象组合高级用法：
+
+```js
+//将毫秒转换为yyyy-MM-dd HH:mm:ss日期格式
+function dateFormat(seconds) {
+    let date = new Date(seconds),
+        year = date.getFullYear(),
+        month = date.getMonth() + 1,
+        day = date.getDay(),
+        hour = date.getHours(),
+        min = date.getMinutes(),
+        s = date.getSeconds();
+    return `${year}-${formatNum(month)}-${formatNum(day)} 					${formatNum(hour)}:${formatNum(min)}:${formatNum(s)}`;
+}
+
+//转换为yyyy-MM-dd日期格式
+function dateFormatShort(date) {
+    let year = date.getFullYear(),
+    month = date.getMonth() + 1,
+    day = date.getDay();
+    return `${year}-${formatNum(month)}-${formatNum(day)}`;
+}
+
+//将yyyy-MM-dd HH:mm:ss转化为毫秒数
+function formatMilliseconds(str){
+    // str = '2018-7-19 15:14:30';
+    str = str.replace(/-/g,'/');//由于部分浏览器以及一些低版本浏览器不兼容new Date(yyyy-MM-dd HH:mm:ss)
+    let date = new Date(str);
+    return date.getTime();
+}
+
+//获取两个时间的秒数差
+function SecondsDiff(startDate,endDate){
+    startDate = "2018-7-18 10:56:23",endDate = "2018-7-19 12:00:00";
+    let startTime = formatMilliseconds(startDate),//获得毫秒数
+        endTime = formatMilliseconds(endDate),
+        milliseconds = endTime - startTime;//毫秒数之差
+    return parseInt(milliseconds/1000);
+}
+
+//根据剩余秒数获取剩余HH:mm:ss（应用在活动倒计时或物品过期还有多久'dd天HH小时'）
+function secondsFormat(seconds){
+    seconds = SecondsDiff();
+    let day = Math.floor(seconds / 3600 / 24),
+        hour = Math.floor((seconds % 86400) / 3600),
+        min = Math.floor((seconds % 86400 % 3600) / 60 ),
+        second = Math.floor(seconds % 86400 % 3600 % 60);
+        hour += day * 24;
+    return `${formatNum(hour)}:${formatNum(min)}:${formatNum(second)}`;//为什么只计算天数,因为一般活动只在相邻几天
+}
+    
+//获得某月的天数　　 
+function getMonthDays(year, month) {
+    let nowDate = new Date(year,month,0),
+        days = nowDate.getDate();
+    return days;
+}
+
+//补0操作
+function formatNum(e) {
+    return e >= 10 ? e : `0${e}`;
+}
+	
+    
 ```
