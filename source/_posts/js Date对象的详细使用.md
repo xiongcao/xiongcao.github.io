@@ -16,7 +16,7 @@ date: 2018-07-19 11:44:00
 
 ## 一：Date()对象基本方法示例：
 
-
+<!--more-->
 ```js
 //Date()：返回当日的日期和时间。
 var date = new Date();//Thu Jul 19 2018 10:46:06 GMT+0800
@@ -71,7 +71,6 @@ console.log(date.toTimeString()); => 11:58:45 GMT+0800 (中国标准时间)
 console.log(date.toDateString()); => Thu Jul 19 2018
 
 ```
-<!--more-->
 
 
 ## 二：Date()对象组合高级用法：
@@ -255,6 +254,8 @@ function pastTimes(seconds){
         //不在同一年的显示年月日时分
         dateTime = starYear + '-' + formatNum(starMonth) + '-' + formatNum(starDay) + ' ' + formatNum(starHour) + ':' + formatNum(starMin);
     }
+
+    return dateTime
     
 }
 
