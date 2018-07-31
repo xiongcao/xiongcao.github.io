@@ -152,6 +152,32 @@ function isToday(str){
     }
 }
 
+/**
+* 判断某个时间是前天、昨天、今天、明天、后天
+* @now:当前服务器时间
+*/
+function daysText(str,now){
+    let date = str.substring(0,str.indexOf("-")+6);
+    now = new Date(now.replace(/-/g,'/'));
+    now = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    str = new Date(str.replace(/-/g,'/'));
+    str = new Date(str.getFullYear(), str.getMonth(), str.getDate());
+    let diff = (str - now) / 1000 / 60 / 60 / 24;
+    if (diff < -1) {
+        return "前天";
+    } else if (diff < -0) {
+        return "昨天"
+    } else if (diff == 0) {
+        return "今天";
+    } else if (diff < 2) {
+        return "明日";
+    } else if (diff < 3) {
+        return "后天";
+    } else {
+        return date;
+    }
+}
+
 //判断是否超过48小时
 function overTime(seconds) {
     let diffSeconds = Math.floor((new Date().getTime() - seconds)/1000),
