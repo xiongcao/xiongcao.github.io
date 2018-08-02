@@ -21,9 +21,6 @@ date: 2018-07-19 11:44:00
 //Date()：返回当日的日期和时间。
 var date = new Date();//Thu Jul 19 2018 10:46:06 GMT+0800
 
-//getDay()：从 Date 对象返回一周中的某一天 (0 ~ 6)。
-date.getDay();		//4 今天是星期四
-
 // getDay()：从 Date 对象返回一周中的某一天 (0 ~ 6)。
 date.getDay();		//4 今天是星期四
 
@@ -81,7 +78,7 @@ function dateFormat(seconds) {
     let date = new Date(seconds),
         year = date.getFullYear(),
         month = date.getMonth() + 1,
-        day = date.getDay(),
+        day = date.getDate(),
         hour = date.getHours(),
         min = date.getMinutes(),
         s = date.getSeconds();
@@ -92,7 +89,7 @@ function dateFormat(seconds) {
 function dateFormatShort(date) {
     let year = date.getFullYear(),
     month = date.getMonth() + 1,
-    day = date.getDay();
+    day = date.getDate();
     return `${year}-${formatNum(month)}-${formatNum(day)}`;
 }
 
