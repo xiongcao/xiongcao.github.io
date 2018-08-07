@@ -104,6 +104,7 @@ font:
     # external: true will load this font family from host.
     external: true
     family: Monda
+    size: 14
 
   # Font settings for Headlines (h1, h2, h3, h4, h5, h6)
   # Fallback to `global` font settings.
@@ -115,6 +116,7 @@ font:
   # Fallback to `global` font settings.
   posts:
     external: true
+    size: 12
     family:
 
   # Font settings for Logo
@@ -125,7 +127,7 @@ font:
     family: Lobster Two
     size: 24
 
-  # Font settings for <code> and code blocks.
+  # Font settings for <code> and code blocks.h
   codes:
     external: true
     family: PT Mono
@@ -229,7 +231,7 @@ links:
   赵旭东: http://devzxd.top/
   李明洋: http://limingyang.xyz/
   郭峰: http://www.hithey.com
-  郭佳伟: https://www.jwguo.top/
+  # 郭佳伟: https://www.jwguo.top/
 
 # ---------------------------------------------------------------
 # Post Settings
