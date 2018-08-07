@@ -39,8 +39,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>Array</tag>
         <tag>js</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -54,6 +54,18 @@
       <tags>
         <tag>js</tag>
         <tag>date</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git常用命令]]></title>
+    <url>%2F2018%2F07%2F08%2Fgit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[git的工作原理图解： 将指定文件添加到暂存区(stage) 将暂存区的所有内容提交到当前分支 分支的创建与合并 git的使用步骤：基本使用12345678910111213141516git add . //如果有删除的文件则：git add -Agit commit -m"first commit"//这一步可能会进入一个奇怪的窗口，需执行 ESC :wqgit pull --rebase origin master//如果有冲突则解决冲突，然后执行第一步，最后执行以下命令git rebase --continuegit push origin master//push时有可能会提示没有change-id//复制提示中的"gitdir=$(git rev-parse --git-dir); scp -p -P 29418 //xiongchao@192.168.1.192:hooks/commit-msg $&#123;gitdir&#125;/hooks/"git commit -amend 如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令12345git stashgit pullgit stash pop //可能有冲突，改冲突，可直接运行项目 cherry-pick用法（A分支的内容添加到B分支,此操作是在B分支上）123456git reflog//复制要cherry-pick的commit id（有说明的那一行）git cherry-pick commitidgit push origin master git的常用命令解释：$ git status查看工作区状态； $ git add readme.txt将指定文件添加到暂存区(stage);反复多次使用，添加多个文件； $ git add .将所有文件添加到Git仓库暂存区； $ git commit -m “wrote a readme file”将暂存区的所有内容提交到当前分支； $ git checkout – readme.txt”把 readme.txt 文件在工作区的修改全部撤销，这里有两种情况：一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。总之，就是让这个文件回到最近一次git commit或git add时的状态。 $ rm test.txt”从版本库暂存区中删除该文件； $ git push origin master把当前分支master的内容推送到远程库； $ git pull –rebase origin master拉取远程库master分支的内容到本地仓库； $ git reset HEAD~将前版本回退到上一个版本；上上一个版本就是HEAD~~，上100个版本写成HEAD~100； $ git reset –hard 1094a将前版本回退到指定版本； $ git stash将你当前未提交（包括暂存的和非暂存的）到本地（和服务器）的代码推入到Git的栈中，这时候你的工作区间和上一次提交的内容是完全一样的,需要说明一点，stash是本地的，不会通过git push命令上传到git server上； $ git stash pop将缓存堆栈中的第一个stash删除，并将对应修改应用到当前的工作目录下； $ git stash list查看现有stash； $ git stash drop移除stash；或者使用git stash clear命令，删除所有缓存的stash； $ git branch dev创建dev分支； $ git checkout dev切换到dev分支； $ git branch查看当前分支； $ git merge dev把dev分支的工作成果合并到master分支上； $ git branch -d dev删除dev分支； $ git clone将远程仓库克隆到本地； $ git log查看提交日志； $ git reflog记录你的每一次命令；]]></content>
+      <categories>
+        <category>教程</category>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
