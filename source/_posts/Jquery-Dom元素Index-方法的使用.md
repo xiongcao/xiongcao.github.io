@@ -3,8 +3,7 @@ author: 熊 超
 tags:
   - jquery
 categories:
-  - 笔记
-  - 前端
+  - javascript
 keywords: index jquery
 date: 2017-06-10 12:30:00
 ---

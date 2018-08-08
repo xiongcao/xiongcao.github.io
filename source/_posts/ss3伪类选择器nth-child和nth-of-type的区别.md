@@ -4,8 +4,7 @@ tags:
   - css
   - 伪类选择器
 categories:
-  - 笔记
-  - 前端
+  - javascript
 date: 2017-06-10 16:35:00
 ---
 ---

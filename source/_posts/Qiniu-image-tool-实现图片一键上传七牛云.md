@@ -3,7 +3,6 @@ author: 熊 超
 tags:
   - upload
 categories:
-  - 教程
   - 云储存
 date: 2018-07-02 14:12:00
 ---

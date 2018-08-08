@@ -3,7 +3,6 @@ author: 熊 超
 tags:
   - git
 categories:
-  - 教程
   - 工具
 date: 2018-07-08 14:12:00
 ---

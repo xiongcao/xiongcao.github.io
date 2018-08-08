@@ -15,9 +15,8 @@ HTML5中与本地存储相关的两个重要内容：Web Storage与本地数据�
 
 #### 本文主要来讲解Web Storage
 
-<!--more-->
-
 我们知道，在HTML4中可以使用cookie在客户端保存诸如用户名等简单的用户信息，但是，通过长期的使用，你会发现，用cookie存储永久数据存在以下几个问题：
+<!--more-->
 
 1.大小：cookie的大小被限制在4KB。
 
@@ -81,3 +80,45 @@ WebStorage的目的是克服由cookie所带来的一些限制，当数据需要�
 4. clear（） ——  删除所有的数据
 
 5. key（index） —— 获取某个索引的key
+
+#### cookie 、sessionStorage与localStorage的区别
+<table><col width="100"/><tr><th>特性</th><th>cookie</th><th>sessionStorage</th><th>localStorage</th></tr><tr><td>数据生命期</td><td>生成时就会被指定一个maxAge值，这就是cookie的生存周期，在这个周期内cookie有效，默认关闭浏览器失效</td><td>页面会话期间可用</td><td>除非数据被清除，否则一直存在</td></tr><tr><td>存放数据大小</td><td>4K左右（因为每次http请求都会携带cookie）</td><td colspan="2">一般5M或更大<a href="https://www.html5rocks.com/en/tutorials/offline/quota-research/#toc-introduction" target="_blank">详细看这(需科学上网)</a></td></tr><tr><td>与服务器通信</td><td>由对服务器的请求来传递，每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td><td colspan="2">数据不是由每个服务器请求传递的，而是只有在请求时使用数据，不参与和服务器的通信</td></tr><tr><td>易用性</td><td>cookie需要自己封装setCookie，getCookie</td><td colspan="2">可以用源生接口，也可再次封装来对Object和Array有更好的支持</td></tr><tr><td>共同点</td><td colspan="3">都是保存在浏览器端，和服务器端的session机制不同<a href="http://blog.csdn.net/fangaoxin/article/details/6952954/" target="_blank">（这里有一篇很好的介绍cookie和session的文章）<a/></td></tr></table>
+
+#### 示例：
+（1） 新建两个文件：
+![](http://or87vteh1.bkt.clouddn.com/201808081728_587.png)
+
+
+``` html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="./test.html" target="_blank">跳到test.html</a>
+</body>
+</html>
+<script>
+    localStorage.setItem("xiongchao",123);
+    sessionStorage.setItem("xiongchao",456);
+</script>
+```
+
+（2） 部署服务（推荐使用nignx做反向代理,比tomcat简单粗暴，也可以不用这一步，只是为了模拟真实网站会话）
+
+（3） 打开index.html,并使用链接打开test.html
+![](http://or87vteh1.bkt.clouddn.com/201808081739_652.png)
+![](http://or87vteh1.bkt.clouddn.com/201808081739_523.png)
+
+两个页面的结果是一样的，这是一次会话，sessionStorage储存的内容被保存下来。
+
+（4） 单独打开test.html,会发现sessionStorage是空的。
+![](http://or87vteh1.bkt.clouddn.com/201808081739_652.png)
+![](http://or87vteh1.bkt.clouddn.com/201808081742_158.png)
+
+

@@ -4,7 +4,6 @@ tags:
   - Array
   - 循环
 categories:
-  - 前端
   - javascript
 date: 2018-07-31 09:53:00
 ---

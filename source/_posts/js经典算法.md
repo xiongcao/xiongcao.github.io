@@ -3,11 +3,7 @@ author: 熊 超
 tags:
   - Array
   - sort
-  - 算法
 categories:
-  - 前端
-  - javascript
-  - 排序
   - 算法
 date: 2018-07-27 15:19:00
 ---

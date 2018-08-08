@@ -3,8 +3,7 @@ author: 熊 超
 tags:
   - gulp
 categories:
-  - 前端
-  - 构建工具
+  - 工具
 date: 2017-07-09 10:30:00
 ---
 ---
