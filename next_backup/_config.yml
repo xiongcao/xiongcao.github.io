@@ -110,8 +110,7 @@ font:
   # Fallback to `global` font settings.
   headings:
     external: true
-    family: Roboto Slab
-
+    family: Roboto Slabf
   # Font settings for posts
   # Fallback to `global` font settings.
   posts:
@@ -335,7 +334,7 @@ baidu_analytics: 5deff6bcbae525e8345fd2757421664e
 #hypercomments_id:
 
 # Gentie productKey
-gentie_productKey: c6143363517944778537a0314744d818
+# gentie_productKey: c6143363517944778537a0314744d818
 
 # changyan
 changyan:

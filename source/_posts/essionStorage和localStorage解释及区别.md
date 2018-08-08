@@ -71,14 +71,13 @@ WebStorage的目的是克服由cookie所带来的一些限制，当数据需要�
 
 （5）安全性：WebStorage不会随着HTTP header发送到服务器端，所以安全性相对于cookie来说比较高一些，不会担心截获，但是仍然存在伪造问题；
 
-（6）WebStorage提供了一些方法，数据操作比cookie方便；
+#### WebStorage提供了一些方法，数据操作比cookie方便；
+1. setItem（key, value） ——  保存数据，以键值对的方式储存信息。
 
-　　setItem (key, value) ——  保存数据，以键值对的方式储存信息。
+2. getItem（key） ——  获取数据，将键值传入，即可获取到对应的value值。
 
-    getItem (key) ——  获取数据，将键值传入，即可获取到对应的value值。
+3. removeItem（key） ——  删除单个数据，根据键值移除对应的信息。
 
-    removeItem (key) ——  删除单个数据，根据键值移除对应的信息。
+4. clear（） ——  删除所有的数据
 
-    clear () ——  删除所有的数据
-
-    key (index) —— 获取某个索引的key
+5. key（index） —— 获取某个索引的key
