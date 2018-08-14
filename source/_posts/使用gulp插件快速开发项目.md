@@ -353,4 +353,4 @@ gulp.task('babel', function () {
 
 
 ### gulp插件库还有其他很多优秀的插件，可以根据自己的需要引入。
-
+此dome在我的github上，可以下载自行查看<a href="https://github.com/xiongcao/project-gule" target="_blank">https://github.com/xiongcao/project-gule</a>
