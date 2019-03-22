@@ -1,4 +1,4 @@
-title: css常用奇淫技巧(不断更新)
+title: css常用奇淫技巧(不定期更新)
 author: 熊 超
 tags:
   - CSS
@@ -33,6 +33,8 @@ date: 2018-08-30 09:43:00
 ```
 
 ##### 方法1：table-cell
+
+<!-- more -->
 
 ``` css 
 .box1 {
@@ -89,3 +91,103 @@ date: 2018-08-30 09:43:00
 }
 .box5 span {margin: auto;}
 ```
+
+#### 文本超出部分隐藏
+
+##### 单行文本超出部分隐藏
+``` css
+#ellipsis {
+  overflow: hidden;   /*超出的文本隐藏*/
+  text-overflow: ellipsis;    /*溢出用省略号显示*/
+  white-space: nowrap;    /*溢出不换行*/
+}
+```
+
+##### 多行文本超出部分隐藏
+``` css
+#ellipsis {
+  overflow: hidden; 
+  display: -webkit-box;   /*作为弹性伸缩盒子模型显示*/
+  -webkit-box-orient: vertical;   /*设置伸缩盒子的子元素排列方式--从上到下垂直排列*/
+  -webkit-line-clamp: 2;   /*显示的行*/
+}
+```
+
+### 二、形状技巧
+
+##### 三角形
+
+``` css
+#triangle1 {
+  width: 0;
+  height: 0;
+  border-top: 50px solid red;
+  border-right: 50px solid orange;
+  border-bottom: 50px solid yellow;
+  border-left: 50px solid green;
+}
+
+#triangle2 {
+  width: 0;
+  height: 0;
+  border-top: 50px solid red;
+  border-right: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 50px solid transparent;
+}
+```
+![](http://or87vteh1.bkt.clouddn.com/201810171448_18.png)
+
+##### 未读数量
+``` css
+#superscript {
+    width: 50px;
+    height: 50px;
+    background: red;
+    padding:0 20px;
+    border-radius: 20px;
+}
+```
+![](http://or87vteh1.bkt.clouddn.com/201810171448_144.png)
+
+##### 字体边框同色
+``` css
+#app{
+    width: 100px;
+    height: 100px;
+    color: red;
+    font-size: 30px;
+
+    /*方案一    CSS3 currentColor 表示当前的文字颜色*/
+    /* border: 10px solid currentColor; */
+    
+    /*方案二    border 的默认值 (initial) 就是 currentColor*/
+    border: 10px solid;
+  }
+```
+![](http://or87vteh1.bkt.clouddn.com/201810171448_736.png)
+
+##### 放大镜
+``` css
+#div5{
+    width: 50px;
+    height: 50px;
+    border: 5px solid #000000;
+    border-radius: 50%;
+    position: relative;
+}
+
+#div5::after{
+    content: ' ';
+    display: block;
+    width: 8px;
+    height: 60px;
+    border-radius: 5px;
+    background: #000000;
+    position: absolute;
+    right: -22px;    
+    top: 38px;
+    transform: rotate(-45deg);
+}
+```
+![](http://or87vteh1.bkt.clouddn.com/201810171449_641.png)
