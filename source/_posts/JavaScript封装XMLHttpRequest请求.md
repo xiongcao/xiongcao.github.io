@@ -153,10 +153,10 @@ Ajax.prototype.ajax = function(obj){
 ```
 
 3.顺带看下后端写法（哈哈,虽然不需要前端开发人员操心）
-![](http://or87vteh1.bkt.clouddn.com/201808161403_227.png)
+![](http://www.xiongchao.win/blogImage/201808161403_227.png)
 
 4.最后看下四种请求的结果 
-![](http://or87vteh1.bkt.clouddn.com/201808161408_351.png)
+![](http://www.xiongchao.win/blogImage/201808161408_351.png)
 
 ### ES6 封装XMLHttpRequest对象
 

@@ -62,8 +62,8 @@ public class Test {
 ```
 
 浏览器中访问（将html部署到nginx）结果:
-![](http://or87vteh1.bkt.clouddn.com/201808141515_419.png)
-![](http://or87vteh1.bkt.clouddn.com/201808141516_535.png)
+![](http://www.xiongchao.win/blogImage/201808141515_419.png)
+![](http://www.xiongchao.win/blogImage/201808141516_535.png)
 
 虽然请求成功并且返回了状态码200，但是并没有返回内容，并且控制台还打印了报错信息
 
@@ -129,7 +129,7 @@ public class Test {
 ```
 
 我们看一下后台获取的callback的值
-![](http://or87vteh1.bkt.clouddn.com/201808141602_241.png)
+![](http://www.xiongchao.win/blogImage/201808141602_241.png)
 
 修改请求代码再看一下后台获取的callback的值
 ``` js
@@ -147,10 +147,10 @@ $.ajax({
 })
 ```
 正是我们自定义的callback的值
-![](http://or87vteh1.bkt.clouddn.com/201808141605_213.png)
+![](http://www.xiongchao.win/blogImage/201808141605_213.png)
 
 最后查看请求结果，控制台成功打印获取获取的数据
-![](http://or87vteh1.bkt.clouddn.com/201808141607_11.png)
+![](http://www.xiongchao.win/blogImage/201808141607_11.png)
 
 #### <font color="red">需要注意的是jsonp是不支持post方式跨域请求，就算指定成POST方式，会自动转为GET方式；而后端如果设置成POST方式了，那就请求不了了。</font>
 #### <font color="red">另外可以使用jquer-jsonp插件实现跨域请求，服务器端无需做任何处理。</font>
@@ -179,7 +179,7 @@ public class Test {
 ```
 
 结果：
-![](http://or87vteh1.bkt.clouddn.com/201808141525_79.png)
+![](http://www.xiongchao.win/blogImage/201808141525_79.png)
 成功请求！
 
 
@@ -286,6 +286,6 @@ public class Test {
 ```
 
 请求结果：可以看到有OPTIONS请求了
-![](http://or87vteh1.bkt.clouddn.com/201808141716_132.png)
-![](http://or87vteh1.bkt.clouddn.com/201808141716_238.png)
-![](http://or87vteh1.bkt.clouddn.com/201808141607_11.png)
+![](http://www.xiongchao.win/blogImage/201808141716_132.png)
+![](http://www.xiongchao.win/blogImage/201808141716_238.png)
+![](http://www.xiongchao.win/blogImage/201808141607_11.png)

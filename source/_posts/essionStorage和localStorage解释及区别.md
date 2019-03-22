@@ -86,7 +86,7 @@ WebStorage的目的是克服由cookie所带来的一些限制，当数据需要�
 
 #### 示例：
 （1） 新建两个文件：
-![](http://or87vteh1.bkt.clouddn.com/201808081728_587.png)
+![](http://www.xiongchao.win/blogImage/201808081728_587.png)
 
 
 ``` html
@@ -112,13 +112,13 @@ WebStorage的目的是克服由cookie所带来的一些限制，当数据需要�
 （2） 部署服务（推荐使用nignx做反向代理,比tomcat简单粗暴，也可以不用这一步，只是为了模拟真实网站会话）
 
 （3） 打开index.html,并使用链接打开test.html
-![](http://or87vteh1.bkt.clouddn.com/201808081739_652.png)
-![](http://or87vteh1.bkt.clouddn.com/201808081739_523.png)
+![](http://www.xiongchao.win/blogImage/201808081739_652.png)
+![](http://www.xiongchao.win/blogImage/201808081739_523.png)
 
 两个页面的结果是一样的，这是一次会话，sessionStorage储存的内容被保存下来。
 
 （4） 单独打开test.html,会发现sessionStorage是空的。
-![](http://or87vteh1.bkt.clouddn.com/201808081739_652.png)
-![](http://or87vteh1.bkt.clouddn.com/201808081742_158.png)
+![](http://www.xiongchao.win/blogImage/201808081739_652.png)
+![](http://www.xiongchao.win/blogImage/201808081742_158.png)
 
 

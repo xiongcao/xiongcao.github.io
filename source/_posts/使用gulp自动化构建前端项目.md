@@ -42,7 +42,7 @@ npm（node package manager）nodejs的包管理器，用于node插件管理（�
 1.说明：package.json是基于nodejs项目必不可少的配置文件，它是存放在项目根目录的普通json文件；
 
 2.通过命令行新建：npm init， 创建过程中会提示让输入各种信息，可以一直回车忽略它。
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170709/1BEACEhcE9.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170709/1BEACEhcE9.png?imageslim)
 
 
 #### 5.新建gulpfile.js文件

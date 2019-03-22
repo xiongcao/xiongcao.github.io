@@ -176,7 +176,7 @@ $blue : #1875e7;　
 
 #### 5.编译结果：
 
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170715/IaCJglCfag.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170715/IaCJglCfag.png?imageslim)
 
 ### 2.gulp-minify-css的使用：
 
@@ -214,13 +214,13 @@ gulp.task('sass', function () {
 
 ```
 2.使用示例：
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170715/GCLHfi4haD.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170715/GCLHfi4haD.png?imageslim)
 
 #### 4.执行任务：   
 命令提示符：gulp sass
 
 #### 5.编译结果：
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170715/CHD62jD9kd.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170715/CHD62jD9kd.png?imageslim)
 编译之后的css文件被压缩了
 
 ### 3.gulp-autoprefixer：
@@ -257,14 +257,14 @@ gulp.task('sass', function () {
 
 ```
 2.使用示例：
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170715/lhl9ajJEIA.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170715/lhl9ajJEIA.png?imageslim)
 
 #### 4.执行任务：   
 命令提示符：gulp sass
 
 #### 5.编译结果：
 浏览器中的编译结果：
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170715/IKCG8CDh46.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170715/IKCG8CDh46.png?imageslim)
 
 
 ## 3.使用gulp编译js
@@ -299,7 +299,7 @@ gulp.task('babel', function () {
 
 2.ES6使用示例：
 
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170716/LBLjFGhFF5.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170716/LBLjFGhFF5.png?imageslim)
 
 #### 4.执行任务：   
 命令提示符：gulp babel
@@ -307,7 +307,7 @@ gulp.task('babel', function () {
 
 #### 5.编译结果：
 
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170716/Hbd5lihjCL.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170716/Hbd5lihjCL.png?imageslim)
 
 
 ### 2.gulp-uglify的使用：
@@ -341,7 +341,7 @@ gulp.task('babel', function () {
 
 2.ES6使用示例：
 
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170716/LBLjFGhFF5.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170716/LBLjFGhFF5.png?imageslim)
 
 #### 4.执行任务：   
 命令提示符：gulp babel
@@ -349,7 +349,7 @@ gulp.task('babel', function () {
 
 #### 5.编译结果：
 
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170716/7Kg8hi0Jla.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170716/7Kg8hi0Jla.png?imageslim)
 
 
 ### gulp插件库还有其他很多优秀的插件，可以根据自己的需要引入。

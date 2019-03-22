@@ -20,19 +20,19 @@ date: 2018-07-02 14:12:00
 
 ### 预览效果图：
 * 本地图片文件上传
-![](http://or87vteh1.bkt.clouddn.com/local.gif)
+![](http://www.xiongchao.win/blogImage/local.gif)
 
 * 截图上传
-![](http://or87vteh1.bkt.clouddn.com/screenshot.gif)
+![](http://www.xiongchao.win/blogImage/screenshot.gif)
 
 * 其它文件上传
-![](http://or87vteh1.bkt.clouddn.com/file.gif)
+![](http://www.xiongchao.win/blogImage/file.gif)
 
 ### 安装
 首先从 github 下载release版本（有两个版本：2.0 正式版和1.0 正式版，推荐使用2.0 正式版）并解压到任意目录
 
 目录结构应如下：
-![](http://or87vteh1.bkt.clouddn.com/201808021402_157.png)
+![](http://www.xiongchao.win/blogImage/201808021402_157.png)
 
 其中dump-clipboard-png.ps1是保存截图的powershell脚本，qiniu-image-upload.ahk 即完成文件上传的AutoHotkey脚本。
 
@@ -40,7 +40,7 @@ date: 2018-07-02 14:12:00
 
 打开settings.ini文件，右键选择编辑脚本使脚本在编辑器中打开，找到下面这段代码:
 
-![](http://or87vteh1.bkt.clouddn.com/201808021405_405.png)
+![](http://www.xiongchao.win/blogImage/201808021405_405.png)
 
 修改这里的五个配置项的值，其中前四个配置项都与七牛账号相关：
 

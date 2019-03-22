@@ -48,7 +48,7 @@ p:nth-of-type(2){color:red;}
 ```
 
 效果：
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170610/hl1lJccBCj.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170610/hl1lJccBCj.png?imageslim)
 
 在同辈元素都相同的情况下两个用法效果一样
 
@@ -76,7 +76,7 @@ p:nth-of-type(2){color:red;}
 
 ```
 效果：
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170610/5kG378GEBE.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170610/5kG378GEBE.png?imageslim)
 
 >* 再来看nth-child()的方式:
 
@@ -86,7 +86,7 @@ p:nth-child(2){color:red;}
 
 ```
 效果：
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170610/h346LeKK59.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170610/h346LeKK59.png?imageslim)
 
 ### 3.用法不同效果相同的情况
 
@@ -121,7 +121,7 @@ p:nth-child(3){color:red;}
 ```
 
 效果：
-![mark](http://or87vteh1.bkt.clouddn.com/blog/170610/5kG378GEBE.png?imageslim)
+![mark](http://www.xiongchao.win/blogImage/blog/170610/5kG378GEBE.png?imageslim)
 
 
 ### 用法总结
