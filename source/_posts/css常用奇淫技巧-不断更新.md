@@ -10,7 +10,7 @@ date: 2018-08-30 09:43:00
 ### 一、常用技巧
 
 #### 清除浮动
-1. 添加新的元素 、应用 clear：both;
+1. 添加新的元素 、应用 clear：both; 
 2. 父级定义 overflow: auto;
 3. 父元素也设置浮动;
 4. 使用br标签和其自身的html属性:《br clear="all"/》 clear="all | left | right | none";
