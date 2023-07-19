@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            红黑树 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">红黑树</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">实习生</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2020-02-06 14:45:00</span>
+        <span class="mobile">2020-02-06 14:45</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-19 21:42:36</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span> 
+
+<h3 id="二叉树-对比"><a href="#二叉树-对比" class="headerlink" title="二叉树 对比"></a>二叉树 对比</h3><h4 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="+ 二叉搜索树"></a>+ 二叉搜索树</h4><p>+ 优点：</p>
+<ul>
+<li>可以快速地找到给定关键字的数据项并且可以快速地插入和删除数据项.</li>
+</ul>
+<p>+ 缺点</p>
+<ul>
+<li>如果插入的数据是&#x3D;&#x3D;有序&#x3D;&#x3D;的数据，树的深度会很大，反而影响效率；</li>
+</ul>
+<h4 id="非平衡树"><a href="#非平衡树" class="headerlink" title="+ 非平衡树"></a>+ 非平衡树</h4><ul>
+<li><p>比较好的二叉搜索树数据应该是左右分布均匀的；</p>
+</li>
+<li><p>但是插入连续数据后，&#x3D;&#x3D;分布的不均匀&#x3D;&#x3D;，我称这种树为&#x3D;&#x3D;非平衡树&#x3D;&#x3D;；</p>
+</li>
+<li><p>对于一棵平衡二叉树来说，插入&#x2F;查找等操作的效率是O(logN)；</p>
+</li>
+<li><p>对于一棵非平衡二叉树，相当于编写了—个链表，查找效率变成了O(N)。</p>
+</li>
+</ul>
+<p>+ 为了能以较快的时间O(logN)来操作一棵树，我们需要保证树总是平衡的:</p>
+<ul>
+<li><p>至少大部分是平衡的那么时间复杂度也是接近O(logN)的；</p>
+</li>
+<li><p>也就是说树中每个&#x3D;&#x3D;节点左边的子孙节点&#x3D;&#x3D;的个数应该尽可能的&#x3D;&#x3D;等于&#x3D;&#x3D;，&#x3D;&#x3D;右边的子孙节点&#x3D;&#x3D;的个数；</p>
+</li>
+<li><p>常见的平衡树有哪些呢?</p>
+</li>
+</ul>
+<h4 id="AVL树"><a href="#AVL树" class="headerlink" title="+ AVL树"></a>+ AVL树</h4><p>AVL树是最早的—种平衡树.它有些办法保持树的平衡(每个节点多存储了一个额外的数据)；</p>
+<p>因为AVL树是平衡的所以时间复杂度也是O(logN)；</p>
+<p>但是，每次&#x3D;&#x3D;插入&#x2F;删除&#x3D;&#x3D;操作相对于红黑树&#x3D;&#x3D;效率都不高&#x3D;&#x3D;，所以整体效率&#x3D;&#x3D;不如红黑树&#x3D;&#x3D;。</p>
+<h4 id="红黑树"><a href="#红黑树" class="headerlink" title="+ 红黑树"></a>+ 红黑树</h4><p>红黑树也通过一些特性来保持树的平衡；</p>
+<p>因为是平衡树，所以时间复杂度也是在O(logN)；</p>
+<p>另外插入&#x2F;删除等操作，红黑树的性能要优于AVL树，所以现在平衡树的应用基本都是红黑树。</p>
+<h3 id="二、特性"><a href="#二、特性" class="headerlink" title="二、特性"></a>二、特性</h3><p> + 红黑树，除了符合二叉搜索树的基本规则外，还添加了一下特性</p>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230404170403038.png"
+                      alt="image-20230404170403038" style="zoom:50%;" align='left'
+                >
+
+<ol>
+<li>节点是红色或黑色。</li>
+<li>&#x3D;&#x3D;根节点是黑色&#x3D;&#x3D;。</li>
+<li>每个&#x3D;&#x3D;叶子节点&#x3D;&#x3D;都是&#x3D;&#x3D;黑色&#x3D;&#x3D;的空节点(NIL节点)</li>
+<li>每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上&#x3D;&#x3D;不能有两个连续&#x3D;&#x3D;的&#x3D;&#x3D;红色&#x3D;&#x3D;节点)</li>
+<li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。</li>
+</ol>
+<p>+ 红黑树的关键特性:</p>
+<ol>
+<li>从根到叶子的&#x3D;&#x3D;最长可能路径&#x3D;&#x3D;，不会超过&#x3D;&#x3D;最短可能路径&#x3D;&#x3D;的&#x3D;&#x3D;两倍长&#x3D;&#x3D;;</li>
+<li>结果就是这个树基本是平衡的；</li>
+<li>虽然没有做到绝对的平衡，但是可以保证在最坏的情况下，依然是高效的；</li>
+</ol>
+<p>+ 为什么可以做到 最长路径不超过最短路径的两倍 呢?</p>
+<ul>
+<li>性质4决定了路径&#x3D;&#x3D;不能&#x3D;&#x3D;有两个&#x3D;&#x3D;相连&#x3D;&#x3D;的&#x3D;&#x3D;红色节点&#x3D;&#x3D;；</li>
+<li>最短的可能路径都是黑色节点；</li>
+<li>最长的可能路径是红色和黑色交替；</li>
+<li>性质5&#x3D;&#x3D;所有路径&#x3D;&#x3D;都有&#x3D;&#x3D;相同数目&#x3D;&#x3D;的&#x3D;&#x3D;黑色&#x3D;&#x3D;节点；</li>
+<li>这就表明了没有路径能多余任何其他路径的两倍长。</li>
+</ul>
+<p>+ 插入一个新节点时，有可能树不再平衡，可以通过三种方式的变换，让树保持平衡</p>
+<ul>
+<li>换色-左旋转一右旋转</li>
+</ul>
+<h5 id="1-变色"><a href="#1-变色" class="headerlink" title="1.变色"></a>1.变色</h5><ul>
+<li>为了重新符合红黑树的规则，尝试把&#x3D;&#x3D;红色&#x3D;&#x3D;节点&#x3D;&#x3D;变&#x3D;&#x3D;为&#x3D;&#x3D;黑色&#x3D;&#x3D;，或者把&#x3D;&#x3D;黑色&#x3D;&#x3D;节点&#x3D;&#x3D;变&#x3D;&#x3D;为&#x3D;&#x3D;红色&#x3D;&#x3D;</li>
+</ul>
+<p>+ 插入的 &#x3D;&#x3D;新的节点&#x3D;&#x3D; 通常都是 &#x3D;&#x3D;红色&#x3D;&#x3D;节点.</p>
+<ul>
+<li>因为在插入节点为红色的时候，有可能插入一次是不违反红黑树任何规则的</li>
+<li>而 插入黑色节点，必然会导致有一条路径上多了黑色节点这是很难调整的</li>
+<li>红色节点 可能&#x3D;&#x3D;导致&#x3D;&#x3D;出现&#x3D;&#x3D;红红相连&#x3D;&#x3D; 的情况，但是这种情况可以通过 &#x3D;&#x3D;颜色调换&#x3D;&#x3D;和&#x3D;&#x3D;旋转&#x3D;&#x3D; 来调整</li>
+</ul>
+<h5 id="2-旋转"><a href="#2-旋转" class="headerlink" title="2.旋转"></a>2.旋转</h5><p>旋转后，依然符合二叉搜索树的特性</p>
+<ul>
+<li><p>左旋转：</p>
+<ul>
+<li><p>&#x3D;&#x3D;逆时针&#x3D;&#x3D;旋转红黑树的两个节点，使得父节点被自己的右孩子取代，而自己成为自己的左孩子</p>
+</li>
+<li><img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230404173528613.png"
+                      alt="image-20230404173528613" style="zoom:33%;" align="left"
+                >
+</li>
+<li><p>图中，身为右孩子的Y取代了X的位置，而X变成了Y的左孩子。此为左旋转</p>
+</li>
+<li><p>不影响子节点：b节点，旋转前后，都满足 x &lt; b &lt; y</p>
+</li>
+</ul>
+</li>
+<li><p>右旋转：</p>
+<ul>
+<li>&#x3D;&#x3D;顺时针&#x3D;&#x3D;旋转红黑树的两个节点，使得父节点被自己的左孩子取代，而自己成为自己的右孩子</li>
+<li><img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230404173600333.png"
+                      alt="image-20230404173600333" style="zoom:33%;" align="left"
+                ></li>
+<li>图中，身为左孩子的Y取代了X的位置，而X变成了Y的右孩子。此为右旋转</li>
+<li>不影响子节点：c节点，旋转前后，都满足 y &lt; c &lt; x</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>接下来,讨论一下插入的情况:<br>设要插入的节点为N,其父节点为P<br>其祖父节点为G,其父亲的兄弟节点为U(即P和U是同一个节点的子节点)</p>
+</li>
+<li><p>情况一：(简单变色即可)<br>新节点N位于树的根上,没有父节点<br>这种情况下,我们直接将红色变换成黑色即可,这样满足性质2</p>
+</li>
+<li><p>情况二：(不用变)<br>新节点的父节点P是黑色<br>性质4没有失效(新节点是红色的),性质5也没有任何问题<br>尽管新节点N有两个黑色的叶子节点nil但是新节点N是红色的,所以通过它的路径中黑色节点的个数依然相同,满足性质5</p>
+</li>
+<li><p>情况三：<br>P为红色，U也是红色，G是黑色（父红叔红祖黑 &#x3D;》 父黑叔黑 祖红）</p>
+</li>
+<li><p>操作方案<br>将P和U变换为黑色,并且将G变换为红色<br>现在新节点N有了一个黑色的父节点P，所以每条路径上黑色节点的数目没有改变；<br>而从更高的路径上必然都会经过G节点所以那些路径的黑色节点数目也是不变的.符合性质5.</p>
+</li>
+<li><p>可能出现的问题<br>但是，N的祖父节点G的父节点也可能是红色,这就违反了性质3,可以递归的调整颜色.<br>但是如果递归调整颜色到了根节点,就需要进行旋转了,待会儿我们的例子中会遇到这个问题.</p>
+</li>
+<li><p>情况四：<br>N的叔叔∪是黑节点,且N是左孩子；（父红，叔黑，祖父黑，N左）</p>
+</li>
+<li><p>操作方案<br>对祖父节点G进行依次右旋转<br>在旋转查收的树中,以前的父节点P现在是新节点以前祖父节点G的父节点<br>交换以前的父节点P和祖父节点G的颜色(P为黑色,G变成红色——G原来一定是黑色,为什么?)<br>B节点向右平移,成为G节点的左子节点</p>
+</li>
+<li><p>情况五<br>N的叔叔U是黑色节点,且N是有孩子.（父红叔黑祖父黑，N右）</p>
+</li>
+<li><p>旋转<br>以P为根，左旋转<br>将P作为新插入的红色接地那考虑即可</p>
+</li>
+<li><p>操作方案<br>对P节点进行依次左旋转,形成情况四的结果.<br>对祖父节点G进行一次右旋转,并且改变颜色即可</p>
+</li>
+</ul>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">红黑树</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2020-02-06 14:45:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2020/02/06/红黑树/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2020/02/27/%E5%9B%BE%E8%AE%BA/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">图论</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2020/01/18/%E4%BA%8C%E5%8F%89%E6%A0%91/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">二叉树</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91-%E5%AF%B9%E6%AF%94"><span class="nav-number">1.</span> <span class="nav-text">二叉树 对比</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="nav-number">1.1.</span> <span class="nav-text">+ 二叉搜索树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E5%B9%B3%E8%A1%A1%E6%A0%91"><span class="nav-number">1.2.</span> <span class="nav-text">+ 非平衡树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AVL%E6%A0%91"><span class="nav-number">1.3.</span> <span class="nav-text">+ AVL树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">1.4.</span> <span class="nav-text">+ 红黑树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%89%B9%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">二、特性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%8F%98%E8%89%B2"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.变色</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E6%97%8B%E8%BD%AC"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.旋转</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

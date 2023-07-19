@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            哈希表 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">哈希表</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">实习生</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2019-11-26 14:45:00</span>
+        <span class="mobile">2019-11-26 14:45</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-19 21:40:40</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>16 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span> 
+
+<h3 id="一、哈希表-vs-数组"><a href="#一、哈希表-vs-数组" class="headerlink" title="一、哈希表 vs 数组"></a>一、哈希表 vs 数组</h3><h4 id="哈希表："><a href="#哈希表：" class="headerlink" title="哈希表："></a>哈希表：</h4><p>基于数组进行实现的，相对于数组，有很多优势。</p>
+<ol>
+<li>提供 非常&#x3D;&#x3D;快速的插入-删除-查找&#x3D;&#x3D;操作。</li>
+<li>无论多少数据，插入和删除值需要接近常量的时间：即O(1)的时间级。实际上只需要几个机器指令即可完成。</li>
+<li>哈希表的 &#x3D;&#x3D;速度 比 树&#x3D;&#x3D; 还要快，基本可以瞬间查找到想要的元素。</li>
+<li>哈希表相对于 树 来说&#x3D;&#x3D;编码要容易&#x3D;&#x3D;的很多。</li>
+<li>哈希表的结构就是&#x3D;&#x3D;数组，对下标值的一种变换&#x3D;&#x3D;，这种变换称之为&#x3D;&#x3D;哈希函数&#x3D;&#x3D;，通过哈希函数可以获得HashCode;</li>
+</ol>
+<h4 id="相对于数组的不足："><a href="#相对于数组的不足：" class="headerlink" title="相对于数组的不足："></a>相对于数组的不足：</h4><ol>
+<li>数据没有顺序，不能以一种固定的方式（比如从小大）来遍历其中的元素</li>
+<li>通常情况下，哈希表中的key是不允许充重复的，不能放置相同的key，用于保存不同的元素</li>
+</ol>
+<h4 id="数组查找效率："><a href="#数组查找效率：" class="headerlink" title="数组查找效率："></a>数组查找效率：</h4><ol>
+<li>如果是基于索引进行查找，效率非常高</li>
+<li>如果是基于内容查找(name&#x3D;’why’)，效率比较低</li>
+<li>进行删除操作，效率也不高</li>
+</ol>
+<h3 id="二、哈希表"><a href="#二、哈希表" class="headerlink" title="二、哈希表"></a>二、哈希表</h3><p><strong>自定义编码：</strong></p>
+<ol>
+<li><p>规则：用1表示a，用26表示z，用0表示空格</p>
+</li>
+<li><p>字母转数组：</p>
+<p>  2.1 数组相加。</p>
+</li>
+</ol>
+<ul>
+<li>方法：cats &#x3D; 3 + 1 + 20 + 19 &#x3D; 43;</li>
+<li>问题：很多单词的数字之和都相同，会造成数据覆盖。</li>
+<li>结果：数组下标太少</li>
+</ul>
+<p>​	2.2 &#x3D;&#x3D;幂的连乘&#x3D;&#x3D;。</p>
+<ul>
+<li><p>方法：7654 &#x3D; 7<em>10^3 + 6</em>10^2 + 5*10 + 4;（基本保证唯一性）</p>
+</li>
+<li><p>问题： </p>
+<ul>
+<li>单词太长，得到的结果非常大，数组能否表示这么大的下标值吗？</li>
+<li>就算能够创建这么大的数组，实时上有很多是无效的单词</li>
+<li>创建这么大的数组时没有意义的、</li>
+</ul>
+</li>
+<li><p>结果：数组下标太多</p>
+</li>
+<li><p>改进：压缩范围，将巨大的整数范围压缩到可以接受的数组范围中。</p>
+</li>
+<li><p>压缩实现：取余操作。</p>
+<p>​</p>
+</li>
+</ul>
+<p><strong>哈希化</strong>：将大数字转化成数组范围内下标的过程。</p>
+<p><strong>哈希函数</strong>：通常会将单词转成大数字，大数字在进行哈希化的代码实现放在一个函数中，这个函数被称为哈希函数。</p>
+<p><strong>哈希表</strong>：最终将数据插入到的这个数组，对整个结构的封装，称之为一个哈希表</p>
+<h4 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h4><p>下标值仍然可能相同，冲突不可避免，只能解决冲突。</p>
+<p>解决冲突：</p>
+<ul>
+<li>链地址法（拉链法）。</li>
+<li>开放地址法。</li>
+</ul>
+<h4 id="链地址法"><a href="#链地址法" class="headerlink" title="链地址法"></a>链地址法</h4><img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230402191929894.png"
+                      alt="image-20230402191929894" style="zoom:50%;" align="left"
+                >
+
+<ul>
+<li>每个数组单元中存储的不再是单个数据，而是一个&#x3D;&#x3D;链条&#x3D;&#x3D;。</li>
+<li>链条的数据结构通常是 数组或&#x3D;&#x3D;链表&#x3D;&#x3D;。</li>
+<li>比如是链表，也就是每个数组单元中存储着一个链表。一旦发现重复，将重复的元素插入到链表的首端或者未端即可。</li>
+<li>当查询时，先根据哈希化后的下标值找到对应的位置，再取出链表，依次查询找寻找的数据。</li>
+</ul>
+<h4 id="开放地址法"><a href="#开放地址法" class="headerlink" title="开放地址法"></a>开放地址法</h4><img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230402194530024.png"
+                      alt="image-20230402194530024" style="zoom:50%;" align="left"
+                >
+
+<p>寻找空白的单元格来添加重复的数据</p>
+<p>探索这个位置的方式：</p>
+<ol>
+<li>线性探测：</li>
+<li>二次探测</li>
+<li>再哈希法</li>
+</ol>
+<p><strong>1.线性探测</strong>（82和32）</p>
+<ol>
+<li><strong>插入</strong>：</li>
+</ol>
+<p>​	经过哈希化得到index &#x3D; 2，在插入的时候，发现该位置已经有了82；</p>
+<p>​	从 index+1 的位置开始一点点查找合适位置（空白位置）来放置32</p>
+<ol start="2">
+<li><strong>查找</strong>：</li>
+</ol>
+<p>​	经过哈希化得到index &#x3D; 2，比如2的位置结果和查询的数据是否相同，相同则直接返回；</p>
+<p>​	不相同，则从 index+1 位置开始查找和32一样的</p>
+<p>​	如果32的位置 我们之前 没有插入，则查询到空位置就停止，因为查询到这里有空位置，32之前不可能跳过空位置去其他的位置。</p>
+<ol start="3">
+<li><strong>删除</strong>：</li>
+</ol>
+<p>​	删除一个数据项时，不可以将这个下标的内容设置为null；</p>
+<p>​	如果设置为null可能会影响之后的查询操作，通常删除一个位置的数据项时，可以进行特殊处理（比如设置为-1）；</p>
+<p>​	当看到-1位置的数据项时，就知道要继续查询，但是插入时这个位置可以放置数据。</p>
+<ol start="4">
+<li><strong>问题</strong>：聚集</li>
+</ol>
+<p>​	比如在没有任何数据的时候，插入的是22-23-24-25-26，那么意味着下标值2-3-4-5的位置都有元素；</p>
+<p>​	这种一连串填充单元就叫做聚集；</p>
+<p>​	聚集会影响哈希表的性能，无论是插入&#x2F;查询&#x2F;删除 都有影响</p>
+<p>​	比如插入一个32，会发现连续的单元都不允许放置数据，并且在这个过程中需要探测多次；</p>
+<p>​	二次探测可以解决一部分这个问题。</p>
+<p><strong>2.二次探测</strong></p>
+<ul>
+<li>二次探测主要优化的是&#x3D;&#x3D;探测时的步长&#x3D;&#x3D;；</li>
+<li>&#x3D;&#x3D;线性探测&#x3D;&#x3D;，可以看成是&#x3D;&#x3D;步长为1&#x3D;&#x3D;的探测，比如从下标值x开始,那么线性测试就是x+1，X+2，X+3依次探测；</li>
+<li>二次探测，对步长做了优化，比如从下标值x开始，x+1^2，x+2^2，x+3^2；</li>
+<li>这样就可以&#x3D;&#x3D;一次性探测比较长的距离&#x3D;&#x3D;，比避免那些聚集带来的影响；</li>
+</ul>
+<p>问题：</p>
+<p>​	二次探测依然存在问题，比如我们连续插入的是32-112-82-2-192,那么它们依次累加的时候步长的相同的；</p>
+<p>​	也就是这种情况下会造成&#x3D;&#x3D;步长不一的一种聚集&#x3D;&#x3D;，还是会影响效率、(当然这种可能性相对于连续的数字会小一些)</p>
+<p><strong>3.再哈希法</strong></p>
+<ul>
+<li>二次探测的算法产生的探测序列步长是固定的：1，4，9，16，依次类推；</li>
+<li>现在需要一种方法：产生一种 &#x3D;&#x3D;依赖关键字的探测序列&#x3D;&#x3D;，而不是每个关键字都一样；</li>
+<li>那么，&#x3D;&#x3D;不同的关键字&#x3D;&#x3D; 即使映射到 &#x3D;&#x3D;相同的数组下标&#x3D;&#x3D;，也可以使用 &#x3D;&#x3D;不同的探测序列&#x3D;&#x3D;；</li>
+<li>再哈希法的做法就是：把关键字用另外一个哈希函数，再做一次哈希化，用这次哈希化的结果作为步长；</li>
+<li>对于&#x3D;&#x3D;指定的关键字，步长&#x3D;&#x3D;在整个探测中是&#x3D;&#x3D;不变&#x3D;&#x3D;的，不过&#x3D;&#x3D;不同的关键字&#x3D;&#x3D;使用&#x3D;&#x3D;不同的步长&#x3D;&#x3D;</li>
+</ul>
+<p>第二次哈希化需要具备如下特点：</p>
+<ul>
+<li>和&#x3D;&#x3D;第一个哈希函数不同&#x3D;&#x3D; (不要再使用上一次的哈希函数了，不然结果还是原来的位置)；</li>
+<li>&#x3D;&#x3D;不能输岀为0&#x3D;&#x3D; (否则，将没有步长每次探测都是原地踏步，算法就进入了死循环)</li>
+</ul>
+<p>其实，我们不用费脑细胞来设计了，计算机专家已经设计出一种工作很好的哈希函数:</p>
+<ul>
+<li>stepsize &#x3D; constant - (key % constant);</li>
+<li>其中 constant是质数，且小于数组的容量;</li>
+<li>例如: stepsize &#x3D; 5 - (key % 5)，满足需求，并且结果不可能为0</li>
+</ul>
+<p>哈希表中执行插入和搜索操作效率是非常高的：</p>
+<ul>
+<li>如果没有产生冲突，那么效率就会更高；</li>
+<li>如果发生冲突，存取时间就依赖后来的探测长度；</li>
+<li>平均探测长度以及平均存取时间，取决于墳装因子，随着填装因子变大，探测长度也越来越长；</li>
+<li>随着填裝因子变大，效率下降的情况，在不同开放地址法方案中比链地址法更严重；</li>
+<li>所以我们来对比-下他们的效率，再决定我们选取的方案</li>
+</ul>
+<p>在分析效率之前，我们先了解一个概念：裝填因子</p>
+<ul>
+<li>装填因子表示当前哈希表中 已经包含的数据项 和 整个哈希表长度的 比值；</li>
+<li>装填因子 &#x3D; 总数据项 &#x2F; 哈希表长度；</li>
+<li>开放地址法 的 装填因子 最大 是多少呢?1，因为它必须寻找到空白的单元才能将元素放入</li>
+<li>链地址法 的 装填因子 呢?可以大于1，因为拉链法可以无限的延伸下去，只要你愿意(当然后面效率就变低了)。</li>
+</ul>
+<h3 id="三、哈希函数"><a href="#三、哈希函数" class="headerlink" title="三、哈希函数"></a>三、哈希函数</h3><p>好的哈希函数应该尽可能让计算的过程变得简单提高计算的效率。</p>
+<ul>
+<li>哈希表的主要&#x3D;&#x3D;优点是它的速度&#x3D;&#x3D;，所以在速度上不能满足，那么就达不到设计的目的了；</li>
+<li>提高速度的一个办法就是让哈希函数中&#x3D;&#x3D;尽量少的有乘法和除法&#x3D;&#x3D;。因为它们的&#x3D;&#x3D;性能是比较低&#x3D;&#x3D;的；</li>
+</ul>
+<p>+ 设计好的哈希函数应该具备哪些优点呢?</p>
+<ol>
+<li><strong>快速的计算</strong></li>
+</ol>
+<ul>
+<li>哈希表的优势就在于效率，所以快速获取到对应的 hash Code非常重要；</li>
+<li>我们需要通过快速的计算来获取到元素对应的 hash Code；</li>
+</ul>
+<ol start="2">
+<li><strong>均匀的分布</strong></li>
+</ol>
+<ul>
+<li>哈希表中，无论是链地址法还是开放地址法，当多个元素映射到同一个位置的时候都会影响效率；</li>
+<li>所以优秀的哈希函数应该尽可能将元素映射到不同的位置，让元素在哈希表中均匀的分布；</li>
+</ul>
+<p>​	在设计哈希表时，我们已经有办法处理 映射到相同下标值 的情况：链地址法或者开放地址法.</p>
+<p>​	但是无论哪种方案，为了提供效率，最好的情况还是让数据在哈希表中均匀分布.</p>
+<p>​	因此，我们需要在使用常量的地方，尽量使用质数.</p>
+<p>哪些地方我们会使用到常量呢?</p>
+<p>+ 质数的使用</p>
+<ul>
+<li>哈希表的长度.</li>
+<li>N次幂的底数(我们之前使用的是27)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***************  哈希函数 ***********/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.将字符串转成比较大的数字：hashCode</span></span><br><span class="line"><span class="comment">// 2.将大的数字hashCode压缩到数组范围（大小）之内</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hashFunc</span>(<span class="params">str, size</span>) &#123;</span><br><span class="line">  <span class="comment">// 1.定义hashCode边浪</span></span><br><span class="line">  <span class="keyword">let</span> hashCode = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2.霍纳算法，来计算hashCode的值</span></span><br><span class="line">  <span class="comment">// cats -&gt; Unicode编码</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; str.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    hashCode = <span class="number">37</span> * hashCode + str.<span class="title function_">charCodeAt</span>(i);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 3.取余操作</span></span><br><span class="line">  <span class="keyword">return</span> hashCode % size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">hashFunc</span>(<span class="string">&#x27;abc&#x27;</span>, <span class="number">7</span>)) <span class="comment">// 4</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">hashFunc</span>(<span class="string">&#x27;cba&#x27;</span>, <span class="number">7</span>)) <span class="comment">// 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">hashFunc</span>(<span class="string">&#x27;nba&#x27;</span>, <span class="number">7</span>)) <span class="comment">// 5</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">hashFunc</span>(<span class="string">&#x27;mba&#x27;</span>, <span class="number">7</span>)) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、哈希表的实现"><a href="#四、哈希表的实现" class="headerlink" title="四、哈希表的实现"></a>四、哈希表的实现</h3><p>结构：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [], [[<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;Alice&#x27;</span>]], [[<span class="string">&#x27;age&#x27;</span>, <span class="number">20</span>]]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230403153511657.png"
+                      alt="image-20230403153511657" style="zoom:50%;" align="left"
+                >
+
+<p>代码实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***************  哈希表 ***********/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">HashTable</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 数组中存放相关的元素</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">storage</span> = [];</span><br><span class="line">  <span class="comment">// 当前哈希表已经存放的元素个数</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">count</span> = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 哈希表 数组当前的总长度</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">limit</span> = <span class="number">7</span>;</span><br><span class="line">  <span class="comment">// 加载因子/装载因子 loadFactor &gt; 0.75 || loadFactor &lt; 0.25 ; loadFactor = count / limit</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 哈希函数</span></span><br><span class="line">  <span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hashFunc</span> = <span class="keyword">function</span> (<span class="params">str, size</span>) &#123;</span><br><span class="line">    <span class="comment">// 1.定义hashCode边浪</span></span><br><span class="line">    <span class="keyword">let</span> hashCode = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.霍纳算法，来计算hashCode的值</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; str.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      hashCode = <span class="number">37</span> * hashCode + str.<span class="title function_">charCodeAt</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.取余操作</span></span><br><span class="line">    <span class="keyword">return</span> hashCode % size;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 插入和修改操作</span></span><br><span class="line">  <span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">put</span> = <span class="keyword">function</span> (<span class="params">key, value</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.根据key获取索引值（目的：将数据插入到对应的位置）</span></span><br><span class="line">    <span class="keyword">let</span> index = <span class="variable language_">this</span>.<span class="title function_">hashFunc</span>(key, <span class="variable language_">this</span>.<span class="property">limit</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.根据索引值取出bucket</span></span><br><span class="line">    <span class="keyword">let</span> bucket = <span class="variable language_">this</span>.<span class="property">storage</span>[index];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.判断该bucket是否为null</span></span><br><span class="line">    <span class="keyword">if</span> (!bucket) &#123;</span><br><span class="line">      bucket = [];</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">storage</span>[index] = bucket;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.判断是否是修改数据</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> tuple = bucket[i];</span><br><span class="line">      <span class="keyword">if</span>(tuple[<span class="number">0</span>] === key) &#123;</span><br><span class="line">        tuple[<span class="number">1</span>] = value;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5.进行添加操作</span></span><br><span class="line">    bucket.<span class="title function_">push</span>([key, value])</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">count</span> += <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">get</span> = <span class="keyword">function</span> (<span class="params">key</span>) &#123;</span><br><span class="line">    <span class="comment">// 1.根据key获取对应的index</span></span><br><span class="line">    <span class="keyword">let</span> index = <span class="variable language_">this</span>.<span class="title function_">hashFunc</span>(key, <span class="variable language_">this</span>.<span class="property">limit</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.根据index获取对应的bucket</span></span><br><span class="line">    <span class="keyword">let</span> bucket = <span class="variable language_">this</span>.<span class="property">storage</span>[index];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.判断bucket是否为null，是，直接返回null</span></span><br><span class="line">    <span class="keyword">if</span>(bucket === <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.线性查找bucket中每一个key是否等于传入的key</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> tuple = bucket[i];</span><br><span class="line">      <span class="keyword">if</span> (tuple[<span class="number">0</span>] === key) &#123;</span><br><span class="line">        <span class="keyword">return</span> tuple[<span class="number">1</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5.依然没有知道</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">remove</span> = <span class="keyword">function</span> (<span class="params">key</span>) &#123;</span><br><span class="line">    <span class="comment">// 1.根据key获取对应的index</span></span><br><span class="line">    <span class="keyword">let</span> index = <span class="variable language_">this</span>.<span class="title function_">hashFunc</span>(key, <span class="variable language_">this</span>.<span class="property">limit</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.根据index获取对应的bucket</span></span><br><span class="line">    <span class="keyword">let</span> bucket = <span class="variable language_">this</span>.<span class="property">storage</span>[index];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.判断bucket是否为null，是，直接返回null</span></span><br><span class="line">    <span class="keyword">if</span>(bucket === <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.线性查找bucket中每一个key是否等于传入的key</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> tuple = bucket[i];</span><br><span class="line">      <span class="keyword">if</span> (tuple[<span class="number">0</span>] === key) &#123;</span><br><span class="line">        bucket.<span class="title function_">splice</span>(i, <span class="number">1</span>);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">count</span>--;</span><br><span class="line">        <span class="keyword">return</span> tuple[<span class="number">1</span>];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5.依然没有找到</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断哈希表是否为空</span></span><br><span class="line">  <span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">isEmpty</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">count</span> === <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断哈希表元素的个数</span></span><br><span class="line">  <span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">size</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">count</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、哈希表扩容"><a href="#五、哈希表扩容" class="headerlink" title="五、哈希表扩容"></a>五、哈希表扩容</h3><p>+ 为什么需要扩容</p>
+<ul>
+<li>目前，我们是将所有的数据项放在长度为7的数组中的。</li>
+<li>因为我们使用的是链地址法， load Factor可以大于1，所以这个哈希表可以无限制的插入新数据。</li>
+<li>但是，随着数据量的增多，每—个 index对应的 bucket会越来越长，也就造成效率的降低。</li>
+<li>所以在合适的情况对数组进行扩容。比如扩容两倍。</li>
+</ul>
+<p>+ 如何进行扩容</p>
+<ul>
+<li>扩容可以简单的将容量增大两倍(不是质数吗?质数的问题后面再讨论)。</li>
+<li>但是这种情况下，所有的数据项一定要同时进行修改(重新调用哈希函数来获取到不同的位置)。</li>
+<li>比如 hash Code&#x3D;12的数据项在 length&#x3D;8的时候 index&#x3D;5。在长度为16的时候呢? index&#x3D;12。</li>
+<li>这是一个耗时的过程，但是如果数组需要扩容，那么这个过程是必要的。</li>
+</ul>
+<p>+ 什么情况下需要扩容</p>
+<ul>
+<li>比较常见的情况是 Lload Factor&gt;0.75的时候进行扩容。</li>
+<li>比如Java的哈希表就是在&#x3D;&#x3D;装填因子大于0.75&#x3D;&#x3D;的时候，对哈希表进行扩容。</li>
+</ul>
+<h4 id="容量质数"><a href="#容量质数" class="headerlink" title="容量质数"></a>容量质数</h4><p>+ 我们前面提到过，容量最好是质数</p>
+<ul>
+<li>虽然在链地址法中将容量设置为质数，没有在开放地址法中重要。</li>
+<li>但是其实链地址法中质数作为容量也更利于数据的均匀分布。</li>
+</ul>
+<p>+ 质数的特点</p>
+<ul>
+<li>质数也称为素数</li>
+<li>质数表示大于1的自然数中，只能被1和自己整除的数。<ul>
+<li>在 2到n-1 中间有可以被整除的数</li>
+</ul>
+</li>
+</ul>
+<p>+ 判定质数</p>
+<ul>
+<li>对于每个数n，其实并不需要从2判断到n-1</li>
+<li>一个数若可以进行因数分解，那么分解时得到的两个数一定是一个小于等于sqrt(n)，一个大于等于sqrt(n).</li>
+<li>比如16可以被分解。那么是2*8, 2小于sqrt(16)，也就是4，8大于4。而4*4都是等于sqrt(n)</li>
+<li>所以其实我们遍历到等于sqrt(n)即可</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 判断是否是质数</span></span><br><span class="line"><span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">isPrime</span> = <span class="keyword">function</span> (<span class="params">number</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(number &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取number的平方根</span></span><br><span class="line">  <span class="keyword">const</span> sqrt = <span class="built_in">parseInt</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(number));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= sqrt; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (number % i === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取质数：实现恒为质数</span></span><br><span class="line"><span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getPrime</span> = <span class="keyword">function</span>(<span class="params">number</span>) &#123;</span><br><span class="line">  <span class="keyword">while</span>(!<span class="variable language_">this</span>.<span class="title function_">isPrime</span>(number)) &#123;</span><br><span class="line">    number++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 哈希表扩容/缩容</span></span><br><span class="line"><span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">resize</span> = <span class="keyword">function</span> (<span class="params">newLimit</span>) &#123;</span><br><span class="line">  <span class="comment">// 1.保存旧数组内容</span></span><br><span class="line">  <span class="keyword">let</span> oldStorage = <span class="variable language_">this</span>.<span class="property">storage</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2.重置所有属性</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">storage</span> = [];</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">count</span> = <span class="number">0</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">limit</span> = newLimit</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 3.遍历oldStorage 中所有的bucket</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; oldStorage.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 3.1 取出对应的bucket</span></span><br><span class="line">    <span class="keyword">const</span> bucket = oldStorage[i];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.2 判断bucket是否为null</span></span><br><span class="line">    <span class="keyword">if</span>(!bucket) &#123;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.3 bucekt中有数据，那么取出数据，重新插入</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> tuple = bucket[i];</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">put</span>(tuple[<span class="number">0</span>], tuple[<span class="number">0</span>])</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入时，扩容</span></span><br><span class="line"><span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">put</span> = <span class="keyword">function</span> (<span class="params">key, value</span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 1.根据key获取索引值（目的：将数据插入到对应的位置）</span></span><br><span class="line">  <span class="keyword">let</span> index = <span class="variable language_">this</span>.<span class="title function_">hashFunc</span>(key, <span class="variable language_">this</span>.<span class="property">limit</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2.根据索引值取出bucket</span></span><br><span class="line">  <span class="keyword">let</span> bucket = <span class="variable language_">this</span>.<span class="property">storage</span>[index];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 3.判断该bucket是否为null</span></span><br><span class="line">  <span class="keyword">if</span> (!bucket) &#123;</span><br><span class="line">    bucket = [];</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">storage</span>[index] = bucket;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 4.判断是否是修改数据</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> tuple = bucket[i];</span><br><span class="line">    <span class="keyword">if</span>(tuple[<span class="number">0</span>] === key) &#123;</span><br><span class="line">      tuple[<span class="number">1</span>] = value;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 5.进行添加操作</span></span><br><span class="line">  bucket.<span class="title function_">push</span>([key, value])</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">count</span> += <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 6.判断是否需要扩容</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">count</span> &gt; <span class="variable language_">this</span>.<span class="property">limit</span> * <span class="number">0.75</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> newPrime = <span class="variable language_">this</span>.<span class="title function_">getPrime</span>(<span class="variable language_">this</span>.<span class="property">limit</span> * <span class="number">2</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">resize</span>(newPrime);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除时，减小容量</span></span><br><span class="line"><span class="title class_">HashTable</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">remove</span> = <span class="keyword">function</span> (<span class="params">key</span>) &#123;</span><br><span class="line">  <span class="comment">// 1.根据key获取对应的index</span></span><br><span class="line">  <span class="keyword">let</span> index = <span class="variable language_">this</span>.<span class="title function_">hashFunc</span>(key, <span class="variable language_">this</span>.<span class="property">limit</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2.根据index获取对应的bucket</span></span><br><span class="line">  <span class="keyword">let</span> bucket = <span class="variable language_">this</span>.<span class="property">storage</span>[index];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 3.判断bucket是否为null，是，直接返回null</span></span><br><span class="line">  <span class="keyword">if</span>(bucket === <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 4.线性查找bucket中每一个key是否等于传入的key</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> tuple = bucket[i];</span><br><span class="line">    <span class="keyword">if</span> (tuple[<span class="number">0</span>] === key) &#123;</span><br><span class="line">      bucket.<span class="title function_">splice</span>(i, <span class="number">1</span>);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span>--;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 缩小容量</span></span><br><span class="line">      <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">limit</span> &gt; <span class="number">7</span> &amp;&amp; <span class="variable language_">this</span>.<span class="property">count</span> &lt; <span class="variable language_">this</span>.<span class="property">limit</span> * <span class="number">0.25</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> newPrime = <span class="variable language_">this</span>.<span class="title function_">getPrime</span>(<span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="variable language_">this</span>.<span class="property">limit</span> / <span class="number">2</span>));</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">resize</span>(newPrime)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> tuple[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 5.依然没有找到</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">哈希表</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2019-11-26 14:45:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2019/11/26/哈希表/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2019/12/12/%E6%A0%91/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">树</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2019/11/11/%E9%9B%86%E5%90%88Set/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">集合</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%93%88%E5%B8%8C%E8%A1%A8-vs-%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">一、哈希表 vs 数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">哈希表：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E4%BA%8E%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%8D%E8%B6%B3%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">相对于数组的不足：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%9F%A5%E6%89%BE%E6%95%88%E7%8E%87%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">数组查找效率：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">二、哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%B2%E7%AA%81"><span class="nav-number">2.1.</span> <span class="nav-text">冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">链地址法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E6%94%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">开放地址法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">三、哈希函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%93%88%E5%B8%8C%E8%A1%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.</span> <span class="nav-text">四、哈希表的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%93%88%E5%B8%8C%E8%A1%A8%E6%89%A9%E5%AE%B9"><span class="nav-number">5.</span> <span class="nav-text">五、哈希表扩容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%B9%E9%87%8F%E8%B4%A8%E6%95%B0"><span class="nav-number">5.1.</span> <span class="nav-text">容量质数</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

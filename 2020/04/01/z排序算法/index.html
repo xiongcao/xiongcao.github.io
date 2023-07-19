@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            排序算法 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">排序算法</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">实习生</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2020-04-01 14:45:00</span>
+        <span class="mobile">2020-04-01 14:45</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-19 21:49:37</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>12 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span> 
+
+<h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p>排序算法有很多：冒泡排序&#x2F;选择排序&#x2F;插入排序&#x2F;归并排序&#x2F;计数排序( counting sort)&#x2F;基数排序(radix sort)&#x2F;希尔排序&#x2F;堆排序&#x2F;桶排序；</p>
+<ul>
+<li>简单排序：冒泡排序 - 选择排序 - 插入排序；</li>
+<li>高级排序：希尔排序 - 快速排序 - 归并排序 - 堆排序。</li>
+<li>非比较排序：计数排序 - 基数排序 - 桶排序；</li>
+</ul>
+<h3 id="一、冒泡排序"><a href="#一、冒泡排序" class="headerlink" title="一、冒泡排序"></a>一、冒泡排序</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a0250d86fac644ea82f323a990e1aed5~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp"
+                      alt="bubblesort.gif"
+                ></p>
+<p>从序列的一端开始往另一端冒泡，依次&#x3D;&#x3D;比较相邻&#x3D;&#x3D;的两个数的大小</p>
+<ul>
+<li>如果 左边的数大，则两数交换位置；</li>
+<li>向右移动一个位置 比较下面两个数；</li>
+<li>当走到 最右端时，最大的数 一定被放在了最右边；</li>
+<li>按照这个思路，从最左端重新开始，这次走到倒数第二个位置的数；</li>
+<li>即可依次类推，就可以将数据排序完成。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">swap</span> = <span class="keyword">function</span> (<span class="params">m, n</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> temp = <span class="variable language_">this</span>[m];</span><br><span class="line">  <span class="variable language_">this</span>[m] = <span class="variable language_">this</span>[n];</span><br><span class="line">  <span class="variable language_">this</span>[n] = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bubbleSort</span>(<span class="params">array</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = array.<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; len - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array[j] &gt; array[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        array.<span class="title function_">swap</span>(j, j + <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>代码解析:</p>
+<ul>
+<li>获取数组的长度；</li>
+<li>外层循环应该让j依次减少，因此我们这里使用了反向的遍历；</li>
+<li>内层循环我们使用i &lt; j。因为上面的j在不断减小，这样就可以控制内层循环的次数；</li>
+<li>比较两个数据项的大小，如果前面的大，那么就进行交换；</li>
+</ul>
+<p>比较次数：</p>
+<ul>
+<li>假如一共有7个数字；</li>
+<li>第一次循环6次比较，第二次5次比较，第三次4次比较…到最后一趟进行了1次比较；</li>
+<li>对于7个数据项比较次数：6+5+4+3+2+1；</li>
+<li>对于N个数据项：(N-1)+(N-2)+(N-3)+…+1 &#x3D; N*(N-1)&#x2F;2。</li>
+</ul>
+<p>冒泡排序的O表示法：</p>
+<ul>
+<li>N*(N-1)&#x2F;2 &#x3D; N²&#x2F;2 - N&#x2F;2，根据规则2，只保留最高阶项变成N²&#x2F;2；</li>
+<li>N²&#x2F;2，根据规则3，去除最高项的常量，变成N²；</li>
+<li>因此冒泡排序的比较次数的大O表示法为&#x3D;&#x3D;O(N²)&#x3D;&#x3D;；</li>
+</ul>
+<p>冒泡排序交换次数：</p>
+<ul>
+<li>真实的次数: N*(N-1)&#x2F;4；【两次比较，需要一次交换】</li>
+<li>冒泡排序的交换次数是多少呢?</li>
+<li>如果有两次比较才需要交换一次(不可能每次比较都交换一次)，那么交换次数为 N²&#x2F;4</li>
+<li>由于常量不算在大O表示法中，因此，我们可以认为交换次数的大O表示也是&#x3D;&#x3D;O(N²)&#x3D;&#x3D;</li>
+</ul>
+<h3 id="二、选择排序"><a href="#二、选择排序" class="headerlink" title="二、选择排序"></a>二、选择排序</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7a287f44039844f694bbf67069ee3d66~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp"
+                      alt="selectionsort.gif"
+                ></p>
+<p>思路：</p>
+<ul>
+<li><p>1.取第一个数，和其他数依次比较，获得最小的数，将最小的数与第一个数交换位置，</p>
+<p>这样第一个数就是最小的数；</p>
+</li>
+<li><p>2.依次取2、3、4…个数，重复第一步；</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">selectionSort</span>(<span class="params">array</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.<span class="property">length</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> minIndex = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.<span class="property">length</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array[minIndex] &gt; array[j]) &#123;</span><br><span class="line">        minIndex = j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    array.<span class="title function_">swap</span>(minIndex, i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码解析：</p>
+<ul>
+<li>1.取一个临时变量min，表示最小值的索引；</li>
+<li>2.取第一个数，去和其他数比较，当arr[min] &gt; arr[other]时，min &#x3D; other;</li>
+<li>3.一轮比较下来之后，min就是最小值的索引，然后与第一个数 交换位置，这样第一个数就是最小的数；</li>
+<li>4.取第二个数，循环以上操作，得到剩余元素中最小的值，与第二个数交换位置；</li>
+<li>5.重复以上步骤，即可排序；</li>
+</ul>
+<p>比较次数：</p>
+<ul>
+<li>假如一共有7个数字；</li>
+<li>第一次循环6次比较，第二次5次比较，第三次4次比较…到最后一趟进行了1次比较；</li>
+<li>对于7个数据项比较次数：6+5+4+3+2+1；</li>
+<li>对于N个数据项：(N-1)+(N-2)+(N-3)+…+1 &#x3D; N*(N-1)&#x2F;2。</li>
+</ul>
+<p>选择排序的O表示法：</p>
+<ul>
+<li>与冒泡排序一样，O(N²)；</li>
+</ul>
+<p>选择排序交换次数：</p>
+<ul>
+<li>每次比较最多（也可能不交换）只需要交换一次，一共需要 N-1 次;</li>
+<li>用大O表示法，就是O(N);</li>
+<li>所以选择排序通常认为在执行&#x3D;&#x3D;效率上是 高于 冒泡排序&#x3D;&#x3D;的。</li>
+</ul>
+<h3 id="三、插入排序"><a href="#三、插入排序" class="headerlink" title="三、插入排序"></a>三、插入排序</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dfa7615ee39246ea9dc9c9be37aa2b7c~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp"
+                      alt="insertionsort.gif"
+                ></p>
+<p>插入排序：</p>
+<ul>
+<li>插入排序是&#x3D;&#x3D;简单排序中效率最好&#x3D;&#x3D;的一种</li>
+<li>插入排序也是学习其他&#x3D;&#x3D;高级排序的基础&#x3D;&#x3D;，比如希尔排序&#x2F;快速排序，所以也非常重要.</li>
+</ul>
+<p>局部有序：</p>
+<ul>
+<li>插入排序思想的核心是局部有序。什么是局部有序呢？</li>
+<li>比如在一个队列中的人，我们选择其中一个作为标记的队员；</li>
+<li>这个 被标记的队员左边 的所有队员已经是局部有序的；</li>
+<li>这意味着，有一部分人是按顺序排列好的，有一部分还没有顺序。</li>
+</ul>
+<p>思路：</p>
+<ul>
+<li>从第一个元素开始，该元素可以认为已经被排序；</li>
+<li>取出下一个元素，在已经排序的元素序列中从后向前扫描；</li>
+<li>如果该元素(已排序)大于新元素，将该元素移到下一位置；</li>
+<li>重复上一个步骤，直到找到已排序的元素小于或者等于新元素的位置；</li>
+<li>将新元素插入到该位置后，重复上面的步骤。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">insertionSort</span>(<span class="params">array</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; array.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> j = i;</span><br><span class="line">    <span class="keyword">let</span> current = array[i];</span><br><span class="line">    <span class="keyword">while</span> (current &lt; array[j - <span class="number">1</span>] &amp;&amp; j &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      array[j] = array[j - <span class="number">1</span>]</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    array[j] = current;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>比较次数：</p>
+<ul>
+<li>第一次，最多需要比较一次，第二次最多需要2次，以此类推，最后一次是 N-1 次；</li>
+<li>因此插入排序的最多比较次数是：1+2+3+…+N-1 &#x3D; N*(N-1)&#x2F;2;</li>
+<li>然而毎趟发现插入点之前，平均只有全体数据项的一半需要进行比较我们可以除以2得到N*(N-1)&#x2F;4.</li>
+<li>所以相对于选择排序，其比较次数是少了一半的。</li>
+</ul>
+<p>插入排序的复制次数：</p>
+<ul>
+<li>第一趟时，需要的最多复制次数是1，第二趟最多次数是2，依次类推，最后一趟是N-1次；</li>
+<li>因此复制次数最多是1+2+3+…+N-1&#x3D;N*N-1)&#x2F;2；</li>
+<li>平均次数N*(N-1)&#x2F;4。</li>
+</ul>
+<p>对于基本有序的情况:</p>
+<ul>
+<li>对于已经有序或基本有序的数据来说，插入排序要好很多；</li>
+<li>当数据有序的时候 while循环的条件总是为假，所以它变成了外层循环中的个简单语句，执行N-1次；</li>
+<li>在这种情况下，算法运行至需要O(N)的时间，效率相对来说会更高；</li>
+<li>另外别忘了，我们的比较次数是选择排序的一半，所以这个算法的 效率 是 高于 选择排序 的。</li>
+</ul>
+<h3 id="四、希尔排序"><a href="#四、希尔排序" class="headerlink" title="四、希尔排序"></a>四、希尔排序</h3><p>希尔排序：</p>
+<ul>
+<li>希尔排序是插入排序的一种高效的改进版,并且效率比插入排序要更快.</li>
+<li>插入排序也是学习其他高级排序的基础，比如希尔排序&#x2F;快速排序，所以也非常重要.</li>
+</ul>
+<p>思路：</p>
+<p>比如下面的数字，81,94,11,96,12,35,17,95,28,58,41,75,15：</p>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230406140724784.png"
+                      alt="image-20230406140724784" style="zoom:50%;" 
+                >
+
+<ul>
+<li><p>我们先让间隔为5，进行排序：</p>
+<ul>
+<li><p>(35,81)，(94,17)，(11,95)，(96,28)，(12,58)，(35,41)，(17,75)，(95,15)</p>
+</li>
+<li><p>排序后的新序列一定可以让数字离自己的正确位置更近一步。</p>
+</li>
+</ul>
+</li>
+<li><p>我们再让间隔位3，进行排序：</p>
+<ul>
+<li><p>(35,28,75,58,95)，(17,12,15,81)，(11,41,96,94)</p>
+</li>
+<li><p>排序后的新序列，一定可以让数字离自己的正确位置又近了一步最后。</p>
+</li>
+</ul>
+</li>
+<li><p>我们让间隔为1，也就是正确的插入排序。</p>
+<ul>
+<li>这个时候数字都离自己的位置更近，那么需要复制的次数一定会减少很多。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">shellSort</span>(<span class="params">array</span>) &#123;</span><br><span class="line">   <span class="comment">// 1.获取数组长度</span></span><br><span class="line">  <span class="keyword">const</span> len = array.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2.初始化增量</span></span><br><span class="line">  <span class="keyword">let</span> gap = <span class="title class_">Math</span>.<span class="title function_">floor</span>(len / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 3.while循环，gap不断减小至1</span></span><br><span class="line">  <span class="keyword">while</span> (gap &gt;= <span class="number">1</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.以gap作为间隙，进行分组，对分组进行插入排序</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = gap; i &lt; len; i++) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">let</span> j = i;</span><br><span class="line">      <span class="keyword">let</span> current = array[i];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">while</span> (current &lt; array[j - gap] &amp;&amp; j - gap &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">        array[j] = array[j - gap]</span><br><span class="line">        j-= gap;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 5.将j位置元素赋值 current</span></span><br><span class="line">      array[j] = current;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 6.增量变化</span></span><br><span class="line">    gap = <span class="title class_">Math</span>.<span class="title function_">floor</span>(gap / <span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>希尔排序的效率：</p>
+<ul>
+<li>希尔排序的效率很增量是有关系的；</li>
+<li>但是，它的效率证明非常困难，甚至某些增量的效率到目前依然没有被证明岀来；</li>
+<li>但是经过统计，希尔排序使用原始增量，最坏的情况下时间复杂度为O(N²)，通常&#x3D;&#x3D;情况下都要好于O(N²)&#x3D;&#x3D;。</li>
+</ul>
+<p>总之我们使用希尔排序大多数情况下效率都高于简单排序：</p>
+<ul>
+<li>这个可以通过统计排序算法的时间来证明；</li>
+<li>甚至在合适的增量和某些数量N的情况下，还好好于快速排序。</li>
+</ul>
+<h3 id="五、快速排序"><a href="#五、快速排序" class="headerlink" title="五、快速排序"></a>五、快速排序</h3><img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230406150634855.png"
+                      alt="image-20230406150634855" style="zoom:50%;" 
+                >
+
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230406150701367.png"
+                      alt="image-20230406150701367" style="zoom:50%;" 
+                >
+
+
+
+<p>快速排序：</p>
+<ul>
+<li>快速排序几乎可以说是目前所有排序算法中，&#x3D;&#x3D;最快&#x3D;&#x3D;的一种&#x3D;&#x3D;排序算法&#x3D;&#x3D;；</li>
+<li>当然，没有任何一种算法是在任意情况下都是最优的；</li>
+<li>比如希尔排序确实在某些情况下可能好于快速排序；</li>
+<li>但是大多数情况下，快速排序还是比较好的选择。</li>
+</ul>
+<p>&#x3D;&#x3D;希尔&#x3D;&#x3D;排序相当于&#x3D;&#x3D;插入&#x3D;&#x3D;排序的升级版，</p>
+<p>&#x3D;&#x3D;快速&#x3D;&#x3D;排序是&#x3D;&#x3D;冒泡&#x3D;&#x3D;排序的升级版</p>
+<p>&#x3D;&#x3D;枢纽&#x3D;&#x3D; (pivot) 的选择：</p>
+<ul>
+<li>一种方案是直接选择第一个元素作为枢纽，但是效率不高</li>
+<li>另一种比较优秀的方案是，取&#x3D;&#x3D;头、中、尾的中位数&#x3D;&#x3D;。例如：8、12、3、的中位数是8。</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230406150930582.png"
+                      alt="image-20230406150930582" style="zoom:50%;" 
+                >
+
+
+
+<p>&#x3D;&#x3D;最坏&#x3D;&#x3D;情况效率：</p>
+<ul>
+<li>每次选择的&#x3D;&#x3D;枢纽&#x3D;&#x3D;都是&#x3D;&#x3D;最左边&#x3D;&#x3D;或者&#x3D;&#x3D;最后边&#x3D;&#x3D;的，那么效率等&#x3D;&#x3D;同于冒泡排序&#x3D;&#x3D;；</li>
+<li>而我们的例子可能有最坏的情况吗？是不可能的.因为我们是选择三个值的中位值。</li>
+</ul>
+<p>&#x3D;&#x3D;平均效率&#x3D;&#x3D;：</p>
+<ul>
+<li>快速排序的平均效率是&#x3D;&#x3D;O(N*logN)&#x3D;&#x3D;</li>
+<li>虽然其他某些算法的效率也可以达到O(N*logN)，但是快速排序是最好的</li>
+</ul>
+<p>枢纽为中位数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">quickSort</span>(<span class="params">array</span>) &#123;</span><br><span class="line">  <span class="title function_">sort</span>(<span class="number">0</span>, array.<span class="property">length</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">sort</span>(<span class="params">left, right</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">const</span> pivot = <span class="title function_">median</span>(array, left, right);</span><br><span class="line">    <span class="keyword">let</span> i = left;</span><br><span class="line">    <span class="keyword">let</span> j = right - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">      <span class="keyword">while</span> (array[++i] &lt; pivot) &#123; &#125;;</span><br><span class="line">      <span class="keyword">while</span> (array[--j] &gt; pivot) &#123; &#125;;</span><br><span class="line">      <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">        <span class="title function_">swap</span>(array, i, j);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">swap</span>(array, i, right - <span class="number">1</span>);</span><br><span class="line">    <span class="title function_">sort</span>(left, i - <span class="number">1</span>);</span><br><span class="line">    <span class="title function_">sort</span>(i + <span class="number">1</span>, right)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">swap</span>(<span class="params">array, m, n</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> temp = array[m];</span><br><span class="line">    array[m] = array[n]</span><br><span class="line">    array[n] = temp;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">median</span>(<span class="params">array, left, right</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> center = <span class="title class_">Math</span>.<span class="title function_">floor</span>((left + right) / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.判断大小，并进行交换位置</span></span><br><span class="line">    <span class="keyword">if</span> (array[left] &gt; array[center]) &#123;</span><br><span class="line">      <span class="title function_">swap</span>(array, left, center);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (array[center] &gt; array[right]) &#123;</span><br><span class="line">      <span class="title function_">swap</span>(array, center, right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (array[left] &gt; array[center]) &#123;</span><br><span class="line">      <span class="title function_">swap</span>(array, left, center);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.将中位数与倒数第二个数交换</span></span><br><span class="line">    <span class="title function_">swap</span>(array, center, right - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.返回枢纽数（即：交换后的中位数，倒数第二个数）</span></span><br><span class="line">    <span class="keyword">return</span> array[right - <span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>枢纽为 最左边&#x2F;最右边&#x2F;中间数&#x2F;任意数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">quickSort</span>(<span class="params">array</span>) &#123;</span><br><span class="line">  <span class="title function_">sort</span>(<span class="number">0</span>, array.<span class="property">length</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">sort</span>(<span class="params">left, right</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">const</span> pivotIndex = <span class="title class_">Math</span>.<span class="title function_">floor</span>((left + right) / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">const</span> pivot = array[pivotIndex];</span><br><span class="line">    <span class="title function_">swap</span>(array, right, pivotIndex);</span><br><span class="line">    <span class="keyword">let</span> i = left;</span><br><span class="line">    <span class="keyword">let</span> j = right - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= j) &#123;</span><br><span class="line">      <span class="keyword">while</span> (array[i] &lt; pivot) &#123; i++ &#125;;</span><br><span class="line">      <span class="keyword">while</span> (array[j] &gt; pivot) &#123; j-- &#125;;</span><br><span class="line">      <span class="keyword">if</span> (i &lt;= j) &#123;</span><br><span class="line">        <span class="title function_">swap</span>(array, i, j);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">swap</span>(array, i, right);</span><br><span class="line">    <span class="title function_">sort</span>(left, i - <span class="number">1</span>);</span><br><span class="line">    <span class="title function_">sort</span>(i + <span class="number">1</span>, right)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">swap</span>(<span class="params">array, m, n</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> temp = array[m];</span><br><span class="line">    array[m] = array[n]</span><br><span class="line">    array[n] = temp;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>![image-20230410143729163](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230410143729163.png)</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">排序算法</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2020-04-01 14:45:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2020/04/01/z排序算法/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2020/03/16/%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">遍历算法</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">排序算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">一、冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">二、选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">三、插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text">四、希尔排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">6.</span> <span class="nav-text">五、快速排序</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            栈 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">栈</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">实习生</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2019-09-21 14:45:00</span>
+        <span class="mobile">2019-09-21 14:45</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-19 21:38:53</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>771 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span> 
+
+<h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230401210038003.png"
+                      alt="image-20230401210038003"  
+                >
+
+
+
+<h4 id="数组和栈"><a href="#数组和栈" class="headerlink" title="数组和栈"></a>数组和栈</h4><ol>
+<li>数组是一种线性结构，可以在 任意位置 插入和删除数据</li>
+<li>栈和队列 是 &#x3D;&#x3D;受限制的线性结构&#x3D;&#x3D;</li>
+</ol>
+<h4 id="栈结构"><a href="#栈结构" class="headerlink" title="栈结构"></a>栈结构</h4><ol>
+<li>是一种受限的线性表，&#x3D;&#x3D;先进后出&#x3D;&#x3D; LIFO（last in first out）， 后进先出。</li>
+<li>仅允许在表的一端进行插入和删除，这一端成为&#x3D;&#x3D;栈顶&#x3D;&#x3D;。相对地，另一端为栈底。</li>
+<li>向一个栈插入新元素又称 &#x3D;&#x3D;进栈&#x3D;&#x3D;、入栈或压栈)、出栈(退栈)</li>
+<li>向一个栈删除元素又称作 &#x3D;&#x3D;出栈&#x3D;&#x3D;、退栈</li>
+</ol>
+<h4 id="程序中的栈实现"><a href="#程序中的栈实现" class="headerlink" title="程序中的栈实现"></a>程序中的栈实现</h4><ol>
+<li>函数调用栈<ol>
+<li>A调用B，B中又调用了C，C中又调用D；</li>
+<li>执行过程中，先将A压入栈，A没有执行完，不会退出栈</li>
+<li>依次将B&#x2F;C&#x2F;D压入到栈中，D压入到栈顶。当前栈顺序是 栈底A-&gt;B-&gt;C-&gt;D栈顶</li>
+<li>D执行完，弹出栈。C&#x2F;B&#x2F;A 依次出栈</li>
+<li>函数调用栈的称呼，就来自于其内部的实现机制（通过栈来实现的）。</li>
+</ol>
+</li>
+<li>递归（容易引发栈溢出）</li>
+</ol>
+<h4 id="栈结构的实现"><a href="#栈结构的实现" class="headerlink" title="栈结构的实现"></a>栈结构的实现</h4><ol>
+<li>基于数组实现</li>
+<li>基于链表实现（链表：也是一种数据结构，JavaScript中没有自带的链表结构）</li>
+</ol>
+<h3 id="二、属性和方法"><a href="#二、属性和方法" class="headerlink" title="二、属性和方法"></a>二、属性和方法</h3><p>栈的方法（6个）：</p>
+<ul>
+<li>push(element): 添加一个新元素到栈顶位置</li>
+<li>pop(): 移出栈顶位置，同时返回被移出的元素</li>
+<li>peek(): 返回栈顶的元素，不对栈做任何修改</li>
+<li>isEmpty(): 如果栈里没有任何元素就返回true，否则返回false</li>
+<li>size(): 返回栈元素的个数</li>
+<li>toString(): 将栈结构的内容以字符形式返回</li>
+</ul>
+<p>具体代码实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基于数组的实现</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Stack</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 栈的属性</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">items</span> = [];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// push(element): 添加一个新元素到栈顶位置</span></span><br><span class="line">  <span class="title class_">Stack</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">push</span> = <span class="keyword">function</span> (<span class="params">element</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">items</span>.<span class="title function_">push</span>(element);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// pop(): 移出栈顶位置，同时返回被移出的元素</span></span><br><span class="line">  <span class="title class_">Stack</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">pop</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>.<span class="title function_">pop</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// peek(): 返回栈顶的元素，不对栈做任何修改</span></span><br><span class="line">  <span class="title class_">Stack</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">peek</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>[<span class="variable language_">this</span>.<span class="property">items</span>.<span class="property">length</span> - <span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// isEmpty(): 如果栈里没有任何元素就返回true，否则返回false</span></span><br><span class="line">  <span class="title class_">Stack</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">isEmpty</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>.<span class="property">length</span> === <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// size(): 返回栈元素的个数</span></span><br><span class="line">  <span class="title class_">Stack</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">size</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>.<span class="property">length</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// toString(): 将栈结构的内容以字符形式返回</span></span><br><span class="line">  <span class="title class_">Stack</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>.<span class="title function_">toString</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 栈的使用</span></span><br><span class="line"><span class="keyword">const</span> stack = <span class="keyword">new</span> <span class="title class_">Stack</span>();</span><br><span class="line">stack.<span class="title function_">push</span>(<span class="number">1</span>)</span><br><span class="line">stack.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line">stack.<span class="title function_">push</span>(<span class="number">3</span>)</span><br><span class="line">stack.<span class="property">items</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stack.<span class="property">items</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stack.<span class="title function_">peek</span>())</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、算法实例"><a href="#三、算法实例" class="headerlink" title="三、算法实例"></a>三、算法实例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***************  十进制转二进制 ***********/</span></span><br><span class="line"><span class="comment">// 方法：除以2，直到商为0，倒着取全部的余数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">dec2bin</span>(<span class="params">decNumber</span>) &#123;</span><br><span class="line">  <span class="comment">// 1.定义栈对象，用于保存余数</span></span><br><span class="line">  <span class="keyword">let</span> stack = <span class="keyword">new</span> <span class="title class_">Stack</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2.循环取余数</span></span><br><span class="line">  <span class="keyword">while</span>(decNumber &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 2.1 获取余数，放入到栈中</span></span><br><span class="line">    stack.<span class="title function_">push</span>(decNumber % <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.2 获取整除后的结果，作为下一次循环的数字</span></span><br><span class="line">    decNumber = <span class="title class_">Math</span>.<span class="title function_">floor</span>(decNumber / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 3.从栈中取出余数</span></span><br><span class="line">  <span class="keyword">let</span> binaryString = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="keyword">while</span>(!stack.<span class="title function_">isEmpty</span>()) &#123;</span><br><span class="line">    binaryString += stack.<span class="title function_">pop</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> binaryString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">栈</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2019-09-21 14:45:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2019/09/21/栈/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2019/10/08/%E9%93%BE%E8%A1%A8/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">链表</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2019/09/05/%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">优先级队列</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">一、概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%92%8C%E6%A0%88"><span class="nav-number">1.1.</span> <span class="nav-text">数组和栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%88%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">栈结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E6%A0%88%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">程序中的栈实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%88%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.</span> <span class="nav-text">栈结构的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">二、属性和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%AE%97%E6%B3%95%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">三、算法实例</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
