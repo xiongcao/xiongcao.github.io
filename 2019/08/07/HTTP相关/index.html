@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            HTTP相关 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">HTTP相关</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">Architect</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2019-08-07 14:45:00</span>
+        <span class="mobile">2019-08-07 14:45</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-19 21:25:40</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/HTTP/">HTTP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>11 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span> 
+
+<h4 id="1、http-和-https-的基本概念"><a href="#1、http-和-https-的基本概念" class="headerlink" title="1、http 和 https 的基本概念"></a>1、http 和 https 的基本概念</h4><p>​		**http (HyperText Transfer Protocol)**：是一个客户端和服务器端请求和应答的标准（TCP），用于从 WWW 服务器传输超文本到本地浏览器的&#x3D;&#x3D;超文本传输协议&#x3D;&#x3D;。</p>
+<p>​		<strong>https</strong>：是以安全为目标的 HTTP 通道，即 HTTP 下 加入 &#x3D;&#x3D;SSL 层进行加密&#x3D;&#x3D;。其作用是：建立一个信息安全通道，来确保数据的传输，确保网站的真实性。</p>
+<h5 id="HTTP-SSL-TLS-HTTPS"><a href="#HTTP-SSL-TLS-HTTPS" class="headerlink" title="HTTP + SSL&#x2F;TLS &#x3D; HTTPS"></a>HTTP + SSL&#x2F;TLS &#x3D; HTTPS</h5><p><strong>SSL</strong>(Secure Sockets Layer，安全套接字协议)</p>
+<p><strong>TLS</strong>(Transport Layer Security，传输层安全协议)</p>
+<p><strong>HTTP</strong>(HyperText Transfer Protocol ，超文本传输协议)，让计算机之间可以进行明文数据交换，默认端口80.</p>
+<p><strong>HTTPS</strong>(HyperText Transfer Protocol Secure，超文本传输安全协议)，用SSL&#x2F;TLS对数据加密，再通过HTTP传输，保证数据的安全性，默认端口443.</p>
+<p>TLS是基于SSL 3.0的一个新版本，原则上他的名字是SSL 4.0；只是IETF在把SSL标准化时把SSL名称改成了TLS。</p>
+<h4 id="2、HTTP"><a href="#2、HTTP" class="headerlink" title="2、HTTP"></a>2、HTTP</h4><p>​		在实际应用中，<code>HTTP</code>常被用于在<code>Web</code>浏览器和网站服务器之间传递信息，以<strong>明文方式发送内容</strong>，不提供任何方式的数据加密。</p>
+<p>特点如下：</p>
+<ul>
+<li>支持客户&#x2F;服务器模式；</li>
+<li>简单快速：客户向服务器请求服务时，只需传送请求方法和路径。**&#x3D;&#x3D;由于<code>HTTP</code>协议简单&#x3D;&#x3D;<strong>，使得HTTP服务器的程序规模小，因而</strong>&#x3D;&#x3D;通信速度很快&#x3D;&#x3D;**；</li>
+<li>灵活：<code>HTTP</code>**&#x3D;&#x3D;允许传输任意类型的数据对象&#x3D;&#x3D;**。正在传输的类型由<code>Content-Type</code>加以标记；</li>
+<li>无连接：无连接的含义是**&#x3D;&#x3D;限制每次连接只处理一个请求&#x3D;&#x3D;**。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间;</li>
+<li>无状态：<code>HTTP</code>协议<strong>无法根据之前的状态</strong>进行本次的请求处理;</li>
+</ul>
+<h4 id="3、HTTPS"><a href="#3、HTTPS" class="headerlink" title="3、HTTPS"></a>3、HTTPS</h4><p>​		在上述介绍<code>HTTP</code>中，了解到<code>HTTP</code>传递信息是以明文的形式发送内容，这并不安全。而<code>HTTPS</code>出现正是为了解决<code>HTTP</code>不安全的特性。</p>
+<p>​		为了保证这些隐私数据能加密传输，让<code>HTTP</code>运行安全的<code>SSL/TLS</code>协议上，即 &#x3D;&#x3D;HTTPS &#x3D; HTTP + SSL&#x2F;TLS&#x3D;&#x3D;，通过 <code>SSL</code>证书来验证服务器的身份，并为浏览器和服务器之间的通信进行加密。</p>
+<p>​		<code>SSL</code> 协议位于<code>TCP/IP</code> 协议与各种应用层协议之间，浏览器和服务器在使用 <code>SSL</code> 建立连接时需要选择一组恰当的加密算法来实现安全通信，为数据通讯提供安全支持</p>
+<p><strong>流程如下</strong>：</p>
+<ul>
+<li>客户端向服务器发起 HTTPS 请求，请求中包含了 SSL&#x2F;TLS 支持的信息，比如支持的 SSL&#x2F;TLS 版本号、加密算法等。</li>
+<li>服务器返回证书给客户端，证书中包含了服务器的公钥、服务器的身份信息和证书的有效期等。</li>
+<li>客户端验证服务器的身份，包括验证证书的有效性、证书是否过期、证书中的域名与服务器的域名是否一致等。</li>
+<li>如果证书验证通过，客户端生成一个随机的加密密钥，并使用服务器的公钥进行加密，然后发送给服务器。</li>
+<li>服务器使用私钥解密客户端发来的密钥，然后生成一个随机数作为会话密钥，并将会话密钥加密后发送给客户端。</li>
+<li>客户端和服务器使用会话密钥进行数据传输，客户端和服务器之间的所有数据都使用会话密钥进行加密和解密，保证数据的机密性和完整性。</li>
+</ul>
+<h5 id="简洁版："><a href="#简洁版：" class="headerlink" title="简洁版："></a>简洁版：</h5><ol>
+<li>客户端使用https的url访问web服务器,要求与服务器建立ssl连接</li>
+<li>web服务器收到客户端请求后, 会将网站的证书(包含公钥)传送一份给客户端</li>
+<li>客户端收到网站证书后会检查证书的颁发机构以及过期时间, 如果没有问题就随机产生一个秘钥</li>
+<li>客户端利用公钥将会话秘钥加密, 并传送给服务端, 服务端利用自己的私钥解密出会话秘钥</li>
+<li>之后服务器与客户端使用秘钥加密传输</li>
+</ol>
+<h4 id="4、http-和-https-的区别及优缺点"><a href="#4、http-和-https-的区别及优缺点" class="headerlink" title="4、http 和 https 的区别及优缺点"></a>4、http 和 https 的区别及优缺点</h4><ul>
+<li>http 是超文本传输协议，信息是明文传输，HTTPS 协议要比 http 协议<code>安全</code>，https 是具有安全性的 ssl 加密传输协议，可防止数据在传输过程中被窃取、改变，确保数据的完整性(当然这种安全性并非绝对的，对于更深入的 Web 安全问题，此处暂且不表)。</li>
+<li>http 协议的<code>默认端口</code>为 80，https 的默认端口为 443。</li>
+<li>http 的连接很简单，是无状态的。https 握手阶段比较<code>费时</code>，会使页面加载时间延长 50%，增加 10%~20%的耗电。</li>
+<li>https <code>缓存</code>不如 http 高效，会增加数据开销。</li>
+<li>Https 协议需要 ca 证书，费用较高，功能越强大的<code>证书费</code>用越高。</li>
+<li>SSL 证书需要绑定 <code>IP</code>，不能再同一个 IP 上绑定多个域名，IPV4 资源支持不了这种消耗。</li>
+</ul>
+<h4 id="5、http1和http1-1的区别"><a href="#5、http1和http1-1的区别" class="headerlink" title="5、http1和http1.1的区别"></a>5、http1和http1.1的区别</h4><ol>
+<li><p>&#x3D;&#x3D;持久连接&#x3D;&#x3D;：</p>
+<ul>
+<li>HTTP &#x2F; 1.1引入了持久连接，这意味着在单个TCP连接上可以发送多个请求&#x2F;响应对，从而减少了每个请求的延迟。</li>
+<li>HTTP &#x2F; 1.0在每个请求&#x2F;响应之后关闭TCP连接。</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;块传输编码&#x3D;&#x3D;：</p>
+<p>​		HTTP &#x2F; 1.1支持块传输编码，这意味着可以在接收响应时逐步解压缩数据，而不必等待整个响应。这对于处理大型响应或流式数据非常有用。</p>
+</li>
+<li><p>&#x3D;&#x3D;身份验证&#x3D;&#x3D;：</p>
+<p>​		HTTP &#x2F; 1.1提供了更安全的身份验证方法，例如基于令牌的身份验证方案，可以替代HTTP &#x2F; 1.0中的基本身份验证。</p>
+</li>
+<li><p>&#x3D;&#x3D;缓存处理&#x3D;&#x3D;：</p>
+<p>​	HTTP &#x2F; 1.1对缓存处理进行了改进，包括新的Cache-Control指令，可以更好地控制缓存行为。</p>
+</li>
+<li><p>&#x3D;&#x3D;响应码&#x3D;&#x3D;：</p>
+<p>​	HTTP &#x2F; 1.1引入了更多的响应码，例如“100 Continue”，这使得客户端可以更好地控制它们的请求行为。</p>
+</li>
+<li><p>&#x3D;&#x3D;管道化&#x3D;&#x3D;：</p>
+<p>​	HTTP &#x2F; 1.1支持管道化，允许客户端同时发送多个请求，从而提高性能。</p>
+</li>
+</ol>
+<h4 id="6、GET-和-POST-的区别"><a href="#6、GET-和-POST-的区别" class="headerlink" title="6、GET 和 POST 的区别"></a>6、GET 和 POST 的区别</h4><h5 id="1-POST请求相对安全，GET请求相对不安全"><a href="#1-POST请求相对安全，GET请求相对不安全" class="headerlink" title="1. POST请求相对安全，GET请求相对不安全"></a>1. POST请求相对安全，GET请求相对不安全</h5><ul>
+<li>GET请求参数会直接挂载在URL上。POST请求携带的参数在URL上看不见。</li>
+<li>POST请求记录不会被保存在浏览器历史或web服务器日志中。但是GET请求会。</li>
+</ul>
+<p>当然，以上是相对的。这不表示POST请求就绝对安全，其实。</p>
+<p>从数据传输的角度来说，<em>POST和GET都不是很安全</em>，因为<strong>http协议本身是明文传输</strong>。对内行人来说，抓包解析GET和POST都是一样的。</p>
+<h5 id="2-GET请求可以缓存，POST请求不能缓存"><a href="#2-GET请求可以缓存，POST请求不能缓存" class="headerlink" title="2. GET请求可以缓存，POST请求不能缓存"></a>2. GET请求可以缓存，POST请求不能缓存</h5><p>​		GET请求一般用于数据和<strong>静态资源的获取</strong>，<em>有些GET请求不用和数据库交互</em>。比如一些静态资源和固定的字典表。所以可以使用缓存。</p>
+<p>数据缓存👇</p>
+<p>![image-20230411143847289](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230411143847289.png)</p>
+<p>静态资源缓存👇</p>
+<p>![image-20230411143907562](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230411143907562.png)</p>
+<p>POST请求则更多用于数据的新增和修改。新增数据无法具备固定内容。所以很多浏览器都不支持缓存POST请求</p>
+<h5 id="3-GET请求有长度限制，POST请求没有长度限制"><a href="#3-GET请求有长度限制，POST请求没有长度限制" class="headerlink" title="3. GET请求有长度限制，POST请求没有长度限制"></a>3. GET请求有长度限制，POST请求没有长度限制</h5><p><em>GET请求本身是没有长度限制的</em>，但是URL有。不同的浏览器对于GET的长度限制也不一样。</p>
+<h5 id="4-GET只能传输字符串，POST可以传输多种类型数据"><a href="#4-GET只能传输字符串，POST可以传输多种类型数据" class="headerlink" title="4. GET只能传输字符串，POST可以传输多种类型数据"></a>4. GET只能传输字符串，POST可以传输多种类型数据</h5><p>​		因为GET请求是挂载在URL上的，所以传输的数据类型只能是字符串，但是POST请求可以传输除字符串以外的数据，比如：视频，声音，图片，文档等。</p>
+<h5 id="5-GET请求入参在URL上，POST请求入参在Request-body上"><a href="#5-GET请求入参在URL上，POST请求入参在Request-body上" class="headerlink" title="5. GET请求入参在URL上，POST请求入参在Request body上"></a>5. GET请求入参在URL上，POST请求入参在Request body上</h5><p>​		</p>
+<h5 id="6-POST有可能产生两个数据包，GET只会发送一个数据包"><a href="#6-POST有可能产生两个数据包，GET只会发送一个数据包" class="headerlink" title="6. POST有可能产生两个数据包，GET只会发送一个数据包"></a>6. POST<em>有可能</em>产生两个数据包，GET只会发送一个数据包</h5><p>​		GET请求在任何情况下都会把http header和data一次性发送完成。</p>
+<p>​		POST在<em>部分情况下</em>，（这取决于 浏览器&#x2F;发送方 和它的版本），会产生两个数据包。第一个tcp发送header,确认服务器可以响应并且具备接受数据的能力，响应100。第二个TCP包在第一个请求成功（100后）才会发送。包含data。如果第一个请求（header）失败，则data不进行发送。</p>
+<h5 id="7-刷新和回退的时候GET请求无害，POST数据会被重新提交"><a href="#7-刷新和回退的时候GET请求无害，POST数据会被重新提交" class="headerlink" title="7.  刷新和回退的时候GET请求无害，POST数据会被重新提交"></a>7.  刷新和回退的时候GET请求无害，POST数据会被重新提交</h5><p>​		以前我一直没搞明白这一点区别的含义，怎么GET就无害了，POST就又会重新提交了。后来我明白了。</p>
+<p>​		这点区别指向的是那些页面加载时候就默认执行的请求。</p>
+<p>​		比如静态资源获取，刷新了就得重新加载吧。如果是GET，GET主要用重新获取数据，因为是获取，请求不会对数据产生什么危害，何况有时候还直接返回的缓存。所以无害。</p>
+<p>​		再说POST，POST主要用于数据的修改&#x2F;新增，针对默认执行的情况下，POST请求的每次执行都有可能改变数据库中的某一个值，比如文章的阅读量。刷新一下就+1（不信你刷一个试试）。所以这里说POST数据会被重新提交，这种提交他不一定有害，但确实不一定有用。</p>
+<h4 id="7、HTTP状态码"><a href="#7、HTTP状态码" class="headerlink" title="7、HTTP状态码"></a>7、HTTP状态码</h4><h5 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景:"></a>使用场景:</h5><ul>
+<li>1xx：表示目前是协议的中间状态，还需要后续请求。</li>
+<li>2xx：表示请求成功。</li>
+<li>3xx：表示重定向状态，需要重新请求。</li>
+<li>4xx：表示请求报文错误。</li>
+<li>5xx：服务器端错误。</li>
+</ul>
+<h5 id="常用状态码："><a href="#常用状态码：" class="headerlink" title="常用状态码："></a>常用状态码：</h5><ul>
+<li>101 切换请求协议，从 HTTP 切换到 WebSocket</li>
+<li>200 请求成功，有响应体，服务器成功返回网页</li>
+<li>301 永久重定向：会缓存</li>
+<li>302 临时重定向：不会缓存</li>
+<li>304 协商缓存命中</li>
+<li>403 服务器禁止访问</li>
+<li>404 资源未找到，请求的网页不存在</li>
+<li>400 请求错误</li>
+<li>500 服务器端错误</li>
+<li>503 服务器繁忙</li>
+</ul>
+<h4 id="8、跨域解决方案"><a href="#8、跨域解决方案" class="headerlink" title="8、跨域解决方案"></a>8、跨域解决方案</h4><h5 id="8-1-JSONP"><a href="#8-1-JSONP" class="headerlink" title="8.1 JSONP"></a>8.1 JSONP</h5><p><code>JSONP</code> 主要就是利用了 <code>script</code> 标签没有跨域限制的这个特性来完成的。</p>
+<p>仅支持 GET 方法，如果想使用完整的 REST 接口，请使用 CORS 或者其他代理方式。</p>
+<p>后端获取前端声明的执行函数（jsonpCallback），并以带上参数并调用执行函数的方式传递给前端。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">callback</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;月薪一千五，心比美式苦&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;http://www.domain2.com:8080/login&#x27;</span>,</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">    <span class="attr">dataType</span>: <span class="string">&#x27;jsonp&#x27;</span>,  <span class="comment">// 请求方式为jsonp  设置跨域的重点</span></span><br><span class="line">    <span class="attr">jsonpCallback</span>: <span class="string">&quot;callBack&quot;</span>,  <span class="comment">// 回调函数</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="8-2-添加Access-Control-Allow-Origin响应头"><a href="#8-2-添加Access-Control-Allow-Origin响应头" class="headerlink" title="8.2 添加Access-Control-Allow-Origin响应头"></a>8.2 添加Access-Control-Allow-Origin响应头</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="title function_">writeHead</span>(<span class="number">200</span>, &#123;</span><br><span class="line">    <span class="title class_">Access</span>-<span class="title class_">Control</span>-<span class="title class_">Allow</span>-<span class="title class_">Origin</span><span class="string">&#x27;:&#x27;</span><span class="attr">http</span>:<span class="comment">//192.168.0.103:8080&#x27;</span></span><br><span class="line">		<span class="comment">// 或者</span></span><br><span class="line">    <span class="title class_">Access</span>-<span class="title class_">Control</span>-<span class="title class_">Allow</span>-<span class="title class_">Origin</span><span class="string">&#x27;:&#x27;</span>*<span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="8-3-前端工具的Proxy代理"><a href="#8-3-前端工具的Proxy代理" class="headerlink" title="8.3 前端工具的Proxy代理"></a>8.3 前端工具的Proxy代理</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">devServer</span>: &#123;</span><br><span class="line">  <span class="attr">port</span>: <span class="number">8000</span>,</span><br><span class="line">    <span class="attr">proxy</span>: &#123;</span><br><span class="line">      <span class="string">&quot;/api&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">target</span>: <span class="string">&quot;http://localhost:8080&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="8-4-Nginx-反向代理"><a href="#8-4-Nginx-反向代理" class="headerlink" title="8.4 Nginx 反向代理"></a>8.4 Nginx 反向代理</h5><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span> local.test;</span><br><span class="line">  <span class="section">location</span> /api &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://localhost:8080;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="section">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://localhost:8000;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="8-5-Websocket"><a href="#8-5-Websocket" class="headerlink" title="8.5 Websocket"></a>8.5 Websocket</h5><p><a class="link"   href="https://link.juejin.cn/?target=http://dev.w3.org/html5/websockets/" >WebSocket<i class="fas fa-external-link-alt"></i></a> 规范定义了一种 API，可在网络浏览器和服务器之间建立“套接字”连接。简单地说：客户端和服务器之间存在持久的连接，而且双方都可以随时开始发送数据</p>
+<p>这种方式本质没有使用了 HTTP 的响应头, 因此也没有跨域的限制。</p>
+<h5 id="8-6-document-domain-Iframe"><a href="#8-6-document-domain-Iframe" class="headerlink" title="8.6 document.domain + Iframe"></a>8.6 document.domain + Iframe</h5><p><strong>「该方式只能用于二级域名相同的情况下，比如 <code>a.test.com</code> 和 <code>b.test.com</code> 适用于该方式」</strong>。 只需要给页面添加 <code>document.domain =&#39;test.com&#39;</code> 表示二级域名都相同就可以实现跨域。</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www.   baidu.  com     .</span><br><span class="line">三级域  二级域   顶级域   根域</span><br></pre></td></tr></table></figure>
+
+<h5 id="8-7-window-location-hash-Iframe"><a href="#8-7-window-location-hash-Iframe" class="headerlink" title="8.7 window.location.hash + Iframe"></a>8.7 window.location.hash + Iframe</h5><h5 id="8-8-window-name-Iframe"><a href="#8-8-window-name-Iframe" class="headerlink" title="8.8 window.name + Iframe"></a>8.8 window.name + Iframe</h5>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">HTTP相关</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2019-08-07 14:45:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2019/08/07/HTTP相关/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%BD%91%E7%BB%9C/">#网络</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/HTTP/">#HTTP</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2019/07/22/CDN%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CDN工作原理</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81http-%E5%92%8C-https-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">1、http 和 https 的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP-SSL-TLS-HTTPS"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP + SSL&#x2F;TLS &#x3D; HTTPS</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81HTTP"><span class="nav-number">2.</span> <span class="nav-text">2、HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81HTTPS"><span class="nav-number">3.</span> <span class="nav-text">3、HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AE%80%E6%B4%81%E7%89%88%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">简洁版：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81http-%E5%92%8C-https-%E7%9A%84%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">4、http 和 https 的区别及优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81http1%E5%92%8Chttp1-1%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">5、http1和http1.1的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81GET-%E5%92%8C-POST-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">6.</span> <span class="nav-text">6、GET 和 POST 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-POST%E8%AF%B7%E6%B1%82%E7%9B%B8%E5%AF%B9%E5%AE%89%E5%85%A8%EF%BC%8CGET%E8%AF%B7%E6%B1%82%E7%9B%B8%E5%AF%B9%E4%B8%8D%E5%AE%89%E5%85%A8"><span class="nav-number">6.1.</span> <span class="nav-text">1. POST请求相对安全，GET请求相对不安全</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-GET%E8%AF%B7%E6%B1%82%E5%8F%AF%E4%BB%A5%E7%BC%93%E5%AD%98%EF%BC%8CPOST%E8%AF%B7%E6%B1%82%E4%B8%8D%E8%83%BD%E7%BC%93%E5%AD%98"><span class="nav-number">6.2.</span> <span class="nav-text">2. GET请求可以缓存，POST请求不能缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-GET%E8%AF%B7%E6%B1%82%E6%9C%89%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%EF%BC%8CPOST%E8%AF%B7%E6%B1%82%E6%B2%A1%E6%9C%89%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6"><span class="nav-number">6.3.</span> <span class="nav-text">3. GET请求有长度限制，POST请求没有长度限制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-GET%E5%8F%AA%E8%83%BD%E4%BC%A0%E8%BE%93%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8CPOST%E5%8F%AF%E4%BB%A5%E4%BC%A0%E8%BE%93%E5%A4%9A%E7%A7%8D%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE"><span class="nav-number">6.4.</span> <span class="nav-text">4. GET只能传输字符串，POST可以传输多种类型数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-GET%E8%AF%B7%E6%B1%82%E5%85%A5%E5%8F%82%E5%9C%A8URL%E4%B8%8A%EF%BC%8CPOST%E8%AF%B7%E6%B1%82%E5%85%A5%E5%8F%82%E5%9C%A8Request-body%E4%B8%8A"><span class="nav-number">6.5.</span> <span class="nav-text">5. GET请求入参在URL上，POST请求入参在Request body上</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-POST%E6%9C%89%E5%8F%AF%E8%83%BD%E4%BA%A7%E7%94%9F%E4%B8%A4%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%8C%85%EF%BC%8CGET%E5%8F%AA%E4%BC%9A%E5%8F%91%E9%80%81%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="nav-number">6.6.</span> <span class="nav-text">6. POST有可能产生两个数据包，GET只会发送一个数据包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-%E5%88%B7%E6%96%B0%E5%92%8C%E5%9B%9E%E9%80%80%E7%9A%84%E6%97%B6%E5%80%99GET%E8%AF%B7%E6%B1%82%E6%97%A0%E5%AE%B3%EF%BC%8CPOST%E6%95%B0%E6%8D%AE%E4%BC%9A%E8%A2%AB%E9%87%8D%E6%96%B0%E6%8F%90%E4%BA%A4"><span class="nav-number">6.7.</span> <span class="nav-text">7.  刷新和回退的时候GET请求无害，POST数据会被重新提交</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81HTTP%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">7.</span> <span class="nav-text">7、HTTP状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">7.1.</span> <span class="nav-text">使用场景:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%9A"><span class="nav-number">7.2.</span> <span class="nav-text">常用状态码：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8%E3%80%81%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">8.</span> <span class="nav-text">8、跨域解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-JSONP"><span class="nav-number">8.1.</span> <span class="nav-text">8.1 JSONP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-%E6%B7%BB%E5%8A%A0Access-Control-Allow-Origin%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 添加Access-Control-Allow-Origin响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-3-%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7%E7%9A%84Proxy%E4%BB%A3%E7%90%86"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 前端工具的Proxy代理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-4-Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="nav-number">8.4.</span> <span class="nav-text">8.4 Nginx 反向代理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-5-Websocket"><span class="nav-number">8.5.</span> <span class="nav-text">8.5 Websocket</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-6-document-domain-Iframe"><span class="nav-number">8.6.</span> <span class="nav-text">8.6 document.domain + Iframe</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-7-window-location-hash-Iframe"><span class="nav-number">8.7.</span> <span class="nav-text">8.7 window.location.hash + Iframe</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-8-window-name-Iframe"><span class="nav-number">8.8.</span> <span class="nav-text">8.8 window.name + Iframe</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

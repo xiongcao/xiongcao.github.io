@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            细说浏览器输入URL后发生了什么 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">细说浏览器输入URL后发生了什么</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">Architect</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2019-04-28 14:45:00</span>
+        <span class="mobile">2019-04-28 14:45</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-19 21:21:49</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/HTTP/">HTTP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>12 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span> 
+
+<h1 id="细说浏览器输入URL后发生了什么"><a href="#细说浏览器输入URL后发生了什么" class="headerlink" title="细说浏览器输入URL后发生了什么"></a>细说浏览器输入URL后发生了什么</h1><p>大体上，可以分为六步，当然每一步都可以详细都展开来说，这里先放一张总览图:</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://raw.githubusercontent.com/LuckyWinty/blog/master/images/broswer/url.png"
+                      alt="GitHub"
+                ></p>
+<h2 id="1-合成URL"><a href="#1-合成URL" class="headerlink" title="1. 合成URL"></a>1. 合成URL</h2><p>​		用户输入URL，浏览器会根据用户输入的信息判断是搜索还是网址，如果是搜索内容，就将搜索内容+默认搜索引警合成新的URL， 如果用户输入的内容符合URL规则，浏览器就会根据URL协议，在这段内容上加上协议合成合法的URL</p>
+<h2 id="2-DNS域名解析"><a href="#2-DNS域名解析" class="headerlink" title="2. DNS域名解析"></a>2. DNS域名解析</h2><p>​		在网络世界，你肯定记得住网站的名称，但是很难记住网站的 <strong>IP</strong> 地址，因而也需要一个地址簿，就是 <strong>DNS</strong> 服务器。<strong>DNS</strong> 服务器是高可用、高并发和分布式的，它是树状结构，如图：</p>
+<ul>
+<li>根域名：<code>www.baidu.com</code> 的完整写法是 <code>www.baidu.com.</code>最后的这个 <code>.</code> 就是根域名。（下一级是顶级域名）</li>
+<li>顶级域 ：<code>com</code>, <code>cn</code>、<code>org</code>、<code>edu</code> 等。（下一级是权威 DNS 服务器）</li>
+<li>权威 DNS 服务器：返回主机 - IP 的最终映射。</li>
+</ul>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230410214622349.png"
+                      alt="image-20230410214622349" style="zoom:50%;" 
+                >
+
+<ul>
+<li>根 <strong>DNS</strong> 服务器 ：返回顶级域 <strong>DNS</strong> 服务器的 <strong>IP</strong> 地址</li>
+<li>顶级域 <strong>DNS</strong> 服务器：返回权威 <strong>DNS</strong> 服务器的 <strong>IP</strong> 地址</li>
+<li>权威 <strong>DNS</strong> 服务器 ：返回相应主机的 <strong>IP</strong> 地址</li>
+</ul>
+<p><strong>DNS</strong>的域名查找，在<strong>客户端</strong>和<strong>浏览器</strong>，本地<strong>DNS</strong>之间的查询方式是<strong>递归查询</strong>；</p>
+<p>在本地<strong>DNS</strong>服务器与<strong>根域及其子域</strong>之间的查询方式是<strong>迭代查询</strong>；</p>
+<p>递归过程：</p>
+<p>![image-20230410214854082](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230410214854082.png)</p>
+<p>​		在客户端输入 <strong>URL</strong> 后，会有一个<strong>递归查找</strong>的过程，&#x3D;&#x3D;从<strong>浏览器缓存</strong>中查找 -&gt; 本地的<strong>hosts</strong>文件查找 -&gt; 找本地<strong>DNS</strong>解析器<strong>缓存</strong>查找 -&gt; 本地<strong>DNS</strong>服务器查找&#x3D;&#x3D;，这个过程中任何一步找到了都会结束查找流程。</p>
+<p>​		如果本地<strong>DNS</strong>服务器无法查询到，则根据本地<strong>DNS</strong>服务器设置的转发器进行查询。若未用转发模式，则<strong>迭代查找</strong>过程如下图：</p>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230410215318161.png"
+                      alt="image-20230410215318161" style="zoom:50%;" 
+                >
+
+<p>结合起来的过程，可以用一个图表示：</p>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230410215414924.png"
+                      alt="image-20230410215414924" style="zoom:50%;" 
+                >
+
+<p>在查找过程中，有以下优化点：</p>
+<ul>
+<li><p><strong>DNS</strong>存在着多级缓存，从离浏览器的距离排序的话，有以下几种: <strong>浏览器缓存</strong>，<strong>系统缓存</strong>，<strong>路由器缓存</strong>，<strong>IPS服务器缓存</strong>，<strong>根域名服务器缓存</strong>，<strong>顶级域名服务器缓存</strong>，<strong>主域名服务器缓存</strong>。</p>
+</li>
+<li><p>在域名和 <strong>IP</strong> 的映射过程中，给了应用基于域名做负载均衡的机会，可以是简单的负载均衡，也可以根据地址和运营商做全局的负载均衡。</p>
+</li>
+</ul>
+<h2 id="3-建立TCP连接"><a href="#3-建立TCP连接" class="headerlink" title="3. 建立TCP连接"></a>3. 建立TCP连接</h2><p>​		首先，判断是不是<strong>https</strong>的，如果是，则<strong>HTTPS</strong>其实是<strong>HTTP</strong> + <strong>SSL</strong> &#x2F; TLS 两部分组成，也就是在<strong>HTTP</strong>上又加了一层处理加密信息的模块。服务端和客户端的信息传输都会通过<strong>TLS</strong>进行加密，所以传输的数据都是加密后的数据。</p>
+<p>进行&#x3D;&#x3D;三次握手&#x3D;&#x3D;，建立<strong>TCP</strong>连接。</p>
+<ol>
+<li><strong>第一次握手</strong>：建立连接。客户端发送连接<strong>请求报文段</strong>，将<strong>SYN</strong>位置为<strong>1</strong>，<strong>Sequence Number</strong>为<strong>x</strong>；然后，客户端进入<strong>SYN_SEND</strong>状态，等待服务器的确认；</li>
+<li><strong>第二次握手</strong>：服务器收到<strong>SYN</strong>报文段。服务器收到客户端的<strong>SYN</strong>报文段，需要对这个<strong>SYN</strong>报文段进行确认，设置<strong>Acknowledgment Number</strong>为<strong>x+1(Sequence Number+1)<strong>；同时，自己还要发送</strong>SYN</strong>请求信息，将<strong>SYN</strong>位置为<strong>1</strong>，<strong>Sequence Number</strong>为<strong>y</strong>；服务器端将上述所有信息放到一个报文段（即<strong>SYN+ACK</strong>报文段）中，一并发送给客户端，此时服务器进入<strong>SYN_RECV</strong>状态；</li>
+<li><strong>第三次握手</strong>：客户端收到服务器的<strong>SYN+ACK</strong>报文段。然后将<strong>Acknowledgment Number</strong>设置为<strong>y+1</strong>，向服务器发送ACK报文段，这个报文段<strong>发送完毕以后</strong>，客户端和服务器端<strong>都进入ESTABLISHED</strong>状态，完成<strong>TCP</strong>三次握手。</li>
+</ol>
+<p><strong>SSL</strong>握手过程</p>
+<ol>
+<li><strong>第一阶段</strong>：建立安全能力，包括协议版本、会话<strong>Id</strong>、密码构件、压缩方法和初始随机数；</li>
+<li><strong>第二阶段</strong>：服务器发送证书，密钥交换数据和证书请求，最后发送请求-相应阶段的结束信号；</li>
+<li><strong>第三阶段</strong>：如果有证书请求客户端发送此证书，之后客户端发送密钥交换数据，也可以发送证书验证消息；</li>
+<li><strong>第四阶段</strong>：变更密码构件和结束握手协议</li>
+</ol>
+<p>完成了之后，客户端和服务器端就可以开始传送数据。更多 <strong>HTTPS</strong> 的资料可以看这里：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26682342" >深入理解HTTPS原理、过程与实践<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012196642" >解析HTTPS<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p><strong><code>备注</code></strong></p>
+<p><strong>ACK</strong>：此标志表示<strong>应答域</strong>有效，就是说前面所说的<strong>TCP</strong>应答号将会包含在<strong>TCP</strong>数据包中；有两个取值：<strong>0</strong>和<strong>1</strong>，为<strong>1</strong>的时候表示应<strong>答域有效</strong>，反之为<strong>0</strong>。<strong>TCP</strong>协议规定，只有<strong>ACK&#x3D;1</strong>时有效，也规定连接建立后所有发送的报文的<strong>ACK</strong>必须为<strong>1</strong>。</p>
+<p><strong>SYN</strong>(<strong>SYNchronization</strong>)：在连接建立时用来<strong>同步序号</strong>。当<strong>SYN&#x3D;1</strong>而<strong>ACK&#x3D;0</strong>时，表明这是一个连接请求报文。对方若同意建立连接，则应在响应报文中使<strong>SYN&#x3D;1</strong>和<strong>ACK&#x3D;1</strong>. 因此, <strong>SYN</strong>置<strong>1</strong>就表示这是一个连接请求或连接接受报文。</p>
+<p><strong>FIN(finis）</strong>即完，终结的意思， <strong>用来释放一个连接</strong>。当 <strong>FIN &#x3D; 1</strong> 时，表明此报文段的发送方的数据已经<strong>发送完毕</strong>，并要求释放连接。</p>
+<h2 id="4-发送HTTP请求，服务器处理请求，返回响应结果"><a href="#4-发送HTTP请求，服务器处理请求，返回响应结果" class="headerlink" title="4. 发送HTTP请求，服务器处理请求，返回响应结果"></a>4. 发送HTTP请求，服务器处理请求，返回响应结果</h2><p>​		<strong>TCP</strong>连接建立后，浏览器就可以利用<strong>HTTP</strong>／<strong>HTTPS</strong>协议向服务器发送请求了。服务器接受到请求，就解析请求头，如果头部有缓存相关信息如<strong>if-none-match</strong>与if-modified-since，则验证缓存是否有效，若有效则返回状态码为<strong>304</strong>，若无效则重新返回资源，状态码为<strong>200</strong>.</p>
+<p>这里有发生的一个过程是<strong>HTTP</strong>缓存，是一个常考的考点，大致过程如图：</p>
+<p>其过程，比较多内容，可以参考我的这篇文章<a class="link"   target="_blank" rel="noopener" href="https://juejin.im/post/6844903962216824839#heading-10" >《浏览器相关原理(面试题)详细总结一》<i class="fas fa-external-link-alt"></i></a>，这里我就不详细说了～</p>
+<h2 id="5-关闭TCP连接"><a href="#5-关闭TCP连接" class="headerlink" title="5.关闭TCP连接"></a>5.关闭TCP连接</h2><ol>
+<li><p><strong>第一次分手</strong>：主机1（可以使客户端，也可以是服务器端），设置<strong>Sequence Number</strong>和Acknowledgment Number，向主机<strong>2</strong>发送一个<strong>FIN</strong>报文段；此时，主机<strong>1</strong>进入<strong>FIN_WAIT_1</strong>状态；这表示主机<strong>1</strong>没有数据要发送给主机2了；</p>
+</li>
+<li><p><strong>第二次分手</strong>：主机<strong>2</strong>收到了主机<strong>1</strong>发送的<strong>FIN</strong>报文段，向主机<strong>1</strong>回一个<strong>ACK</strong>报文段，<strong>Acknowledgment Number</strong>为<strong>Sequence Number</strong>加<strong>1</strong>；主机<strong>1</strong>进入<strong>FIN_WAIT_2</strong>状态；主机<strong>2</strong>告诉主机<strong>1</strong>，我”同意”你的关闭请求；</p>
+</li>
+<li><p><strong>第三次分手</strong>：主机<strong>2</strong>向主机<strong>1</strong>发送<strong>FIN</strong>报文段，请求关闭连接，同时主机<strong>2</strong>进入<strong>LAST_ACK</strong>状态；</p>
+</li>
+<li><p><strong>第四次分手</strong>：主机<strong>1</strong>收到主机<strong>2</strong>发送的<strong>FIN</strong>报文段，向主机<strong>2</strong>发送<strong>ACK</strong>报文段，然后主机<strong>1</strong>进入<strong>TIME_WAIT</strong>状态；主机<strong>2</strong>收到主机<strong>1</strong>的<strong>ACK</strong>报文段以后，就关闭连接；此时，主机<strong>1</strong>等待<strong>2MSL</strong>后依然没有收到回复，则证明<strong>Server</strong>端已正常关闭，那好，主机<strong>1</strong>也可以关闭连接了。</p>
+</li>
+</ol>
+<h2 id="6-浏览器渲染"><a href="#6-浏览器渲染" class="headerlink" title="6.浏览器渲染"></a>6.浏览器渲染</h2><p>按照渲染的时间顺序，流水线可分为如下几个子阶段：构建 DOM 树、样式计算、布局阶段、分层、栅格化和显示。如图：</p>
+<p>![image-20230410220321066](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230410220321066.png)</p>
+<ol>
+<li>渲染进程将 <strong>HTML</strong> 内容转换为能够读懂<strong>DOM</strong> 树结构。</li>
+<li>渲染引擎将 <strong>CSS</strong> 样式表转化为浏览器可以理解的<strong>styleSheets</strong>，计算出 <strong>DOM</strong> 节点的样式。</li>
+<li>创建布局树，并计算元素的布局信息。</li>
+<li>对布局树进行分层，并生成分层树。</li>
+<li>为每个图层生成绘制列表，并将其提交到合成线程。合成线程将图层分图块，并栅格化将图块转换成位图。</li>
+<li>合成线程发送绘制图块命令给浏览器进程。浏览器进程根据指令生成页面，并显示到显示器上。</li>
+</ol>
+<h3 id="6-1-构建-DOM-树"><a href="#6-1-构建-DOM-树" class="headerlink" title="6.1 构建 DOM 树"></a>6.1 构建 DOM 树</h3><p>浏览器从网络或硬盘中获得HTML字节数据后会经过一个流程将字节解析为DOM树，先将HTML的原始字节数据转换为文件指定编码的字符，然后浏览器会根据HTML规范来将字符串转换成各种令牌标签，如html、body等。最终解析成一个树状的对象模型，就是dom树。</p>
+<p>![image-20230410220818656](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230410220818656.png)</p>
+<p>具体步骤：</p>
+<ol>
+<li>转码（<strong>Bytes</strong> -&gt; <strong>Characters</strong>）—— 读取接收到的 <strong>HTML</strong> 二进制数据，按指定编码格式将字节转换为 <strong>HTML</strong> 字符串；</li>
+<li><strong>Tokens</strong> 化（<strong>Characters</strong> -&gt; <strong>Tokens</strong>）—— 解析 <strong>HTML</strong>，将 <strong>HTML</strong> 字符串转换为结构清晰的 <strong>Tokens</strong>，每个 <strong>Token</strong> 都有特殊的含义同时有自己的一套规则；</li>
+<li>构建 <strong>Nodes</strong>（<strong>Tokens</strong> -&gt; <strong>Nodes</strong>）—— 每个 <strong>Node</strong> 都添加特定的属性（或属性访问器），通过指针能够确定 <strong>Node</strong> 的父、子、兄弟关系和所属 <strong>treeScope</strong>；</li>
+<li>构建 <strong>DOM</strong> 树（<strong>Nodes</strong> -&gt; <strong>DOM</strong> <strong>Tree</strong>）—— 最重要的工作是建立起每个结点的父子兄弟关系</li>
+</ol>
+<h3 id="6-2-样式计算"><a href="#6-2-样式计算" class="headerlink" title="6.2 样式计算"></a>6.2 样式计算</h3><p>渲染引擎将 <strong>CSS</strong> 样式表转化为浏览器可以理解的 <strong>styleSheets</strong>，计算出 <strong>DOM</strong> 节点的样式。</p>
+<p><strong>CSS</strong> 样式来源主要有 <strong>3</strong> 种，分别是<code>通过 link 引用的外部 CSS 文件、style标签内的 CSS、元素的 style 属性内嵌的 CSS。</code>,其样式计算过程主要为：</p>
+<p>可以看到上面的 <strong>CSS</strong> 文本中有很多属性值，如 <strong>2em</strong>、<strong>blue</strong>、<strong>bold</strong>，这些类型数值不容易被渲染引擎理解，所以需要将所有值转换为渲染引擎容易理解的、标准化的计算值，这个过程就是属性值标准化。处理完成后再处理样式的继承和层叠，有些文章将这个过程称为<strong>CSSOM</strong>的构建过程。</p>
+<h3 id="6-3-页面布局"><a href="#6-3-页面布局" class="headerlink" title="6.3 页面布局"></a>6.3 页面布局</h3><p>布局过程，即排除 <code>script、meta</code> 等功能化、非视觉节点，排除 <code>display: none</code> 的节点，计算元素的位置信息，确定元素的位置，构建一棵只包含可见元素布局树。如图：</p>
+<p>![image-20230410221008150](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230410221008150.png)</p>
+<p>![image-20230410220939974](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230410220939974.png)</p>
+<p>其中，这个过程需要注意的是<code>回流和重绘</code>，关于回流和重绘，详细的可以看我另一篇文章<a class="link"   target="_blank" rel="noopener" href="https://juejin.im/post/6844903969693646862#heading-1" >《浏览器相关原理(面试题)详细总结二》<i class="fas fa-external-link-alt"></i></a>，这里就不说了～</p>
+<h3 id="6-4-生成分层树"><a href="#6-4-生成分层树" class="headerlink" title="6.4 生成分层树"></a>6.4 生成分层树</h3><p>页面中有很多复杂的效果，如一些复杂的 <strong>3D</strong> 变换、页面滚动，或者使用 <strong>z-indexing</strong> 做 <strong>z</strong> 轴排序等，为了更加方便地实现这些效果，渲染引擎还需要为特定的节点生成专用的图层，并生成一棵对应的图层树（<strong>LayerTree</strong>），如图：</p>
+<p>![image-20230410221057683](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230410221057683.png)</p>
+<p>如果你熟悉 <strong>PS</strong>，相信你会很容易理解图层的概念，正是这些图层叠加在一起构成了最终的页面图像。在浏览器中，你可以打开 <strong>Chrome</strong> 的”开发者工具”，选择”<strong>Layers</strong>“标签。渲染引擎给页面分了很多图层，这些图层按照一定顺序叠加在一起，就形成了最终的页面。</p>
+<p>并不是布局树的每个节点都包含一个图层，如果一个节点没有对应的层，那么这个节点就从属于父节点的图层。那么需要满足什么条件，渲染引擎才会为特定的节点创建新的层呢？详细的可以看我另一篇文章<a class="link"   target="_blank" rel="noopener" href="https://juejin.im/post/6844903969693646862#heading-4" >《浏览器相关原理(面试题)详细总结二》<i class="fas fa-external-link-alt"></i></a>，这里就不说了～</p>
+<h3 id="栅格化"><a href="#栅格化" class="headerlink" title="栅格化"></a>栅格化</h3><p>合成线程会按照视口附近的图块来优先生成位图，实际生成位图的操作是由栅格化来执行的。所谓栅格化，是指将图块转换为位图。如图：</p>
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="/Users/xiongchao/Library/Application Support/typora-user-images/image-20230410221128081.png"
+                      alt="image-20230410221128081" style="zoom:50%;" 
+                >
+
+<p>通常一个页面可能很大，但是用户只能看到其中的一部分，我们把用户可以看到的这个部分叫做<strong>视口</strong>（<strong>viewport</strong>）。在有些情况下，有的图层可以很大，比如有的页面你使用滚动条要滚动好久才能滚动到底部，但是通过视口，用户只能看到页面的很小一部分，所以在这种情况下，要绘制出所有图层内容的话，就会产生太大的开销，而且也没有必要。</p>
+<h3 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h3><p>最后，合成线程发送绘制图块命令给浏览器进程。浏览器进程根据指令生成页面，并显示到显示器上，渲染过程完成。</p>
+<p>原文地址：<a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/6844904054074654728" >细说浏览器输入URL后发生了什么<i class="fas fa-external-link-alt"></i></a></p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">细说浏览器输入URL后发生了什么</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2019-04-28 14:45:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2019/04/28/输入URL后发生了什么/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%BD%91%E7%BB%9C/">#网络</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/HTTP/">#HTTP</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2019/05/09/%E5%9B%BE%E5%B1%82%E7%9A%84%E9%87%8D%E7%BB%98%E4%B8%8E%E5%9B%9E%E6%B5%81/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">图层的重绘与回流</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2019/03/16/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">TCP三次握手四次挥手</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%86%E8%AF%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5URL%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">细说浏览器输入URL后发生了什么</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%90%88%E6%88%90URL"><span class="nav-number">1.1.</span> <span class="nav-text">1. 合成URL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DNS%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">2. DNS域名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BB%BA%E7%AB%8BTCP%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.3.</span> <span class="nav-text">3. 建立TCP连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8F%91%E9%80%81HTTP%E8%AF%B7%E6%B1%82%EF%BC%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82%EF%BC%8C%E8%BF%94%E5%9B%9E%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C"><span class="nav-number">1.4.</span> <span class="nav-text">4. 发送HTTP请求，服务器处理请求，返回响应结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%85%B3%E9%97%ADTCP%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.5.</span> <span class="nav-text">5.关闭TCP连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93"><span class="nav-number">1.6.</span> <span class="nav-text">6.浏览器渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%9E%84%E5%BB%BA-DOM-%E6%A0%91"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 构建 DOM 树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E6%A0%B7%E5%BC%8F%E8%AE%A1%E7%AE%97"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 样式计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80"><span class="nav-number">1.6.3.</span> <span class="nav-text">6.3 页面布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-%E7%94%9F%E6%88%90%E5%88%86%E5%B1%82%E6%A0%91"><span class="nav-number">1.6.4.</span> <span class="nav-text">6.4 生成分层树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%85%E6%A0%BC%E5%8C%96"><span class="nav-number">1.6.5.</span> <span class="nav-text">栅格化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA"><span class="nav-number">1.6.6.</span> <span class="nav-text">显示</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

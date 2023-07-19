@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            图层的重绘与回流 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">图层的重绘与回流</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">Architect</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2019-05-09 14:45:00</span>
+        <span class="mobile">2019-05-09 14:45</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-19 21:22:31</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span> 
+
+<h1 id="图层的重绘与回流"><a href="#图层的重绘与回流" class="headerlink" title="图层的重绘与回流"></a>图层的重绘与回流</h1><h2 id="css图层"><a href="#css图层" class="headerlink" title="css图层"></a>css图层</h2><p>览器在渲染一个页面时，会将页面分为很多个图层，图层有大有小，每个图层上有一个或多个节点。</p>
+<p>在渲染DOM的时候，浏览器所做的工作实际上是：</p>
+<pre><code>1. 获取DOM后分割为多个图层；
+2. 对每个图层的节点计算样式结果    （Recalculate style--样式重计算）
+3. 为每个节点生成图形和位置     （Layout--布局，重排,回流）
+4. 将每个节点绘制填充到图层位图中   （Paint--重绘）
+5. 图层作为纹理上传至GPU
+6. 组合多个图层到页面上生成最终屏幕图像  （Composite Layers--图层重组）
+</code></pre>
+<h2 id="图层创建的条件"><a href="#图层创建的条件" class="headerlink" title="图层创建的条件"></a>图层创建的条件</h2><p>Chrome浏览器满足以下任意情况就会创建图层：</p>
+<pre><code> 1. 拥有具有3D变换的CSS属性（tansform: translateZ(0)）;
+ 2. 使用加速视频解码的&lt;video&gt;节点;
+ 3. \&lt;canvas\&gt;节点;
+ 4. CSS3动画的节点;
+ 5. 拥有CSS加速属性的元素(will-change)【will-change：transform】
+</code></pre>
+<h2 id="重绘-Repaint"><a href="#重绘-Repaint" class="headerlink" title="重绘(Repaint)"></a>重绘(Repaint)</h2><p>重绘是一个元素外观的改变所触发的浏览器行为，例如改变outline、背景色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。重绘不会带来重新布局，所以并不一定伴随重排。</p>
+<p>需要注意的是：重绘重排都是以图层为单位，如果图层中某个元素需要重绘，那么整个图层都需要重绘。所以为了提高性能，我们应该让这些“变化的东西”拥有一个自己一个图层，不过好在绝大多数的浏览器自己会为CSS3动画的节点自动创建图层。</p>
+<h2 id="重排-Reflow-又称：回流"><a href="#重排-Reflow-又称：回流" class="headerlink" title="重排(Reflow 又称：回流)"></a>重排(Reflow 又称：回流)</h2><p>渲染对象在创建完成并添加到渲染树时，并不包含位置和大小信息。计算这些值的过程称为布局或重排</p>
+<p>“重绘”不一定需要”重排”，比如改变某个网页元素的颜色，就只会触发”重绘”，不会触发”重排”，因为布局没有改变。</p>
+<p>“重排”大多数情况下会导致”重绘”，比如改变一个网页元素的位置，就会同时触发”重排”和”重绘”，因为布局改变了。</p>
+<h2 id="触发重绘的属性"><a href="#触发重绘的属性" class="headerlink" title="触发重绘的属性"></a>触发重绘的属性</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* color             * background                * outline-color</span><br><span class="line">* border-style      * background-image          * outline</span><br><span class="line">* border-radius     * background-position       * outline-style</span><br><span class="line">* visibility        * background-repeat         * outline-width</span><br><span class="line">* text-decoration   * background-size           * box-shadow</span><br></pre></td></tr></table></figure>
+
+<h2 id="触发重排-回流-的属性"><a href="#触发重排-回流-的属性" class="headerlink" title="触发重排(回流)的属性"></a>触发重排(回流)的属性</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* width           * top                  * text-align</span><br><span class="line">* height          * bottom               * overflow-y</span><br><span class="line">* padding         * left                 * font-weight</span><br><span class="line">* margin          * right                * overflow</span><br><span class="line">* display         * position             * font-family</span><br><span class="line">* border-width    * float                * line-height</span><br><span class="line">* border          * clear                * vertival-align</span><br><span class="line">* min-height                             * white-space</span><br></pre></td></tr></table></figure>
+
+<h2 id="常见的触发重排的操作"><a href="#常见的触发重排的操作" class="headerlink" title="常见的触发重排的操作"></a>常见的触发重排的操作</h2><p>Reflow(重排) 的成本比 Repaint(重绘) 的成本高很多很多。</p>
+<p>一个结点的 Reflow 很有可能导致子结点，甚至父点以及同级结点的 Reflow。</p>
+<p>在一些高性能的电脑上也许还没什么，但是如果 Reflow 发生在手机上，那么这个过程是非常痛苦和耗电的。</p>
+<p>所以，下面这些动作有很大可能会是成本比较高的。</p>
+<p>​        当你增加、删除、修改 DOM 结点时，会导致 Reflow , Repaint。</p>
+<p>​        当你移动 DOM 的位置。</p>
+<p>​        当你修改 CSS 样式的时候。</p>
+<p>​        当你 Resize 窗口的时候（移动端没有这个问题，因为移动端的缩放没有影响布局视口)。</p>
+<p>​        当你修改网页的默认字体时。【获取某些属性时(width,height…)！！！！！】</p>
+<p>注：display:none 会触发 reflow，而 visibility:hidden 只会触发 repaint，因为没有发生位置变化。</p>
+<h2 id="优化方案（重绘重排）"><a href="#优化方案（重绘重排）" class="headerlink" title="优化方案（重绘重排）"></a>优化方案（重绘重排）</h2><p>我们已知：浏览器渲染页面时经历了如下“细致”的环节：</p>
+<pre><code>1. 计算需要被加载到节点上的样式结果（Recalculate style--样式重计算）；
+2. 为每个节点生成图形和位置（Layout--重排或回流）；
+3. 将每个节点填充到图层中（Paint--重绘）；
+4. 组合图层到页面上（Composite Layers--图层重组）
+</code></pre>
+<p>如果我们需要提升性能，需要做的就是减少浏览器在运行时所需要做的工作，即：尽量减少1234步。</p>
+<h3 id="【具体优化方案如下】："><a href="#【具体优化方案如下】：" class="headerlink" title="【具体优化方案如下】："></a>【具体优化方案如下】：</h3><p>1.元素位置移动变换时尽量使用CSS3的transform来代替对top left等的操作。</p>
+<p>​    变换（transform）和透明度（opacity）的改变仅仅影响图层的组合</p>
+<p>2.使用opacity来代替visibility</p>
+<p>​    (1).使用visibility不触发重排，但是依然重绘。</p>
+<p>​    (2).直接使用opacity既触发重绘，又触发重排（GPU底层设计如此！）。</p>
+<p>​    (3).opacity配合图层使用，既不触发重绘也不触发重排。</p>
+<p>​        原因：</p>
+<p>​                透明度的改变时，GPU在绘画时只是简单的降低之前已经画好的纹理的alpha值来达到效果，并不需要整体的重绘。</p>
+<p>​                不过这个前提是这个被修改opacity本身必须是一个图层。</p>
+<p>3.不要使用table布局。</p>
+<p>​    table-cell；</p>
+<p>4.将多次改变样式属性的操作合并成一次操作。</p>
+<p>​    不要一条一条地修改DOM的样式，预先定义好class，然后修改DOM的className；</p>
+<p>5.将DOM离线后再修改。</p>
+<p>​    由于display属性为none的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。</p>
+<p>​    如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发2次重排。</p>
+<p>6.利用文档碎片。</p>
+<p>​    (documentFragment)——vue使用了该种方式提升性能。</p>
+<p>7.不要把获取某些DOM节点的属性值放在一个循环里当成循环的变量</p>
+<p>​    当你请求向浏览器请求一些 style信息的时候，就会让浏览器flush队列，比如：</p>
+<pre><code> 1. offsetTop, offsetLeft, offsetWidth, offsetHeight
+ 2. scrollTop/Left/Width/Height
+ 3. clientTop/Left/Width/Height
+ 4. width,height
+</code></pre>
+<p>​    当你请求上面的一些属性的时候，浏览器为了给你最精确的值，需要刷新内部队列，</p>
+<p>​    因为队列中可能会有影响到这些值的操作。即使你获取元素的布局和样式信息跟最近发生或改变的布局信息无关，浏览器都会强行刷新渲染队列。</p>
+<p>8.动画实现过程中，启用GPU硬件加速:transform: tranlateZ(0)。</p>
+<p>9.为动画元素新建图层,提高动画元素的z-index</p>
+<p>10.编写动画时，尽量使用如下的API：</p>
+<h2 id="requestAnimationFrame—-请求动画帧"><a href="#requestAnimationFrame—-请求动画帧" class="headerlink" title="requestAnimationFrame—-请求动画帧"></a>requestAnimationFrame—-请求动画帧</h2><p>1.window.requestAnimationFrame()</p>
+<p>说明：该方法会告诉浏览器在下一次重绘重排之前调用你所指定的函数。</p>
+<p>①参数：</p>
+<p>​        该方法使用一个回调函数作为参数，这个回调函数会在浏览器下一次重绘之前调用。</p>
+<p>​        回调函数会被自动传入一个参数，DOMHighResTimeStamp，标识requestAnimationFrame()开始触发回调函数的当前时间</p>
+<p>②返回值：</p>
+<p>​            一个 long 整数，请求 ID ，是回调列表中唯一的标识。是个非零值，没别的意义。你可以传这个值给 window.cancelAnimationFrame() 以取消回调函数。</p>
+<p>备注：若你想在浏览器下次重绘之前继续更新下一帧动画，那么回调函数自身必须再次调用window.requestAnimationFrame()</p>
+<p>2.window.cancelAnimationFrame(requestID)</p>
+<p>​        取消一个先前通过调用window.requestAnimationFrame()方法添加到计划中的动画帧请求。</p>
+<p>​        requestID是先前调用window.requestAnimationFrame()方法时返回的值，它是一个时间标识，用法与定时器的id类似。</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">图层的重绘与回流</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2019-05-09 14:45:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2019/05/09/图层的重绘与回流/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%BC%93%E5%AD%98/">#缓存</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">#浏览器</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2019/05/21/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">网络安全</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2019/04/28/%E8%BE%93%E5%85%A5URL%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">细说浏览器输入URL后发生了什么</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E5%B1%82%E7%9A%84%E9%87%8D%E7%BB%98%E4%B8%8E%E5%9B%9E%E6%B5%81"><span class="nav-number">1.</span> <span class="nav-text">图层的重绘与回流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#css%E5%9B%BE%E5%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">css图层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%B1%82%E5%88%9B%E5%BB%BA%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">图层创建的条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E7%BB%98-Repaint"><span class="nav-number">1.3.</span> <span class="nav-text">重绘(Repaint)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%8E%92-Reflow-%E5%8F%88%E7%A7%B0%EF%BC%9A%E5%9B%9E%E6%B5%81"><span class="nav-number">1.4.</span> <span class="nav-text">重排(Reflow 又称：回流)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E9%87%8D%E7%BB%98%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.5.</span> <span class="nav-text">触发重绘的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E9%87%8D%E6%8E%92-%E5%9B%9E%E6%B5%81-%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.6.</span> <span class="nav-text">触发重排(回流)的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%A7%A6%E5%8F%91%E9%87%8D%E6%8E%92%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.7.</span> <span class="nav-text">常见的触发重排的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%EF%BC%88%E9%87%8D%E7%BB%98%E9%87%8D%E6%8E%92%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">优化方案（重绘重排）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E5%85%B7%E4%BD%93%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%E5%A6%82%E4%B8%8B%E3%80%91%EF%BC%9A"><span class="nav-number">1.8.1.</span> <span class="nav-text">【具体优化方案如下】：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#requestAnimationFrame%E2%80%94-%E8%AF%B7%E6%B1%82%E5%8A%A8%E7%94%BB%E5%B8%A7"><span class="nav-number">1.9.</span> <span class="nav-text">requestAnimationFrame—-请求动画帧</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

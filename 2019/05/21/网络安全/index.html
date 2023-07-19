@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            网络安全 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">网络安全</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">Architect</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2019-05-21 14:45:00</span>
+        <span class="mobile">2019-05-21 14:45</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-19 21:23:30</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>11 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span> 
+
+<h3 id="1-XSS"><a href="#1-XSS" class="headerlink" title="1. XSS"></a>1. XSS</h3><p><code>XSS（Cross Site Script）</code>，即&#x3D;&#x3D;跨站脚本攻击&#x3D;&#x3D;；</p>
+<p>XSS 攻击是指攻击者在网站上注入恶意的客户端代码，通过恶意脚本对客户端网页进行篡改，从而在用户浏览网页时，对用户浏览器进行控制或者获取用户隐私数据的一种攻击方式。</p>
+<p>攻击者对客户端网页注入的恶意脚本一般包括 JavaScript，有时也会包含 HTML 和 Flash。有很多种方式进行 XSS 攻击，但它们的共同点为：将一些隐私数据像 cookie、session 发送给攻击者，将受害者重定向到一个由攻击者控制的网站，在受害者的机器上进行一些恶意操作。</p>
+<p>XSS攻击可以分为3类：</p>
+<ul>
+<li>反射型（非持久型）</li>
+<li>存储型（持久型）</li>
+<li>基于DOM。</li>
+</ul>
+<h4 id="1-1-反射型"><a href="#1-1-反射型" class="headerlink" title="1.1 反射型"></a>1.1 反射型</h4><p>反射型 XSS 只是简单地把用户输入的数据 “反射” 给浏览器，这种攻击方式往往需要攻击者诱使用户点击一个恶意链接，或者提交一个表单，或者进入一个恶意网站时，注入脚本进入被攻击者的网站。</p>
+<p>攻击者可以注入任意的恶意脚本进行攻击，可能注入恶作剧脚本，或者注入能获取用户隐私数据(如cookie)的脚本，这取决于攻击者的目的。</p>
+<h4 id="1-2-存储型"><a href="#1-2-存储型" class="headerlink" title="1.2 存储型"></a>1.2 存储型</h4><p>存储型 XSS 会把用户输入的数据 “存储” 在服务器端，当浏览器请求数据时，脚本从服务器上传回并执行。这种 XSS 攻击具有很强的稳定性。</p>
+<p>比较常见的一个场景是攻击者在社区或论坛上写下一篇包含恶意 JavaScript 代码的文章或评论，文章或评论发表后，所有访问该文章或评论的用户，都会在他们的浏览器中执行这段恶意的 JavaScript 代码。</p>
+<p>当用户点击提交按钮将输入信息提交到服务端时，服务端通过 <code>userInput</code> 变量保存了输入内容。当用户通过 <code>http://localhost:8001/$&#123;id&#125;</code> 访问时，服务端会返回与 <code>id</code> 对应的内容(本示例简化了处理)。如果用户输入了恶意脚本内容，则其他用户访问该内容时，恶意脚本就会在浏览器端执行：</p>
+<h4 id="1-3-基于DOM"><a href="#1-3-基于DOM" class="headerlink" title="1.3 基于DOM"></a>1.3 基于DOM</h4><p>基于 DOM 的 XSS 攻击是指通过恶意脚本修改页面的 DOM 结构，是纯粹发生在客户端的攻击。</p>
+<p>看如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>XSS: <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;input&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> input = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;input&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> div = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> val;</span></span><br><span class="line"><span class="language-javascript">     </span></span><br><span class="line"><span class="language-javascript">    input.<span class="title function_">addEventListener</span>(<span class="string">&#x27;change&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        val = e.<span class="property">target</span>.<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="literal">false</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    btn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        div.<span class="property">innerHTML</span> = <span class="string">`&lt;a href=<span class="subst">$&#123;val&#125;</span>&gt;testLink&lt;/a&gt;`</span></span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="literal">false</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>点击 <code>Submit</code> 按钮后，会在当前页面插入一个链接，其地址为用户的输入内容。如果用户在输入时构造了如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;&#x27; onclick=alert(/xss/)</span><br></pre></td></tr></table></figure>
+
+<p>用户提交之后，页面代码就变成了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href onlick=&quot;alert(/xss/)&quot;&gt;testLink&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此时，用户点击生成的链接，就会执行对应的脚本：</p>
+<h3 id="2-XSS-攻击的防范"><a href="#2-XSS-攻击的防范" class="headerlink" title="2. XSS 攻击的防范"></a>2. XSS 攻击的防范</h3><p>现在主流的浏览器内置了防范 XSS 的措施，例如 <a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP" >CSP<i class="fas fa-external-link-alt"></i></a>。但对于开发者来说，也应该寻找可靠的解决方案来防止 XSS 攻击。</p>
+<h4 id="2-1-HttpOnly-防止劫取-Cookie"><a href="#2-1-HttpOnly-防止劫取-Cookie" class="headerlink" title="2.1 HttpOnly 防止劫取 Cookie"></a>2.1 HttpOnly 防止劫取 Cookie</h4><p>HttpOnly 最早由微软提出，至今已经成为一个标准。浏览器将禁止页面的Javascript 访问带有 HttpOnly 属性的Cookie。</p>
+<p>上文有说到，攻击者可以通过注入恶意脚本获取用户的 Cookie 信息。通常 Cookie 中都包含了用户的登录凭证信息，攻击者在获取到 Cookie 之后，则可以发起 Cookie 劫持攻击。所以，严格来说，HttpOnly 并非阻止 XSS 攻击，而是能阻止 XSS 攻击后的 Cookie 劫持攻击。</p>
+<h4 id="2-2-输入检查"><a href="#2-2-输入检查" class="headerlink" title="2.2 输入检查"></a>2.2 输入检查</h4><p><strong>不要相信用户的任何输入。</strong> 对于用户的任何输入要进行检查、过滤和转义。建立可信任的字符和 HTML 标签白名单，对于不在白名单之列的字符或者标签进行过滤或编码。</p>
+<p>在 XSS 防御中，输入检查一般是检查用户输入的数据中是否包含 <code>&lt;</code>，<code>&gt;</code> 等特殊字符，如果存在，则对特殊字符进行过滤或编码，这种方式也称为 XSS Filter。</p>
+<p>而在一些前端框架中，都会有一份 <code>decodingMap</code>， 用于对用户输入所包含的特殊字符或标签进行编码或过滤，如 <code>&lt;</code>，<code>&gt;</code>，<code>script</code>，防止 XSS 攻击：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> decodingMap = &#123;</span><br><span class="line">  <span class="string">&#x27;&amp;lt;&#x27;</span>: <span class="string">&#x27;&lt;&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;&amp;gt;&#x27;</span>: <span class="string">&#x27;&gt;&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;&amp;quot;&#x27;</span>: <span class="string">&#x27;&quot;&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;&amp;amp;&#x27;</span>: <span class="string">&#x27;&amp;&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;&amp;#10;&#x27;</span>: <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-3-输出检查"><a href="#2-3-输出检查" class="headerlink" title="2.3 输出检查"></a>2.3 输出检查</h4><p>用户的输入会存在问题，服务端的输出也会存在问题。一般来说，除富文本的输出外，在变量输出到 HTML 页面时，可以使用编码或转义的方式来防御 XSS 攻击。</p>
+<h3 id="3-CSRF"><a href="#3-CSRF" class="headerlink" title="3. CSRF"></a>3. CSRF</h3><p><code>CSRF（ Cross Site Request Forgery）</code>，中译是&#x3D;&#x3D;跨站请求伪造&#x3D;&#x3D;，是一种劫持受信任用户向服务器发送非预期请求的攻击方式。</p>
+<p>通常情况下，CSRF 攻击是攻击者借助受害者的 Cookie 骗取服务器的信任，可以在受害者毫不知情的情况下以受害者名义伪造请求发送给受攻击服务器，从而在并未授权的情况下执行在权限保护之下的操作。</p>
+<p>在举例子之前，先说说浏览器的 Cookie 策略。</p>
+<h4 id="3-1-浏览器的-Cookie-策略"><a href="#3-1-浏览器的-Cookie-策略" class="headerlink" title="3.1 浏览器的 Cookie 策略"></a>3.1 浏览器的 Cookie 策略</h4><p>Cookie 是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。Cookie 主要用于以下三个方面：</p>
+<ul>
+<li>会话状态管理（如用户登录状态、购物车、游戏分数或其它需要记录的信息）</li>
+<li>个性化设置（如用户自定义设置、主题等）</li>
+<li>浏览器行为跟踪（如跟踪分析用户行为等）</li>
+</ul>
+<p>而浏览器所持有的 Cookie 分为两种：</p>
+<ul>
+<li>Session Cookie(会话期 Cookie)：会话期 Cookie 是最简单的Cookie，它不需要指定过期时间（Expires）或者有效期（Max-Age），它仅在会话期内有效，浏览器关闭之后它会被自动删除。</li>
+<li>Permanent Cookie(持久性 Cookie)：与会话期 Cookie 不同的是，持久性 Cookie 可以指定一个特定的过期时间（Expires）或有效期（Max-Age）。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Set-Cookie&#x27;</span>, [<span class="string">&#x27;mycookie=222&#x27;</span>, <span class="string">&#x27;test=3333; expires=Sat, 21 Jul 2018 00:00:00 GMT;&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>上述代码创建了两个 Cookie：<code>mycookie</code> 和 <code>test</code>，前者属于会话期 Cookie，后者则属于持久性 Cookie。当我们去查看 Cookie 相关的属性时，不同的浏览器对会话期 Cookie 的 <code>Expires</code> 属性值会不一样：</p>
+<p>Firefox：</p>
+<p>![image-20230414081138509](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230414081138509.png)</p>
+<p>Chrome:</p>
+<p>![image-20230414081204646](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230414081204646.png)</p>
+<p>此外，每个 Cookie 都会有与之关联的域，这个域的范围一般通过 <code>donmain</code> 属性指定。如果 Cookie 的域和页面的域相同，那么我们称这个 Cookie 为第一方 Cookie（first-party cookie），如果 Cookie 的域和页面的域不同，则称之为第三方 Cookie（third-party cookie）。一个页面包含图片或存放在其他域上的资源（如图片）时，第一方的 Cookie 也只会发送给设置它们的服务器。</p>
+<h4 id="3-2-通过-Cookie-进行-CSRF-攻击"><a href="#3-2-通过-Cookie-进行-CSRF-攻击" class="headerlink" title="3.2 通过 Cookie 进行 CSRF 攻击"></a>3.2 通过 Cookie 进行 CSRF 攻击</h4><p>由于 Cookie 中包含了用户的认证信息，当用户访问攻击者准备的攻击环境时，攻击者就可以对服务器发起 CSRF 攻击。在这个攻击过程中，攻击者借助受害者的 Cookie 骗取服务器的信任，但并不能拿到 Cookie，也看不到 Cookie 的内容。而对于服务器返回的结果，由于浏览器同源策略的限制，攻击者也无法进行解析。因此，攻击者无法从返回的结果中得到任何东西，他所能做的就是给服务器发送请求，以执行请求中所描述的命令，在服务器端直接改变数据的值，而非窃取服务器中的数据。</p>
+<p>但若 CSRF 攻击的目标并不需要使用 Cookie，则也不必顾虑浏览器的 Cookie 策略了。</p>
+<h3 id="4-CSRF-攻击的防范"><a href="#4-CSRF-攻击的防范" class="headerlink" title="4. CSRF 攻击的防范"></a>4. CSRF 攻击的防范</h3><p>当前，对 CSRF 攻击的防范措施主要有如下几种方式。</p>
+<ul>
+<li>验证码</li>
+<li>referer check</li>
+<li>添加 token 验证</li>
+</ul>
+<h4 id="4-1-验证码"><a href="#4-1-验证码" class="headerlink" title="4.1 验证码"></a>4.1 验证码</h4><p>验证码被认为是对抗 CSRF 攻击最简洁而有效的防御方法。</p>
+<p>从上述示例中可以看出，CSRF 攻击往往是在用户不知情的情况下构造了网络请求。而验证码会强制用户必须与应用进行交互，才能完成最终请求。因为通常情况下，验证码能够很好地遏制 CSRF 攻击。</p>
+<p>但验证码并不是万能的，因为出于用户考虑，不能给网站所有的操作都加上验证码。因此，验证码只能作为防御 CSRF 的一种辅助手段，而不能作为最主要的解决方案。</p>
+<h4 id="4-2-Referer-Check"><a href="#4-2-Referer-Check" class="headerlink" title="4.2 Referer Check"></a>4.2 Referer Check</h4><p>根据 HTTP 协议，在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。通过 Referer Check，可以检查请求是否来自合法的”源”。</p>
+<p>比如，如果用户要删除自己的帖子，那么先要登录 <code>www.c.com</code>，然后找到对应的页面，发起删除帖子的请求。此时，Referer 的值是 <code>http://www.c.com</code>；当请求是从 <code>www.a.com</code> 发起时，Referer 的值是 <code>http://www.a.com</code> 了。因此，要防御 CSRF 攻击，只需要对于每一个删帖请求验证其 Referer 值，如果是以 <code>www.c.com</code> 开头的域名，则说明该请求是来自网站自己的请求，是合法的。如果 Referer 是其他网站的话，则有可能是 CSRF 攻击，可以拒绝该请求。</p>
+<p>Referer Check 不仅能防范 CSRF 攻击，另一个应用场景是 “防止图片盗链”。</p>
+<h4 id="4-3-添加-token-验证"><a href="#4-3-添加-token-验证" class="headerlink" title="4.3 添加 token 验证"></a>4.3 添加 token 验证</h4><p>CSRF 攻击之所以能够成功，是因为攻击者可以完全伪造用户的请求，该请求中所有的用户验证信息都是存在于 Cookie 中，因此攻击者可以在不知道这些验证信息的情况下直接利用用户自己的 Cookie 来通过安全验证。要抵御 CSRF，关键在于在请求中放入攻击者所不能伪造的信息，并且该信息不存在于 Cookie 之中。可以在 HTTP 请求中以参数的形式加入一个随机产生的 token，并在服务器端建立一个拦截器来验证这个 token，如果请求中没有 token 或者 token 内容不正确，则认为可能是 CSRF 攻击而拒绝该请求。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>XSS攻击可以分为3类：</p>
+<ul>
+<li><p>反射型（非持久型）：诱导用户点击恶意链接；</p>
+</li>
+<li><p>存储型（持久型）：攻击者在论坛上写下一篇包含恶意 脚本的文章或评论，用户访问后，会在他们的浏览器中执行这段恶意的脚本。</p>
+</li>
+<li><p>基于DOM：通过恶意脚本修改页面的 DOM 结构</p>
+</li>
+</ul>
+<p>总结一下 XSS 攻击和 CSRF 攻击的常见防御措施：</p>
+<ol>
+<li><p>防御 XSS 攻击</p>
+<ul>
+<li>HttpOnly 防止劫取 Cookie。（浏览器将禁止页面的Javascript 访问带有 HttpOnly 属性的Cookie。）</li>
+<li>用户的输入检查。（对于用户的任何输入要进行检查、过滤和转义，对特殊字符进行过滤或编码）</li>
+<li>服务端的输出检查</li>
+</ul>
+</li>
+<li><p>防御 CSRF 攻击</p>
+<ul>
+<li>验证码</li>
+<li>Referer Check</li>
+<li>Token 验证</li>
+</ul>
+</li>
+</ol>
+<p>👉👉 <a class="link"   target="_blank" rel="noopener" href="https://github.com/dwqs/blog/issues/68" >浅说 XSS 和 CSRF<i class="fas fa-external-link-alt"></i></a></p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">网络安全</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2019-05-21 14:45:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2019/05/21/网络安全/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%BD%91%E7%BB%9C/">#网络</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%AE%89%E5%85%A8/">#安全</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2019/06/26/%E7%BD%91%E9%A1%B5%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">网页渲染原理</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2019/05/09/%E5%9B%BE%E5%B1%82%E7%9A%84%E9%87%8D%E7%BB%98%E4%B8%8E%E5%9B%9E%E6%B5%81/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">图层的重绘与回流</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-XSS"><span class="nav-number">1.</span> <span class="nav-text">1. XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 反射型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 存储型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E5%9F%BA%E4%BA%8EDOM"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 基于DOM</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-XSS-%E6%94%BB%E5%87%BB%E7%9A%84%E9%98%B2%E8%8C%83"><span class="nav-number">2.</span> <span class="nav-text">2. XSS 攻击的防范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-HttpOnly-%E9%98%B2%E6%AD%A2%E5%8A%AB%E5%8F%96-Cookie"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 HttpOnly 防止劫取 Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E8%BE%93%E5%85%A5%E6%A3%80%E6%9F%A5"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 输入检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E8%BE%93%E5%87%BA%E6%A3%80%E6%9F%A5"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 输出检查</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-CSRF"><span class="nav-number">3.</span> <span class="nav-text">3. CSRF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84-Cookie-%E7%AD%96%E7%95%A5"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 浏览器的 Cookie 策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E9%80%9A%E8%BF%87-Cookie-%E8%BF%9B%E8%A1%8C-CSRF-%E6%94%BB%E5%87%BB"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 通过 Cookie 进行 CSRF 攻击</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-CSRF-%E6%94%BB%E5%87%BB%E7%9A%84%E9%98%B2%E8%8C%83"><span class="nav-number">4.</span> <span class="nav-text">4. CSRF 攻击的防范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 验证码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-Referer-Check"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Referer Check</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E6%B7%BB%E5%8A%A0-token-%E9%AA%8C%E8%AF%81"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 添加 token 验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
