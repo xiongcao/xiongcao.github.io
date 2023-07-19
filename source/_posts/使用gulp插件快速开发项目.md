@@ -7,6 +7,8 @@ categories:
 date: 2017-07-16 00:15:00
 ---
 ---
+<!--more-->
+
 ## 简介：
 &ensp;&ensp;&ensp;&ensp;gulp有着丰富的插件库，她能自动化地完成javascript、coffee、sass、less、html、image、css 等文件的的测试、检查、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤，能快速提高我们项目的开发效率。
 
@@ -14,7 +16,7 @@ date: 2017-07-16 00:15:00
 ## 1.gulpfile.js基本配置示例：
 &ensp;&ensp;&ensp;&ensp;通过此配置示例可以让我们快速编写js,css代码并打包压缩文件，减少文件资源大小。
 
-<!--more-->
+
 
 ```js
 //导入工具包 require('node_modules里对应模块')
@@ -176,7 +178,7 @@ $blue : #1875e7;　
 
 #### 5.编译结果：
 
-![mark](http://www.xiongchao.win/blogImage/blog/170715/IaCJglCfag.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170715/IaCJglCfag.png?imageslim)
 
 ### 2.gulp-minify-css的使用：
 
@@ -214,13 +216,13 @@ gulp.task('sass', function () {
 
 ```
 2.使用示例：
-![mark](http://www.xiongchao.win/blogImage/blog/170715/GCLHfi4haD.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170715/GCLHfi4haD.png?imageslim)
 
 #### 4.执行任务：   
 命令提示符：gulp sass
 
 #### 5.编译结果：
-![mark](http://www.xiongchao.win/blogImage/blog/170715/CHD62jD9kd.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170715/CHD62jD9kd.png?imageslim)
 编译之后的css文件被压缩了
 
 ### 3.gulp-autoprefixer：
@@ -257,14 +259,14 @@ gulp.task('sass', function () {
 
 ```
 2.使用示例：
-![mark](http://www.xiongchao.win/blogImage/blog/170715/lhl9ajJEIA.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170715/lhl9ajJEIA.png?imageslim)
 
 #### 4.执行任务：   
 命令提示符：gulp sass
 
 #### 5.编译结果：
 浏览器中的编译结果：
-![mark](http://www.xiongchao.win/blogImage/blog/170715/IKCG8CDh46.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170715/IKCG8CDh46.png?imageslim)
 
 
 ## 3.使用gulp编译js
@@ -299,7 +301,7 @@ gulp.task('babel', function () {
 
 2.ES6使用示例：
 
-![mark](http://www.xiongchao.win/blogImage/blog/170716/LBLjFGhFF5.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170716/LBLjFGhFF5.png?imageslim)
 
 #### 4.执行任务：   
 命令提示符：gulp babel
@@ -307,7 +309,7 @@ gulp.task('babel', function () {
 
 #### 5.编译结果：
 
-![mark](http://www.xiongchao.win/blogImage/blog/170716/Hbd5lihjCL.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170716/Hbd5lihjCL.png?imageslim)
 
 
 ### 2.gulp-uglify的使用：
@@ -341,7 +343,7 @@ gulp.task('babel', function () {
 
 2.ES6使用示例：
 
-![mark](http://www.xiongchao.win/blogImage/blog/170716/LBLjFGhFF5.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170716/LBLjFGhFF5.png?imageslim)
 
 #### 4.执行任务：   
 命令提示符：gulp babel
@@ -349,7 +351,7 @@ gulp.task('babel', function () {
 
 #### 5.编译结果：
 
-![mark](http://www.xiongchao.win/blogImage/blog/170716/7Kg8hi0Jla.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170716/7Kg8hi0Jla.png?imageslim)
 
 
 ### gulp插件库还有其他很多优秀的插件，可以根据自己的需要引入。

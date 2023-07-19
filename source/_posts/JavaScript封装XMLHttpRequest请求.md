@@ -6,7 +6,7 @@ categories:
   - Ajax
 date: 2018-08-16 13:48:00
 ---
-
+<!-- more -->
 
 ### 什么是 XMLHttpRequest 对象
 XMLHttpRequest 对象用于在后台与服务器交换数据。
@@ -19,7 +19,7 @@ XMLHttpRequest 对象是开发者的梦想，因为您能够：
 所有现代的浏览器都支持 XMLHttpRequest 对象，XMLHttpRequest在 Ajax 编程中被大量使用。
 
 ### 原生javascript（ES5）封装XMLHttpRequest对象
-<!-- more -->
+
 
 1.创建ajax.js
 
@@ -153,10 +153,10 @@ Ajax.prototype.ajax = function(obj){
 ```
 
 3.顺带看下后端写法（哈哈,虽然不需要前端开发人员操心）
-![](http://www.xiongchao.win/blogImage/201808161403_227.png)
+![](http://xiongcao.github.io/blogImage/201808161403_227.png)
 
 4.最后看下四种请求的结果 
-![](http://www.xiongchao.win/blogImage/201808161408_351.png)
+![](http://xiongcao.github.io/blogImage/201808161408_351.png)
 
 ### ES6 封装XMLHttpRequest对象
 

@@ -7,7 +7,7 @@ categories:
   - javascript
 date: 2018-08-07 14:33:00
 ---
-
+<!--more-->
 
 ###  HTML5的本地存储
 
@@ -16,7 +16,7 @@ HTML5中与本地存储相关的两个重要内容：Web Storage与本地数据�
 #### 本文主要来讲解Web Storage
 
 我们知道，在HTML4中可以使用cookie在客户端保存诸如用户名等简单的用户信息，但是，通过长期的使用，你会发现，用cookie存储永久数据存在以下几个问题：
-<!--more-->
+
 
 1.大小：cookie的大小被限制在4KB。
 
@@ -86,7 +86,7 @@ WebStorage的目的是克服由cookie所带来的一些限制，当数据需要�
 
 #### 示例：
 （1） 新建两个文件：
-![](http://www.xiongchao.win/blogImage/201808081728_587.png)
+![](http://xiongcao.github.io/blogImage/201808081728_587.png)
 
 
 ``` html
@@ -112,13 +112,13 @@ WebStorage的目的是克服由cookie所带来的一些限制，当数据需要�
 （2） 部署服务（推荐使用nignx做反向代理,比tomcat简单粗暴，也可以不用这一步，只是为了模拟真实网站会话）
 
 （3） 打开index.html,并使用链接打开test.html
-![](http://www.xiongchao.win/blogImage/201808081739_652.png)
-![](http://www.xiongchao.win/blogImage/201808081739_523.png)
+![](http://xiongcao.github.io/blogImage/201808081739_652.png)
+![](http://xiongcao.github.io/blogImage/201808081739_523.png)
 
 两个页面的结果是一样的，这是一次会话，sessionStorage储存的内容被保存下来。
 
 （4） 单独打开test.html,会发现sessionStorage是空的。
-![](http://www.xiongchao.win/blogImage/201808081739_652.png)
-![](http://www.xiongchao.win/blogImage/201808081742_158.png)
+![](http://xiongcao.github.io/blogImage/201808081739_652.png)
+![](http://xiongcao.github.io/blogImage/201808081742_158.png)
 
 

@@ -6,20 +6,20 @@ categories:
   - 工具
 date: 2018-07-08 14:12:00
 ---
-
+<!--more-->
 ### git的工作原理图解：
 + 将指定文件添加到暂存区(stage)
-![](http://www.xiongchao.win/blogImage/201808030937_27.png)
+![](http://xiongcao.github.io/blogImage/201808030937_27.png)
 
 
 + 将暂存区的所有内容提交到当前分支
-![](http://www.xiongchao.win/blogImage/201808030941_860.png)
+![](http://xiongcao.github.io/blogImage/201808030941_860.png)
 
-<!--more-->
+
 
 + 分支的创建与合并
-![](http://www.xiongchao.win/blogImage/201808031105_462.png)
-![](http://www.xiongchao.win/blogImage/201808031106_416.png)
+![](http://xiongcao.github.io/blogImage/201808031105_462.png)
+![](http://xiongcao.github.io/blogImage/201808031106_416.png)
 
 
 ### git的使用步骤：

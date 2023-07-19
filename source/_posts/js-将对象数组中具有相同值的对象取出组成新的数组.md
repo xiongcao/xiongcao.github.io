@@ -7,6 +7,7 @@ categories:
   - javascript
 date: 2018-07-26 14:58:00
 ---
+<!--more-->
 
 ### 实现方法：
 ```js
@@ -85,8 +86,7 @@ function sortArr(arr, key) {
 }
 
 ```
-<!--more-->
 ### 结果：
 
-![](http://www.xiongchao.win/blogImage/201807271015_408.png)
-![](http://www.xiongchao.win/blogImage/201807271015_241.png)
+![](http://xiongcao.github.io/blogImage/201807271015_408.png)
+![](http://xiongcao.github.io/blogImage/201807271015_241.png)

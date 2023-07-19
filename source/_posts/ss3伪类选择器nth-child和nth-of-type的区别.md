@@ -8,6 +8,9 @@ categories:
 date: 2017-06-10 16:35:00
 ---
 ---
+<!-- more -->
+
+
 ### 使用误区
 
 之前在做项目时一直是:nth-child和:nth-of-type混着用，第一个不行就用第二个，当时就觉得能实现效果就行，后来这样的情况遇到多了，每次用的时候就感觉效果是试出来的，特别浪费时间，现在就来研究一下这两个用法的区别。
@@ -26,8 +29,6 @@ date: 2017-06-10 16:35:00
 </div>
 
 ```
-
-<!-- more -->
 
 要实现的效果：将two变红
 
@@ -48,7 +49,7 @@ p:nth-of-type(2){color:red;}
 ```
 
 效果：
-![mark](http://www.xiongchao.win/blogImage/blog/170610/hl1lJccBCj.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170610/hl1lJccBCj.png?imageslim)
 
 在同辈元素都相同的情况下两个用法效果一样
 
@@ -76,7 +77,7 @@ p:nth-of-type(2){color:red;}
 
 ```
 效果：
-![mark](http://www.xiongchao.win/blogImage/blog/170610/5kG378GEBE.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170610/5kG378GEBE.png?imageslim)
 
 >* 再来看nth-child()的方式:
 
@@ -86,7 +87,7 @@ p:nth-child(2){color:red;}
 
 ```
 效果：
-![mark](http://www.xiongchao.win/blogImage/blog/170610/h346LeKK59.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170610/h346LeKK59.png?imageslim)
 
 ### 3.用法不同效果相同的情况
 
@@ -121,7 +122,7 @@ p:nth-child(3){color:red;}
 ```
 
 效果：
-![mark](http://www.xiongchao.win/blogImage/blog/170610/5kG378GEBE.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170610/5kG378GEBE.png?imageslim)
 
 
 ### 用法总结

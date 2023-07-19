@@ -7,13 +7,14 @@ categories:
 date: 2017-07-09 10:30:00
 ---
 ---
+<!--more-->
 
 ### gulp简介：
 &ensp;&ensp;&ensp;&ensp;gulp是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成，从而大大提高我们的工作效率。<br/>
 
 &ensp;&ensp;&ensp;&ensp;gulp是基于Nodejs的自动任务运行器,她能自动化地完成javascript、coffee、sass、less、html、image、css 等文件的的测试、检查、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。
 
-<!--more-->
+
 
 ### 环境搭建：
 
@@ -42,7 +43,7 @@ npm（node package manager）nodejs的包管理器，用于node插件管理（�
 1.说明：package.json是基于nodejs项目必不可少的配置文件，它是存放在项目根目录的普通json文件；
 
 2.通过命令行新建：npm init， 创建过程中会提示让输入各种信息，可以一直回车忽略它。
-![mark](http://www.xiongchao.win/blogImage/blog/170709/1BEACEhcE9.png?imageslim)
+![mark](http://xiongcao.github.io/blogImage/blog/170709/1BEACEhcE9.png?imageslim)
 
 
 #### 5.新建gulpfile.js文件

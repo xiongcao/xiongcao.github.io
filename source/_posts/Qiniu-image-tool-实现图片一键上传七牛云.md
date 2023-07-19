@@ -6,12 +6,10 @@ categories:
   - 云储存
 date: 2018-07-02 14:12:00
 ---
-
+<!--more-->
 
 &ensp;&ensp;&ensp;&ensp;写博客当然少不了云储存了，那为什么推荐使用七牛云呢，当然是因为七牛云储存提供10G的免费空间,以及每月10G的流量，存放个人博客外链图片最好不过了，七牛云储存还有各种图形处理功能、缩略图、视频存放速度也给力。
 &ensp;&ensp;&ensp;&ensp;qiniu-image-tool是一个提升 markdown 贴图体验的实用小工具，支持windows 及 mac。其中 qiniu-image-tool-win 为windows版本，基于AutoHotkey和qshell实现，一键上传图片或截图至七牛云，获取图片的markdown引用至剪贴板，并自动粘贴到当前编辑器。
-
-<!--more-->
 
 
 ### 用法
@@ -20,19 +18,19 @@ date: 2018-07-02 14:12:00
 
 ### 预览效果图：
 * 本地图片文件上传
-![](http://www.xiongchao.win/blogImage/local.gif)
+![](http://xiongcao.github.io/blogImage/local.gif)
 
 * 截图上传
-![](http://www.xiongchao.win/blogImage/screenshot.gif)
+![](http://xiongcao.github.io/blogImage/screenshot.gif)
 
 * 其它文件上传
-![](http://www.xiongchao.win/blogImage/file.gif)
+![](http://xiongcao.github.io/blogImage/file.gif)
 
 ### 安装
 首先从 github 下载release版本（有两个版本：2.0 正式版和1.0 正式版，推荐使用2.0 正式版）并解压到任意目录
 
 目录结构应如下：
-![](http://www.xiongchao.win/blogImage/201808021402_157.png)
+![](http://xiongcao.github.io/blogImage/201808021402_157.png)
 
 其中dump-clipboard-png.ps1是保存截图的powershell脚本，qiniu-image-upload.ahk 即完成文件上传的AutoHotkey脚本。
 
@@ -40,7 +38,7 @@ date: 2018-07-02 14:12:00
 
 打开settings.ini文件，右键选择编辑脚本使脚本在编辑器中打开，找到下面这段代码:
 
-![](http://www.xiongchao.win/blogImage/201808021405_405.png)
+![](http://xiongcao.github.io/blogImage/201808021405_405.png)
 
 修改这里的五个配置项的值，其中前四个配置项都与七牛账号相关：
 

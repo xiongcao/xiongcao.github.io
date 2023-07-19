@@ -1,520 +1,327 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
     
+    <title>
+        
+            git常用命令 |
+        
+        XChao&#39;s Blog
+    </title>
     
-  
+<link rel="stylesheet" href="/css/style.css">
 
-  
+    <link rel="shortcut icon" href="/images/avatar.jpg">
     
-      
-    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
 
     
-  
-
-  
-
-  
-    
-      
-    
+<link rel="stylesheet" href="/font/css/regular.min.css">
 
     
-  
-
-  
-    
-      
-    
+<link rel="stylesheet" href="/font/css/solid.min.css">
 
     
-  
+<link rel="stylesheet" href="/font/css/brands.min.css">
 
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slabf:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="git," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
-
-
-
-
-
-
-<meta name="description" content="git的工作原理图解： 将指定文件添加到暂存区(stage)   将暂存区的所有内容提交到当前分支">
-<meta name="keywords" content="git">
-<meta property="og:type" content="article">
-<meta property="og:title" content="git常用命令">
-<meta property="og:url" content="http://yoursite.com/2018/07/08/git常用命令/index.html">
-<meta property="og:site_name" content="安妮的小熊">
-<meta property="og:description" content="git的工作原理图解： 将指定文件添加到暂存区(stage)   将暂存区的所有内容提交到当前分支">
-<meta property="og:image" content="http://www.xiongchao.win/blogImage/201808030937_27.png">
-<meta property="og:image" content="http://www.xiongchao.win/blogImage/201808030941_860.png">
-<meta property="og:image" content="http://www.xiongchao.win/blogImage/201808031105_462.png">
-<meta property="og:image" content="http://www.xiongchao.win/blogImage/201808031106_416.png">
-<meta property="og:updated_time" content="2019-03-22T02:36:17.617Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git常用命令">
-<meta name="twitter:description" content="git的工作原理图解： 将指定文件添加到暂存区(stage)   将暂存区的所有内容提交到当前分支">
-<meta name="twitter:image" content="http://www.xiongchao.win/blogImage/201808030937_27.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2018/07/08/git常用命令/"/>
-
-
-
-
-
-  <title>git常用命令 | 安妮的小熊</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?5deff6bcbae525e8345fd2757421664e";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 
-
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=62475161";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-<script>
-  	var _mtac = {};
-  	(function() {
-  		var mta = document.createElement("script");
-  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
-  		mta.setAttribute("name", "MTAH5");
-  		mta.setAttribute("sid", "3102488256");
-
-  		var s = document.getElementsByTagName("script")[0];
-  		s.parentNode.insertBefore(mta, s);
-  	})();
-</script>
-
-
-
-
-
-
-
-  
-  
+<body>
+<div class="progress-bar-container">
     
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+        <span class="scroll-progress-bar"></span>
     
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">安妮的小熊</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">知识诅咒</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
 </div>
 
 
-
-    </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/08/git常用命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="熊 超">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xiaoxiong.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安妮的小熊">
-    </span>
+<main class="page-container">
 
     
-      <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">git常用命令</h1>
-        
+    <div class="page-main-content">
 
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="page-main-content-top">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-08T14:12:00+08:00">
-                2018-07-08
-              </time>
-            
+<header class="header-wrapper">
 
+    <div class="header-content">
+        <div class="left">
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/07/08/git常用命令/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/07/08/git常用命令/" itemprop="commentsCount"></span>
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
                 </a>
-              
             
-          
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
 
-          
-          
-             <span id="/2018/07/08/git常用命令/" class="leancloud_visitors" data-flag-title="git常用命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  829 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  3 分钟
-                </span>
-              
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
             </div>
-          
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-          
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
 
         </div>
-      </header>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">git常用命令</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">Engineer</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2018-07-08 14:12:00</span>
+        <span class="mobile">2018-07-08 14:12</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-19 11:05:52</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/git/">git</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
-    <div class="post-body" itemprop="articleBody">
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>823 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-      
-      
+                        </div>
+                    </div>
+                </div>
+            
 
-      
-        <h3 id="git的工作原理图解："><a href="#git的工作原理图解：" class="headerlink" title="git的工作原理图解："></a>git的工作原理图解：</h3><ul>
-<li>将指定文件添加到暂存区(stage)<br><img src="http://www.xiongchao.win/blogImage/201808030937_27.png" alt=""></li>
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span>
+<h3 id="git的工作原理图解："><a href="#git的工作原理图解：" class="headerlink" title="git的工作原理图解："></a>git的工作原理图解：</h3><ul>
+<li><p>将指定文件添加到暂存区(stage)<br><img  
+                     lazyload
+                     alt="image"
+                     data-src="http://xiongcao.github.io/blogImage/201808030937_27.png"
+                     
+                ></p>
+</li>
+<li><p>将暂存区的所有内容提交到当前分支<br><img  
+                     lazyload
+                     alt="image"
+                     data-src="http://xiongcao.github.io/blogImage/201808030941_860.png"
+                     
+                ></p>
+</li>
+<li><p>分支的创建与合并<br><img  
+                     lazyload
+                     alt="image"
+                     data-src="http://xiongcao.github.io/blogImage/201808031105_462.png"
+                     
+                ><br><img  
+                     lazyload
+                     alt="image"
+                     data-src="http://xiongcao.github.io/blogImage/201808031106_416.png"
+                     
+                ></p>
+</li>
 </ul>
-<ul>
-<li>将暂存区的所有内容提交到当前分支<br><img src="http://www.xiongchao.win/blogImage/201808030941_860.png" alt=""></li>
-</ul>
-<a id="more"></a>
-<ul>
-<li>分支的创建与合并<br><img src="http://www.xiongchao.win/blogImage/201808031105_462.png" alt=""><br><img src="http://www.xiongchao.win/blogImage/201808031106_416.png" alt=""></li>
-</ul>
-<h3 id="git的使用步骤："><a href="#git的使用步骤：" class="headerlink" title="git的使用步骤："></a>git的使用步骤：</h3><h5 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">git add . <span class="comment">//如果有删除的文件则：git add -A</span></div><div class="line"></div><div class="line">git commit -m<span class="string">"first commit"</span></div><div class="line"></div><div class="line"><span class="comment">//这一步可能会进入一个奇怪的窗口，需执行 ESC :wq</span></div><div class="line">git pull --rebase origin master</div><div class="line"></div><div class="line"><span class="comment">//如果有冲突则解决冲突，然后执行第一步，最后执行以下命令</span></div><div class="line">git rebase --<span class="keyword">continue</span></div><div class="line"></div><div class="line">git push origin master</div><div class="line"></div><div class="line"><span class="comment">//push时有可能会提示没有change-id</span></div><div class="line"><span class="comment">//复制提示中的"gitdir=$(git rev-parse --git-dir); scp -p -P 29418 </span></div><div class="line"><span class="comment">//xiongchao@192.168.1.192:hooks/commit-msg $&#123;gitdir&#125;/hooks/"</span></div><div class="line">git commit -amend</div></pre></td></tr></table></figure>
-<h5 id="如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令"><a href="#如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令" class="headerlink" title="如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令"></a>如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git stash</div><div class="line"></div><div class="line">git pull</div><div class="line"></div><div class="line">git stash pop <span class="comment">//可能有冲突，改冲突，可直接运行项目</span></div></pre></td></tr></table></figure>
-<h5 id="cherry-pick用法（A分支的内容添加到B分支-此操作是在B分支上）"><a href="#cherry-pick用法（A分支的内容添加到B分支-此操作是在B分支上）" class="headerlink" title="cherry-pick用法（A分支的内容添加到B分支,此操作是在B分支上）"></a>cherry-pick用法（A分支的内容添加到B分支,此操作是在B分支上）</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git reflog</div><div class="line"></div><div class="line"><span class="comment">//复制要cherry-pick的commit id（有说明的那一行）</span></div><div class="line">git cherry-pick commitid</div><div class="line"></div><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<h3 id="git的使用步骤："><a href="#git的使用步骤：" class="headerlink" title="git的使用步骤："></a>git的使用步骤：</h3><h5 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">git add . <span class="comment">//如果有删除的文件则：git add -A</span></span><br><span class="line"></span><br><span class="line">git commit -m<span class="string">&quot;first commit&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这一步可能会进入一个奇怪的窗口，需执行 ESC :wq</span></span><br><span class="line">git pull --rebase origin master</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果有冲突则解决冲突，然后执行第一步，最后执行以下命令</span></span><br><span class="line">git rebase --<span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">git push origin master</span><br><span class="line"></span><br><span class="line"><span class="comment">//push时有可能会提示没有change-id</span></span><br><span class="line"><span class="comment">//复制提示中的&quot;gitdir=$(git rev-parse --git-dir); scp -p -P 29418 </span></span><br><span class="line"><span class="comment">//xiongchao@192.168.1.192:hooks/commit-msg $&#123;gitdir&#125;/hooks/&quot;</span></span><br><span class="line">git commit -amend</span><br></pre></td></tr></table></figure>
+
+<h5 id="如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令"><a href="#如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令" class="headerlink" title="如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令"></a>如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br><span class="line"></span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line">git stash pop <span class="comment">//可能有冲突，改冲突，可直接运行项目</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="cherry-pick用法（A分支的内容添加到B分支-此操作是在B分支上）"><a href="#cherry-pick用法（A分支的内容添加到B分支-此操作是在B分支上）" class="headerlink" title="cherry-pick用法（A分支的内容添加到B分支,此操作是在B分支上）"></a>cherry-pick用法（A分支的内容添加到B分支,此操作是在B分支上）</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br><span class="line"></span><br><span class="line"><span class="comment">//复制要cherry-pick的commit id（有说明的那一行）</span></span><br><span class="line">git cherry-pick commitid</span><br><span class="line"></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
 <h3 id="git的常用命令解释："><a href="#git的常用命令解释：" class="headerlink" title="git的常用命令解释："></a>git的常用命令解释：</h3><h5 id="git-status"><a href="#git-status" class="headerlink" title="$ git status"></a>$ git status</h5><p>查看工作区状态；</p>
 <h5 id="git-add-readme-txt"><a href="#git-add-readme-txt" class="headerlink" title="$ git add readme.txt"></a>$ git add readme.txt</h5><p>将指定文件添加到暂存区(stage);反复多次使用，添加多个文件；</p>
 <h5 id="git-add"><a href="#git-add" class="headerlink" title="$ git add ."></a>$ git add .</h5><p>将所有文件添加到Git仓库暂存区；</p>
 <h5 id="git-commit-m-“wrote-a-readme-file”"><a href="#git-commit-m-“wrote-a-readme-file”" class="headerlink" title="$ git commit -m “wrote a readme file”"></a>$ git commit -m “wrote a readme file”</h5><p>将暂存区的所有内容提交到当前分支；</p>
-<h5 id="git-checkout-–-readme-txt”"><a href="#git-checkout-–-readme-txt”" class="headerlink" title="$ git checkout – readme.txt”"></a>$ git checkout – readme.txt”</h5><p>把<strong> readme.txt </strong>文件在工作区的修改全部撤销，这里有两种情况：<br><!--
---><font size="2">一种是<strong>readme.txt</strong>自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</font><br><!--
---><font size="2">一种是<strong>readme.txt</strong>已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</font><br>总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
+<h5 id="git-checkout-–-readme-txt”"><a href="#git-checkout-–-readme-txt”" class="headerlink" title="$ git checkout – readme.txt”"></a>$ git checkout – readme.txt”</h5><p>把** readme.txt <strong>文件在工作区的修改全部撤销，这里有两种情况：<br/><!--
+--><font size=2>一种是</strong>readme.txt<strong>自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</font><br/><!--
+--><font size=2>一种是</strong>readme.txt**已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</font><br>总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
 <h5 id="rm-test-txt”"><a href="#rm-test-txt”" class="headerlink" title="$ rm test.txt”"></a>$ rm test.txt”</h5><p>从版本库暂存区中删除该文件；</p>
 <h5 id="git-push-origin-master"><a href="#git-push-origin-master" class="headerlink" title="$ git push origin master"></a>$ git push origin master</h5><p>把当前分支<strong>master</strong>的内容推送到远程库；</p>
 <h5 id="git-pull-–rebase-origin-master"><a href="#git-pull-–rebase-origin-master" class="headerlink" title="$ git pull –rebase origin master"></a>$ git pull –rebase origin master</h5><p>拉取远程库<strong>master</strong>分支的内容到本地仓库；</p>
@@ -533,955 +340,386 @@
 <h5 id="git-log"><a href="#git-log" class="headerlink" title="$ git log"></a>$ git log</h5><p>查看提交日志；</p>
 <h5 id="git-reflog"><a href="#git-reflog" class="headerlink" title="$ git reflog"></a>$ git reflog</h5><p>记录你的每一次命令；</p>
 
-      
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">git常用命令</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2018-07-08 14:12:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2018/07/08/git常用命令/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/git/">#git</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2018/07/19/js%20Date%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">js Date对象的详细使用</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2018/07/02/Qiniu-image-tool-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0%E4%B8%83%E7%89%9B%E4%BA%91/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Qiniu-image-tool-实现图片一键上传七牛云</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;评论
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'zh-CN' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
     </div>
 
-    <div>
-      
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%9B%BE%E8%A7%A3%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">git的工作原理图解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git%E7%9A%84%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">git的使用步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">2.0.1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%AD%A3%E5%9C%A8%E5%AE%8C%E6%88%90%E6%9F%90%E4%B8%80%E4%B8%AA%E5%8A%9F%E8%83%BD%E4%B8%8D%E8%83%BD%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%EF%BC%8C%E7%84%B6%E5%90%8E%E5%8F%88%E9%9C%80%E8%A6%81%E7%94%A8%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%AD%E5%90%8C%E4%BA%8B%E5%88%9A%E6%8F%90%E4%BA%A4%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%88%99%E5%8F%AA%E9%9C%80%E8%A6%81%E6%89%A7%E8%A1%8C%E4%BB%A5%E4%B8%8B%E5%91%BD%E4%BB%A4"><span class="nav-number">2.0.2.</span> <span class="nav-text">如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cherry-pick%E7%94%A8%E6%B3%95%EF%BC%88A%E5%88%86%E6%94%AF%E7%9A%84%E5%86%85%E5%AE%B9%E6%B7%BB%E5%8A%A0%E5%88%B0B%E5%88%86%E6%94%AF-%E6%AD%A4%E6%93%8D%E4%BD%9C%E6%98%AF%E5%9C%A8B%E5%88%86%E6%94%AF%E4%B8%8A%EF%BC%89"><span class="nav-number">2.0.3.</span> <span class="nav-text">cherry-pick用法（A分支的内容添加到B分支,此操作是在B分支上）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">git的常用命令解释：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#git-status"><span class="nav-number">3.0.1.</span> <span class="nav-text">$ git status</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-add-readme-txt"><span class="nav-number">3.0.2.</span> <span class="nav-text">$ git add readme.txt</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-add"><span class="nav-number">3.0.3.</span> <span class="nav-text">$ git add .</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-commit-m-%E2%80%9Cwrote-a-readme-file%E2%80%9D"><span class="nav-number">3.0.4.</span> <span class="nav-text">$ git commit -m “wrote a readme file”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-checkout-%E2%80%93-readme-txt%E2%80%9D"><span class="nav-number">3.0.5.</span> <span class="nav-text">$ git checkout – readme.txt”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rm-test-txt%E2%80%9D"><span class="nav-number">3.0.6.</span> <span class="nav-text">$ rm test.txt”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-push-origin-master"><span class="nav-number">3.0.7.</span> <span class="nav-text">$ git push origin master</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-pull-%E2%80%93rebase-origin-master"><span class="nav-number">3.0.8.</span> <span class="nav-text">$ git pull –rebase origin master</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-reset-HEAD"><span class="nav-number">3.0.9.</span> <span class="nav-text">$ git reset HEAD~</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-reset-%E2%80%93hard-1094a"><span class="nav-number">3.0.10.</span> <span class="nav-text">$ git reset –hard 1094a</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-stash"><span class="nav-number">3.0.11.</span> <span class="nav-text">$ git stash</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-stash-pop"><span class="nav-number">3.0.12.</span> <span class="nav-text">$ git stash pop</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-stash-list"><span class="nav-number">3.0.13.</span> <span class="nav-text">$ git stash list</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-stash-drop"><span class="nav-number">3.0.14.</span> <span class="nav-text">$ git stash drop</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-branch-dev"><span class="nav-number">3.0.15.</span> <span class="nav-text">$ git branch dev</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-checkout-dev"><span class="nav-number">3.0.16.</span> <span class="nav-text">$ git checkout dev</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-branch"><span class="nav-number">3.0.17.</span> <span class="nav-text">$ git branch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-merge-dev"><span class="nav-number">3.0.18.</span> <span class="nav-text">$ git merge dev</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-branch-d-dev"><span class="nav-number">3.0.19.</span> <span class="nav-text">$ git branch -d dev</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-clone"><span class="nav-number">3.0.20.</span> <span class="nav-text">$ git clone</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-log"><span class="nav-number">3.0.21.</span> <span class="nav-text">$ git log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-reflog"><span class="nav-number">3.0.22.</span> <span class="nav-text">$ git reflog</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
         
 
-      
-    </div>
-
-    <div>
-      
+        <!-- go comment -->
         
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/weixin.png" alt="熊 超 WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/alipay.png" alt="熊 超 Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
 
-<style type="text/css">
-  #rewardButton {
-    cursor: pointer;
-    border: 0;
-    outline: 0;
-    border-radius: 100%;
-    padding: 0;
-    margin: 0;
-    letter-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-  }
-  #rewardButton span {
-    display: inline-block;
-    width: 80px;
-    height: 35px;
-    border-radius: 5px;
-    color: #fff;
-    font-weight: 400;
-    font-style: normal;
-    font-variant: normal;
-    font-stretch: normal;
-    font-size: 18px;
-    font-family: "Microsoft Yahei";
-    background: #f44336;
-  }
-  #rewardButton span:hover {
-    background: #f7877f;
-  }
-  #QR {
-    padding-top: 20px;
-  }
-  #QR a {
-    border: 0;
-  }
-  #QR img {
-    width: 180px;
-    max-width: 100%;
-    display: inline-block;
-    margin: 0.8em 2em 0 2em;
-  }
-</style>
-      
-    </div>
+        </div>
+    
 
-    <div>
-      
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
         
 
-      
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
     </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/git/" rel="tag"># git</a>
-          
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
         </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/07/02/Qiniu-image-tool-实现图片一键上传七牛云/" rel="next" title="Qiniu-image-tool-实现图片一键上传七牛云">
-                <i class="fa fa-chevron-left"></i> Qiniu-image-tool-实现图片一键上传七牛云
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/19/js Date对象的详细使用/" rel="prev" title="js Date对象的详细使用">
-                js Date对象的详细使用 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
         </div>
-      
+    </div>
+</div>
 
-      
-      
-    </footer>
-  </article>
+    
+
+</main>
 
 
 
-    <div class="post-spread">
-      
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
         
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
 <script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="SOHUCS" sid="git常用命令"></div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/xiaoxiong.png"
-               alt="熊 超" />
-          <p class="site-author-name" itemprop="name">熊 超</p>
-           
-              <p class="site-description motion-element" itemprop="description">知识在世界的某个角落等你</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">15</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/xiongcao" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://wpa.qq.com/msgrd?v=3&uin=1359209000&site=qq&menu=yes" target="_blank" title="QQ">
-                  
-                    <i class="fa fa-fw fa-qq"></i>
-                  
-                  QQ
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/6086796267/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友情链接
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://devzxd.top/" title="赵旭东" target="_blank">赵旭东</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://limingyang.xyz/" title="李明洋" target="_blank">李明洋</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.hithey.com" title="郭峰" target="_blank">郭峰</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git的工作原理图解："><span class="nav-number">1.</span> <span class="nav-text">git的工作原理图解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git的使用步骤："><span class="nav-number">2.</span> <span class="nav-text">git的使用步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本使用"><span class="nav-number">2.0.1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令"><span class="nav-number">2.0.2.</span> <span class="nav-text">如果你正在完成某一个功能不能提交代码，然后又需要用到远程仓库中同事刚提交的代码，则只需要执行以下命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cherry-pick用法（A分支的内容添加到B分支-此操作是在B分支上）"><span class="nav-number">2.0.3.</span> <span class="nav-text">cherry-pick用法（A分支的内容添加到B分支,此操作是在B分支上）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git的常用命令解释："><span class="nav-number">3.</span> <span class="nav-text">git的常用命令解释：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#git-status"><span class="nav-number">3.0.1.</span> <span class="nav-text">$ git status</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-add-readme-txt"><span class="nav-number">3.0.2.</span> <span class="nav-text">$ git add readme.txt</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-add"><span class="nav-number">3.0.3.</span> <span class="nav-text">$ git add .</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-commit-m-“wrote-a-readme-file”"><span class="nav-number">3.0.4.</span> <span class="nav-text">$ git commit -m “wrote a readme file”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-checkout-–-readme-txt”"><span class="nav-number">3.0.5.</span> <span class="nav-text">$ git checkout – readme.txt”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rm-test-txt”"><span class="nav-number">3.0.6.</span> <span class="nav-text">$ rm test.txt”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-push-origin-master"><span class="nav-number">3.0.7.</span> <span class="nav-text">$ git push origin master</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-pull-–rebase-origin-master"><span class="nav-number">3.0.8.</span> <span class="nav-text">$ git pull –rebase origin master</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-reset-HEAD"><span class="nav-number">3.0.9.</span> <span class="nav-text">$ git reset HEAD~</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-reset-–hard-1094a"><span class="nav-number">3.0.10.</span> <span class="nav-text">$ git reset –hard 1094a</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-stash"><span class="nav-number">3.0.11.</span> <span class="nav-text">$ git stash</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-stash-pop"><span class="nav-number">3.0.12.</span> <span class="nav-text">$ git stash pop</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-stash-list"><span class="nav-number">3.0.13.</span> <span class="nav-text">$ git stash list</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-stash-drop"><span class="nav-number">3.0.14.</span> <span class="nav-text">$ git stash drop</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-branch-dev"><span class="nav-number">3.0.15.</span> <span class="nav-text">$ git branch dev</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-checkout-dev"><span class="nav-number">3.0.16.</span> <span class="nav-text">$ git checkout dev</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-branch"><span class="nav-number">3.0.17.</span> <span class="nav-text">$ git branch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-merge-dev"><span class="nav-number">3.0.18.</span> <span class="nav-text">$ git merge dev</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-branch-d-dev"><span class="nav-number">3.0.19.</span> <span class="nav-text">$ git branch -d dev</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-clone"><span class="nav-number">3.0.20.</span> <span class="nav-text">$ git clone</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-log"><span class="nav-number">3.0.21.</span> <span class="nav-text">$ git log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-reflog"><span class="nav-number">3.0.22.</span> <span class="nav-text">$ git reflog</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">熊 超</span>
-</div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-<div class="theme-info">
-  <div class="powered-by"></div>
-  <span class="post-count">共15.4k字</span>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-  
-    <script type="text/javascript">
-    (function(){
-      var appid = 'cytEY9tKr';
-      var conf = '17c23f6bfab118786cb4ec5e64de74aa';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
-        window.changyan.api.config({appid:appid,conf:conf})});
-      }
-    })();
-    </script>
-    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
-  
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (search_path.endsWith("json")) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("wIKnQAL4CI2VD510h67wRA89-gzGzoHsz", "82xhdiazLXyqpyaJnCPacTGv");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
         });
-    }
 
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
 
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
     });
-  </script>
+</script>
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

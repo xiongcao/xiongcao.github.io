@@ -6,7 +6,7 @@ categories:
   - 前端
 date: 2018-08-30 09:43:00
 ---
-
+<!-- more -->
 ### 一、常用技巧
 
 #### 清除浮动
@@ -15,6 +15,7 @@ date: 2018-08-30 09:43:00
 3. 父元素也设置浮动;
 4. 使用br标签和其自身的html属性:《br clear="all"/》 clear="all | left | right | none";
 5. 最高大上的方法，强烈推荐 parentDom:after{content: " ";display: block;clear: both;}
+
 
 
 #### 垂直居中
@@ -33,8 +34,6 @@ date: 2018-08-30 09:43:00
 ```
 
 ##### 方法1：table-cell
-
-<!-- more -->
 
 ``` css 
 .box1 {
@@ -136,7 +135,7 @@ date: 2018-08-30 09:43:00
   border-left: 50px solid transparent;
 }
 ```
-![](http://www.xiongchao.win/blogImage/201810171448_18.png)
+![](http://xiongcao.github.io/blogImage/201810171448_18.png)
 
 ##### 未读数量
 ``` css
@@ -148,7 +147,7 @@ date: 2018-08-30 09:43:00
     border-radius: 20px;
 }
 ```
-![](http://www.xiongchao.win/blogImage/201810171448_144.png)
+![](http://xiongcao.github.io/blogImage/201810171448_144.png)
 
 ##### 字体边框同色
 ``` css
@@ -165,7 +164,7 @@ date: 2018-08-30 09:43:00
     border: 10px solid;
   }
 ```
-![](http://www.xiongchao.win/blogImage/201810171448_736.png)
+![](http://xiongcao.github.io/blogImage/201810171448_736.png)
 
 ##### 放大镜
 ``` css
@@ -190,4 +189,4 @@ date: 2018-08-30 09:43:00
     transform: rotate(-45deg);
 }
 ```
-![](http://www.xiongchao.win/blogImage/201810171449_641.png)
+![](http://xiongcao.github.io/blogImage/201810171449_641.png)

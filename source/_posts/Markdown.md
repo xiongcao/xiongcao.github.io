@@ -6,6 +6,8 @@ categories:
   - Markdown
 date: 2017-06-09 00:15:00
 ---
+<!-- more -->
+
 我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，**Cmd Markdown** 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：
 
 > * 整理知识，学习笔记
@@ -15,7 +17,6 @@ date: 2017-06-09 00:15:00
 
 ![cmd-markdown-logo](https://www.zybuluo.com/static/img/logo.png)
 
-<!-- more -->
 
 除了您现在看到的这个 Cmd Markdown 在线版本，您还可以前往以下网址下载：
 
