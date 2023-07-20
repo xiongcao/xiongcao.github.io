@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            Vue易错知识点 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Vue易错知识点</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">工程师</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-02-19 16:35:00</span>
+        <span class="mobile">2022-02-19 16:35</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-20 15:41:54</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Vue/">Vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Vue/">Vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>8 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span>
+
+
+<h3 id="一、vue2-部分"><a href="#一、vue2-部分" class="headerlink" title="一、vue2 部分"></a>一、vue2 部分</h3><h4 id="1-父子组件的生命周期"><a href="#1-父子组件的生命周期" class="headerlink" title="1. 父子组件的生命周期"></a>1. 父子组件的生命周期</h4><p>挂载： 父beforeCreate -&gt; 父created -&gt; 父 beforeMount -&gt; </p>
+<p>​			子beforeCreate -&gt;  -&gt; 子 created -&gt; beforeMount -&gt; 子 mounted -&gt; </p>
+<p>​			父 mounted</p>
+<p>更新：父 beforUpdate -&gt; 子 beforUpdate -&gt; 子 updated -&gt; 父 updated</p>
+<p>卸载：父beforeDestroy &gt; 子beforeDestroy  &gt; 子destroyed &gt; 父destroyed</p>
+<h4 id="2-mixin"><a href="#2-mixin" class="headerlink" title="2. mixin"></a>2. mixin</h4><h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><p>1.混入对象会合并到当前组件</p>
+<p>2.混入的对象有同名选项时，以组件数据优先</p>
+<p>3.当多个组件引入混入对象时，其中一个组件改变了混入中的某个属性值或者方法内部的做操时，其他组件不受影响。</p>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><p>1.多个混入时，不清晰的数据来源；（不清楚调用的是哪个混入的属性或方法）</p>
+<p>2.命名空间冲突</p>
+<p>3.隐式的跨混入交流（混入之间的依赖）</p>
+<h5 id="生命周期顺序："><a href="#生命周期顺序：" class="headerlink" title="生命周期顺序："></a>生命周期顺序：</h5><p><strong>mixin</strong>的生命周期钩子在组件的生命周期钩子<strong>之前</strong>执行</p>
+<p>mixin beforeCreate &gt; 父 beforeCreate &gt; mixin created &gt; 父created &gt; mixin的beforeMount &gt; 父beforeMount  &gt; mixin的mounted &gt;父mounted</p>
+<h4 id="3-nextTick"><a href="#3-nextTick" class="headerlink" title="3. nextTick"></a>3. nextTick</h4><p><strong>问题：</strong></p>
+<ol>
+<li>nextTick是做什么的?</li>
+<li>为什么需要它呢?</li>
+<li>开发时何时使用它? </li>
+<li>下面介绍一下如何使用nextTick</li>
+<li>原理解读，结合异步更新和nextTick生效方式，会显得你格外优秀</li>
+</ol>
+<h5 id="1-nextTick是做什么的"><a href="#1-nextTick是做什么的" class="headerlink" title="1.nextTick是做什么的?"></a>1.nextTick是做什么的?</h5><p>nextTick是等待下一次 DOM 更新刷新的工具方法。</p>
+<h5 id="2-为什么需要它呢"><a href="#2-为什么需要它呢" class="headerlink" title="2.为什么需要它呢?"></a>2.为什么需要它呢?</h5><p>Vue有个异步更新策略，意思是如果数据变化，Vue不会立刻更新DOM，而是开启一个队列，把组件更新函数保存在队列中，在同一事件循环中发生的所有数据变更会异步的批量更新。这一策略导致我们对数据的修改不会立刻体现在DOM上，此时如果想要获取更新后的DOM状态，就需要使用nextTick。</p>
+<h5 id="3-开发时何时使用它"><a href="#3-开发时何时使用它" class="headerlink" title="3.开发时何时使用它?"></a>3.开发时何时使用它?</h5><ul>
+<li>created中想要获取DOM时;</li>
+<li>响应式数据变化后获取DOM更新后的状态，比如希望获取列表更新后的高度</li>
+</ul>
+<h5 id="5-原理解读"><a href="#5-原理解读" class="headerlink" title="5.原理解读"></a>5.原理解读</h5><p>将传入的回调函数包装成异步任务，异步任务又分微任务和宏任务，为了尽快执行所以优先选择微任务；</p>
+<p>在内部会尝试使用原生的<code>Promise.then (IE不支持)</code>、<code>MutationObserver</code> 和 <code>setImmediate (高版本IE专享)</code>，如果执行环境还不支持的话，则会采用 <code>setTimeout(fn, 0)</code></p>
+<p>异步方法，异步渲染最后一步，与JS事件循环联系紧密。主要使用了宏任务微任务（<code>setTimeout</code>、<code>promise</code>那些），定义了一个异步方法，多次调用<code>nextTick</code>会将方法存入队列，通过异步方法清空当前队列。</p>
+<p>forceUpdate</p>
+<h4 id="4-组件通信方式"><a href="#4-组件通信方式" class="headerlink" title="4. 组件通信方式"></a>4. 组件通信方式</h4><ul>
+<li><p>**<code>props / $emit</code>**：父子组件通信</p>
+</li>
+<li><p><strong><code>ref</code><strong>：</strong>父子组件通信</strong></p>
+</li>
+<li><p><strong><code>$parent</code> &#x2F; <code>$children</code> &#x2F; <code>$root</code>：访问父 &#x2F; 子实例 &#x2F; 根实例</strong></p>
+</li>
+<li><p><strong><code>EventBus （$emit / $on）</code> 适用于 父子、隔代、兄弟组件通信</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$EventBus</span> = <span class="keyword">new</span> <span class="title class_">Vue</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// A组件：向EventBus发送事件</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$EventBus</span>.$emit(<span class="string">&quot;msg&quot;</span>, <span class="string">&#x27;123&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// B组件：接收事件</span></span><br><span class="line"> <span class="variable language_">this</span>.<span class="property">$EventBus</span>.$on(<span class="string">&quot;msg&quot;</span>, <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">this</span>.<span class="property">msg</span> = data;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>$attrs</code>&#x2F;<code>$listeners</code> 适用于 隔代组件通信</strong></p>
+<ul>
+<li><code>v-bind=&quot;$attrs&quot;</code> </li>
+<li><code>v-on=&quot;$listeners&quot;</code></li>
+</ul>
+</li>
+<li><p><strong><code>provide / inject</code> 适用于 隔代组件通信</strong></p>
+</li>
+<li><p><strong>插槽</strong>：<code>Vue3</code> 可以通过 <code>usesolt</code> 获取插槽数据。</p>
+</li>
+<li><p><strong><code>mitt.js</code> 适用于任意组件通信</strong></p>
+<p>（Vue3<code>中移除了</code>$on<code>，</code>$off<code>等方法，所以 </code>EventBus<code>不再使用，相应的替换方案就是</code>mitt.js）</p>
+</li>
+</ul>
+<h3 id="二、Vue3-部分"><a href="#二、Vue3-部分" class="headerlink" title="二、Vue3 部分"></a>二、Vue3 部分</h3><h4 id="1-ref-和-reactive-的区别"><a href="#1-ref-和-reactive-的区别" class="headerlink" title="1. ref 和 reactive 的区别"></a>1. ref 和 reactive 的区别</h4><p>ref 可以将一个&#x3D;&#x3D;普通数据类型（如数字、字符串等）转换为一个响应式对象&#x3D;&#x3D;，从而让这个数据在Vue的响应式系统中被追踪。ref返回一个对象，这个对象有一个.value属性，用来获取和设置这个响应式对象的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(count.<span class="property">value</span>); <span class="comment">// 0</span></span><br><span class="line">count.<span class="property">value</span> = <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(count.<span class="property">value</span>); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>reactive 可以将一个&#x3D;&#x3D;普通的Javascript对象转换为一个响应式对象&#x3D;&#x3D;。它会递归地将这个对象的所有属性都转换为响应式对象，从而让整个对象在Vue的响应式系统中被追踪。reactive返回一个Proxy对象，用来代理原始对象的访问和修改。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;</span><br><span class="line">  <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">message</span>: <span class="string">&#x27;hello&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(state.<span class="property">count</span>); <span class="comment">// 0</span></span><br><span class="line">state.<span class="property">count</span> = <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(state.<span class="property">count</span>); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>ref：如果是基本类型，会使用包装类变成对象，然后使用defineProperty劫持，如果是对象，则使用reactive（Proxy）处理；</p>
+<p>reactive：解构会丧失响应式</p>
+<h4 id="2-ref-可以大量的替换成-reactive-吗"><a href="#2-ref-可以大量的替换成-reactive-吗" class="headerlink" title="2. ref 可以大量的替换成 reactive 吗"></a>2. ref 可以大量的替换成 reactive 吗</h4><p>不能直接把ref替换成reactive。</p>
+<p>ref主要用于将基本数据类型（如字符串、数字等）转换为响应式数据，并提供一个.value属性用于访问和修改该数据。而reactive则用于将一个普通的JavaScript对象转换为响应式对象，并使用Proxy来拦截对该对象的访问和修改，以实现响应式更新。</p>
+<p>因此，如果你需要使用响应式数据来存储基本数据类型，或者你只需要响应式地跟踪一个值的变化，那么ref仍然是更合适的选择。而如果你需要管理一个对象的多个属性，并希望这些属性可以响应式地更新，那么reactive会更加合适</p>
+<h4 id="Pinia解决了什么问题"><a href="#Pinia解决了什么问题" class="headerlink" title="Pinia解决了什么问题"></a>Pinia解决了什么问题</h4><ol>
+<li>简化状态管理：Pinia 提供了一个简洁的 API。使得我们可以更容易地定义和管理状态，并在整个应用程序中共享它们。</li>
+<li>更好的类型支持：Pinia 提供了一个类型安全的 API，可以让我们更容易地编写类型安全的代码，并减少错误。</li>
+<li>更好的可测试性：Pinia 的状态管理使得我们可以更容易地对 Vue 3 组件进行单元测试，从而提高代码的可测试性。</li>
+<li>更好的性能：Pinia 的状态管理实现了基于 Proxy 的响应式系统，从而提高了性能并减少了不必要的重渲染</li>
+</ol>
+<h3 id="三、区别"><a href="#三、区别" class="headerlink" title="三、区别"></a>三、区别</h3><h3 id="1-响应式原理的区别"><a href="#1-响应式原理的区别" class="headerlink" title="1. 响应式原理的区别"></a>1. 响应式原理的区别</h3><ol>
+<li>Object.defineProperty 无法监控到数组方法，导致通过数组添加元素，不能实时响应;</li>
+<li>Object.defineProperty 只能劫持对象的属性，从而需要对每个对象，每个属性进行遍历。如果，属性值是对象，还需要深度遍历。Proxy可以劫持整个对象，并返回一个新的对象。</li>
+<li>Proxy不仅可以代理对象，还可以代理数组。还可以代理动态增加的属性。</li>
+</ol>
+<h5 id="数组问题："><a href="#数组问题：" class="headerlink" title="数组问题："></a>数组问题：</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrayMethods = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>;</span><br><span class="line"><span class="comment">//先克隆一份Array的原型出来</span></span><br><span class="line"><span class="keyword">const</span> arrayProto = <span class="title class_">Object</span>.<span class="title function_">create</span>(arrayMethods);</span><br><span class="line"><span class="keyword">const</span> methodsToPatch = [</span><br><span class="line">  <span class="string">&#x27;push&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;pop&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;shift&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;unshif&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;splice&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;sort&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;reverse&#x27;</span></span><br><span class="line">]</span><br><span class="line">methodsToPatch.<span class="title function_">forEach</span>(<span class="function"><span class="params">method</span> =&gt;</span> &#123;</span><br><span class="line">  arrayProto[method] = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//执行原始操作</span></span><br><span class="line">    arrayMethods[method].<span class="title function_">apply</span>(<span class="variable language_">this</span>,<span class="variable language_">arguments</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;监听赋值成功&#x27;</span>, method)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="title class_">Array</span>.<span class="title function_">isArray</span>(obj)) &#123;</span><br><span class="line">  <span class="comment">//如果是数组，重写原型</span></span><br><span class="line">  obj.<span class="property">__proto__</span> = arrayProto;</span><br><span class="line">  <span class="comment">// 传入数据可能是多维度的，需要执行响应式</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt; obj.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="title function_">observer</span>(obj[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="comment">// 给对象中的每一个方法都设置响应式</span></span><br><span class="line">    <span class="title function_">defineProperty</span>(obj, key, obj[key])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="性能优化的方式："><a href="#性能优化的方式：" class="headerlink" title="性能优化的方式："></a>性能优化的方式：</h3><ul>
+<li>数据层级不易过深，合理设置响应式数据；</li>
+<li>通过 obiect.freeze(方法冻结非响应式属性；</li>
+<li>使用数据时缓存值的结果，不频繁取值；</li>
+<li>合理设置 Key 属性；</li>
+<li><code>v-show</code> 和 <code>v-if</code> 的选取；</li>
+<li>控制组件粒度 -&gt; Vue 采用组件级更新采用函数式组件 -&gt; 函数式组件开销低；</li>
+<li>采用异步组件 -&gt; 借助webpack分包的能力；</li>
+<li>使用<code>keep-alive</code>缓存组件 <code>v-once</code>；</li>
+<li>分页、虚拟滚动、时间分片等策略..；</li>
+</ul>
+<h3 id="首屏加载慢的优化："><a href="#首屏加载慢的优化：" class="headerlink" title="首屏加载慢的优化："></a>首屏加载慢的优化：</h3><p>使用路由懒加载、异步组件，实现组件拆分，减少入口文件体积大小(优化体验骨架屏)</p>
+<p>抽离公共代码，采用 splitChunks 进行代码分割。</p>
+<p>组件加载采用按需加载的方式</p>
+<p>静态资源缓存，采用 HTTP 缓存 (强制缓存、对比缓存) 、使用 localstorage 实现缓存资源.</p>
+<p>图片资源的压缩，雪碧图、对小图片进行 base64 减少 http 请求</p>
+<p>打包时开启 gzip 压缩处理 compression-webpack-plugin 插件</p>
+<p>静态资源采用 CDN 提速。</p>
+<p>终极的手段使用 SSR 对首屏做服务端渲染</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">Vue易错知识点</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2022-02-19 16:35:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2022/02/19/vue易错知识点/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Vue/">#Vue</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/03/02/vue3%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Vue3查缺补漏</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/02/04/Vue%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Vue原理解析</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81vue2-%E9%83%A8%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">一、vue2 部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1. 父子组件的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-mixin"><span class="nav-number">1.2.</span> <span class="nav-text">2. mixin</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">1.2.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%A1%BA%E5%BA%8F%EF%BC%9A"><span class="nav-number">1.2.3.</span> <span class="nav-text">生命周期顺序：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-nextTick"><span class="nav-number">1.3.</span> <span class="nav-text">3. nextTick</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-nextTick%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%9A%84"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.nextTick是做什么的?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%AE%83%E5%91%A2"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.为什么需要它呢?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%BC%80%E5%8F%91%E6%97%B6%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E5%AE%83"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.开发时何时使用它?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E5%8E%9F%E7%90%86%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.3.4.</span> <span class="nav-text">5.原理解读</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">4. 组件通信方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Vue3-%E9%83%A8%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">二、Vue3 部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ref-%E5%92%8C-reactive-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.1.</span> <span class="nav-text">1. ref 和 reactive 的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-ref-%E5%8F%AF%E4%BB%A5%E5%A4%A7%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E6%88%90-reactive-%E5%90%97"><span class="nav-number">2.2.</span> <span class="nav-text">2. ref 可以大量的替换成 reactive 吗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pinia%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">Pinia解决了什么问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%8C%BA%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">三、区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">1. 响应式原理的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">4.0.1.</span> <span class="nav-text">数组问题：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">性能优化的方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E6%85%A2%E7%9A%84%E4%BC%98%E5%8C%96%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">首屏加载慢的优化：</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        $tools-item-width = 2.2rem
+$tools-item-font-size = 1.1rem
+$tools-item-border-radius = 0.1rem
+
+
+.side-tools-container {
+  position relative
+
+  .tools-item {
+    width $tools-item-width
+    height $tools-item-width
+    margin-bottom 0.2rem
+    color var(--text-color-3)
+    font-size $tools-item-font-size
+    background var(--background-color-1)
+    border-right none
+    border-radius $tools-item-border-radius
+    box-shadow 0.1rem 0.1rem 0.2rem var(--shadow-color)
+    cursor pointer
+
+    i {
+      color var(--text-color-3)
+    }
+
+    &:hover {
+      color var(--background-color-1)
+      background var(--primary-color)
+      box-shadow 0.2rem 0.2rem 0.4rem var(--shadow-color)
+
+      i {
+        color var(--background-color-1)
+      }
+    }
+
+    +keep-tablet() {
+      width $tools-item-width * 0.9
+      height $tools-item-width * 0.9
+      margin-bottom 0.2rem
+      font-size $tools-item-font-size * 0.9
+    }
+
+    &.rss {
+
+      a {
+        width 100%
+        height 100%
+        border-radius $tools-item-border-radius
+
+        &:hover {
+          color var(--background-color-1)
+          background var(--primary-color)
+          box-shadow 0.2rem 0.2rem 0.4rem var(--shadow-color)
+        }
+      }
+    }
+  }
+
+
+  .side-tools-list {
+    transform translateX(100%)
+    opacity 0
+    transition-t("transform, opacity", "0, 0", "0.2, 0.2", "linear, linear")
+
+    &.show {
+      transform translateX(0)
+      opacity 1
+    }
+  }
+
+
+  .exposed-tools-list {
+
+    if (hexo-config('style.scroll.percent') == true) {
+      .tool-scroll-to-top {
+        display none
+
+        &.show {
+          display flex
+        }
+
+        &:hover {
+
+          .percent {
+            display none
+          }
+
+          .arrow-up {
+            display flex
+          }
+        }
+
+        .arrow-up {
+          display none
+        }
+
+        .percent {
+          display flex
+          font-size 1rem
+        }
+      }
+    }
+  }
+}
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        $icon-size = 1.2rem
+$search-header-height = 3rem
+
+.search-pop-overlay {
+  position fixed
+  top 0
+  left 0
+  z-index $z-index-8
+  display flex
+  width 100%
+  height 100%
+  background rgba(0, 0, 0, 0)
+  visibility hidden
+  transition-t("visibility, background", "0, 0", "0.3, 0.3", "ease, ease")
+
+  &.active {
+    background rgba(0, 0, 0, 0.35)
+    visibility visible
+
+    .search-popup {
+      transform scale(1)
+    }
+  }
+
+
+  .search-popup {
+    z-index $z-index-6
+    width 70%
+    height 80%
+    margin auto
+    background var(--background-color-1)
+    border-radius 0.4rem
+    transform scale(0)
+    transition-t("transform", "0", "0.3", "ease")
+
+    +keep-tablet() {
+      width 80%
+    }
+
+    +keep-mobile() {
+      width 90%
+    }
+
+    .search-header {
+      display flex
+      align-items center
+      height $search-header-height
+      padding 0 1rem
+      background var(--text-color-6)
+      border-top-left-radius 0.2rem
+      border-top-right-radius 0.2rem
+
+      .search-input-field-pre {
+        margin-right 0.2rem
+        color var(--text-color-3)
+        font-size 1.3rem
+        cursor pointer
+      }
+
+      .search-input-container {
+        flex-grow 1
+        padding 0.2rem
+
+        .search-input {
+          width 100%
+          color var(--text-color-3)
+          font-size 1.2rem
+          background transparent
+          border 0
+          outline 0
+
+          &::-webkit-search-cancel-button {
+            display none
+          }
+
+          &::-webkit-input-placeholder {
+            color var(--text-color-4)
+            font-size 1rem
+          }
+        }
+      }
+
+
+      .close-popup-btn {
+        color var(--text-color-3)
+        font-size $icon-size
+        cursor pointer
+
+        &:hover {
+          color var(--text-color-1)
+        }
+      }
+    }
+
+
+    #search-result {
+      position relative
+      display flex
+      box-sizing border-box
+      height 'calc(100% - %s)' % $search-header-height
+      padding 0.3rem 1.5rem
+      overflow auto
+
+      .search-result-list {
+        width 100%
+        height 100%
+        font-size 1rem
+
+        li {
+          box-sizing border-box
+          margin 0.8rem 0
+          padding 0.8rem 0
+          border-bottom 0.1rem dashed var(--border-color)
+
+          &:last-child {
+            border-bottom none
+          }
+
+
+          .search-result-title {
+            position relative
+            display flex
+            align-items center
+            margin-bottom 0.8rem
+            padding-left 1rem
+            font-weight bold
+
+            &::after {
+              position absolute
+              top 50%
+              left 0
+              width 0.4rem
+              height 0.4rem
+              background var(--text-color-3)
+              border-radius 50%
+              transform translateY(-50%)
+              content ''
+            }
+          }
+
+
+          .search-result {
+            margin 0
+            padding-left 1rem
+            line-height 2rem
+            word-wrap break-word
+          }
+
+          a {
+            &:hover {
+              color var(--text-color-3)
+            }
+          }
+
+          .search-keyword {
+            color var(--primary-color)
+            font-weight bold
+            border-bottom 0.1rem dashed var(--primary-color)
+          }
+        }
+      }
+
+
+      #no-result {
+        margin auto
+        color var(--text-color-4)
+      }
+    }
+  }
+}
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

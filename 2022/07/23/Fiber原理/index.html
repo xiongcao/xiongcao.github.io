@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            Fiber 原理 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Fiber 原理</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">工程师</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-07-23 13:15:00</span>
+        <span class="mobile">2022-07-23 13:15</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-20 15:53:00</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/React/">React</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/React/">React</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.6k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>10 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span>
+
+<h3 id="什么是Firber"><a href="#什么是Firber" class="headerlink" title="什么是Firber"></a>什么是Firber</h3><ul>
+<li>一种数据结构：它可以用一个纯JS 对象来表示:</li>
+<li>一个执行单元：每次执行完一个执行单元，React 就会检查现在还剩多少时间，如果没有时间就将控制权让出去。</li>
+</ul>
+<h4 id="Fiber关键特性："><a href="#Fiber关键特性：" class="headerlink" title="Fiber关键特性："></a>Fiber关键特性：</h4><ul>
+<li>增量渲染</li>
+<li>不同更新的优先级</li>
+<li>暂停，终止，复用渲染任务</li>
+<li>并发方面新的基础能力</li>
+</ul>
+<h1 id="React-Fiber-运行流程图"><a href="#React-Fiber-运行流程图" class="headerlink" title="React Fiber 运行流程图"></a>React Fiber 运行流程图</h1><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://gitee.com/thomaslwq/my-fiber-demo/raw/master/README.assets/1644759637776.png"
+                      alt="img"
+                ></p>
+<h1 id="帧的概念"><a href="#帧的概念" class="headerlink" title="帧的概念"></a>帧的概念</h1><ul>
+<li>目前大多数设备的屏幕的刷新率为60次&#x2F;秒， 即60帧每秒， 人眼舒适放松时可视帧数是每秒24帧 ， 帧数 (fps) 越高，所显示的动作就会越流畅，小于这个值的时候，用户就会感觉到卡顿</li>
+<li>所以对于现在主流屏幕设备来说，每个帧的预算时间就是1&#x2F;60 约等于16.66毫秒</li>
+<li>每个帧的开头包括样式计算、布局和绘制</li>
+<li>JavaScript执行Javascript引擎和页面渲染在同一个线程中，GUI渲染和Javascript执行两者之间是互斥的</li>
+<li>如果某个任务执行时间过长，浏览器就会推迟渲染。</li>
+</ul>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://gitee.com/thomaslwq/my-fiber-demo/raw/master/README.assets/1644762853904.png"
+                      alt="1644762853904"
+                ></p>
+<h1 id="Fiber-结构示意图"><a href="#Fiber-结构示意图" class="headerlink" title="Fiber 结构示意图"></a>Fiber 结构示意图</h1><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://gitee.com/thomaslwq/my-fiber-demo/raw/master/README.assets/1644764652782.png"
+                      alt="1644764652782"
+                ></p>
+<h1 id="window-requestAnimationFrame"><a href="#window-requestAnimationFrame" class="headerlink" title="window.requestAnimationFrame"></a>window.requestAnimationFrame</h1><p><strong><code>window.requestAnimationFrame()</code></strong> 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器&#x3D;&#x3D;下一次重绘之前执行&#x3D;&#x3D;</p>
+<p><strong>注意：若你想在浏览器下次重绘之前继续更新下一帧动画，那么回调函数自身必须再次调用<code>window.requestAnimationFrame()</code></strong></p>
+<p>当你准备更新动画时你应该调用此方法。这将使浏览器在下一次重绘之前调用你传入给该方法的动画函数(即你的回调函数)。回调函数执行次数通常是每秒60次，但在大多数遵循W3C建议的浏览器中，回调函数执行次数通常与浏览器屏幕刷新次数相匹配。为了提高性能和电池寿命，因此在大多数浏览器里，当<code>requestAnimationFrame()</code> 运行在后台标签页或者隐藏的iframe里时，<code>requestAnimationFrame()</code> 会被暂停调用以提升性能和电池寿命。</p>
+<p>回调函数会被传入<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>参数，<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>指示当前被 <code>requestAnimationFrame()</code> 排序的回调函数被触发的时间。在同一个帧中的多个回调函数，它们每一个都会接受到一个相同的时间戳，即使在计算上一个回调函数的工作负载期间已经消耗了一些时间。该时间戳是一个十进制数，单位毫秒，最小精度为1ms(1000μs)。</p>
+<p>请确保总是使用第一个参数(或其它获得当前时间的方法)计算每次调用之间的时间间隔，否则动画在高刷新率的屏幕中会运行得更快。请参考下面例子的做法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.requestAnimationFrame(callback);</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a><a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame#parameters" >参数<i class="fas fa-external-link-alt"></i></a></h3><ul>
+<li><p><code>callback</code></p>
+<p>下一次重绘之前更新动画帧所调用的函数(即上面所说的回调函数)。该回调函数会被传入<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>参数，该参数与<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Performance/now"><code>performance.now()</code></a>的返回值相同，它表示<code>requestAnimationFrame()</code> 开始去执行回调函数的时刻。</p>
+</li>
+</ul>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a><a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame#%E8%BF%94%E5%9B%9E%E5%80%BC" >返回值<i class="fas fa-external-link-alt"></i></a></h3><p>一个 <code>long</code> 整数，请求 ID ，是回调列表中唯一的标识。是个非零值，没别的意义。你可以传这个值给 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/cancelAnimationFrame"><code>window.cancelAnimationFrame()</code></a> 以取消回调函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const element = document.getElementById(&#x27;some-element-you-want-to-animate&#x27;);</span><br><span class="line">let start;</span><br><span class="line"></span><br><span class="line">function step(timestamp) &#123;</span><br><span class="line">  if (start === undefined)</span><br><span class="line">    start = timestamp;</span><br><span class="line">  const elapsed = timestamp - start;</span><br><span class="line"></span><br><span class="line">  //这里使用`Math.min()`确保元素刚好停在200px的位置。</span><br><span class="line">  element.style.transform = &#x27;translateX(&#x27; + Math.min(0.1 * elapsed, 200) + &#x27;px)&#x27;;</span><br><span class="line"></span><br><span class="line">  if (elapsed &lt; 2000) &#123; // 在两秒后停止动画</span><br><span class="line">    window.requestAnimationFrame(step);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">window.requestAnimationFrame(step);</span><br></pre></td></tr></table></figure>
+
+<h1 id="requestIdleCallback"><a href="#requestIdleCallback" class="headerlink" title="requestIdleCallback"></a>requestIdleCallback</h1><blockquote>
+<p> <strong>这是一个实验中的功能</strong> </p>
+</blockquote>
+<pre><code>`window.requestIdleCallback()`方法插入一个函数，这个函数将在浏览器空闲时期被调用。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。函数一般会按先进先调用的顺序执行，然而，如果回调函数指定了执行超时时间`timeout`，则有可能为了在超时前执行函数而打乱执行顺序。
+</code></pre>
+<p>你可以在空闲回调函数中调用<code>requestIdleCallback()</code>，以便在下一次通过事件循环之前调度另一个回调。</p>
+<p>强烈建议使用<code>timeout</code>选项进行必要的工作，否则可能会在触发回调之前经过几秒钟。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var handle = window.requestIdleCallback(callback[, options])</span><br></pre></td></tr></table></figure>
+
+<p>requestAnimationFrame的回调会在每一帧确定执行，属性高优先级任务，而requestIdleCallback的回调则不一定，属性低优先级的任务</p>
+<h3 id="返回值-1"><a href="#返回值-1" class="headerlink" title="返回值"></a><a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback#%E8%BF%94%E5%9B%9E%E5%80%BC" >返回值<i class="fas fa-external-link-alt"></i></a></h3><p>一个ID，可以把它传入 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/cancelIdleCallback"><code>Window.cancelIdleCallback()</code></a> 方法来结束回调。</p>
+<h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a><a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback#%E5%8F%82%E6%95%B0" >参数<i class="fas fa-external-link-alt"></i></a></h3><ul>
+<li><p><code>callback</code></p>
+<p>一个在事件循环空闲时即将被调用的函数的引用。函数会接收到一个名为 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/IdleDeadline"><code>IdleDeadline</code></a> 的参数，这个参数可以获取当前空闲时间以及回调是否在超时时间前已经执行的状态。</p>
+</li>
+<li><p><code>options</code> 可选</p>
+<p>包括可选的配置参数。具有如下属性：<code>timeout</code>： 如果指定了timeout，并且有一个正值，而回调在timeout毫秒过后还没有被调用，那么回调任务将放入事件循环中排队，即使这样做有可能对性能产生负面影响。</p>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://gitee.com/thomaslwq/my-fiber-demo/raw/master/README.assets/1644828126165.png"
+                      alt="img"
+                ></p>
+<p>以下是用户对性能延迟的感知：</p>
+<table>
+<thead>
+<tr>
+<th>延迟时间</th>
+<th>用户感知</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-16ms</td>
+<td>很流畅</td>
+</tr>
+<tr>
+<td>0-100ms</td>
+<td>基本流畅</td>
+</tr>
+<tr>
+<td>100-1000ms</td>
+<td>感觉到网站上有一些加载任务</td>
+</tr>
+<tr>
+<td>1000ms or more</td>
+<td>失去耐心了</td>
+</tr>
+<tr>
+<td>10000ms or more</td>
+<td>直接离开，不会再访问了</td>
+</tr>
+</tbody></table>
+<p>事件处理最好在 50ms 内完成</p>
+<h1 id="MessageChannel"><a href="#MessageChannel" class="headerlink" title="MessageChannel"></a>MessageChannel</h1><p>Channel Messaging API的**<code>MessageChannel</code>** 接口允许我们创建一个新的消息通道，并通过它的两个<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/MessagePort"><code>MessagePort</code></a> 属性发送数据。</p>
+<ul>
+<li><p>目前requestIdleCallback只有chrome支持</p>
+</li>
+<li><p>所以React利用MessageChannel模拟了requestIdleCallback,将回调延迟到绘制操作之后执行</p>
+</li>
+<li><p>MessageChannel API 允许我们创建一个新的消息通道，并通过他的两个MessagePort属性发送数据</p>
+</li>
+<li><p>MessageChannel创建了一个通信的管道，这个管道有两个端口，每个端口都可以通过postMessage发送数据，而一个端口只要绑定了onmessage回调方法，就可以接受另外一个端口传过来的数据</p>
+</li>
+<li><p>MessageChannel是一个宏任务。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="variable constant_">DOCTYPE</span> html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        let channel = new MessageChannel();</span><br><span class="line">        let port1 = channel.port1;</span><br><span class="line">        let port2 = channel.port2;</span><br><span class="line">        port1.onmessage = function(e)&#123;</span><br><span class="line">            console.log(&quot;接收到的数据:&quot;,e.data);</span><br><span class="line">        &#125;</span><br><span class="line">        port2.onmessage = function(e)&#123;</span><br><span class="line">            console.log(&quot;接收到的数据:&quot;,e.data);</span><br><span class="line">        &#125;</span><br><span class="line">        port1.postMessage(&quot;port1&quot;);</span><br><span class="line">        port2.postMessage(&quot;port2&quot;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>rafTime   从页面导航开始，这一帧开始的时间</p>
+<p>performance.timing.navigationStart +performance.now()  约等于Date.now();</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> activeFrameTime = <span class="number">1000</span>/<span class="number">60</span>;<span class="comment">// 约等于 16.6</span></span><br><span class="line"><span class="keyword">let</span> frameDeadline; <span class="comment">// 这一帧的截止时间</span></span><br><span class="line"><span class="keyword">let</span> pendingCallback;</span><br><span class="line"><span class="keyword">let</span> channel = <span class="keyword">new</span> <span class="title class_">MessageChannel</span>();</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">timeRemaining</span> = (<span class="params"></span>)=&gt; frameDeadline-performance.<span class="title function_">now</span>();</span><br><span class="line">channel.<span class="property">port2</span>.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> currentTime = performance.<span class="title function_">now</span>();</span><br><span class="line">    <span class="comment">// 如果帧的截止时间已经小于当前时间，说明已经过期了</span></span><br><span class="line">    <span class="keyword">let</span> didTimeout = frameDeadline &lt;= currentTime;</span><br><span class="line">    <span class="keyword">if</span>(didTimeout || <span class="title function_">timeRemaining</span>()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(pendingCallback)&#123;</span><br><span class="line">            <span class="title function_">pendingCallback</span>(&#123;didTimeout,timeRemaining&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">requestIdleCallback</span> = <span class="function">(<span class="params">callback,options</span>)=&gt;</span>&#123;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> (<span class="function">(<span class="params">rafTime</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;rafTime&quot;</span>,rafTime);</span><br><span class="line">        frameDeadline = rafTime+activeFrameTime;</span><br><span class="line">        pendingCallback = callback;</span><br><span class="line">        <span class="comment">// 其实发消息之后，相当于添加一个宏任务</span></span><br><span class="line">        <span class="comment">// debugger</span></span><br><span class="line">        channel.<span class="property">port1</span>.<span class="title function_">postMessage</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Fiber执行阶段"><a href="#Fiber执行阶段" class="headerlink" title="Fiber执行阶段"></a>Fiber执行阶段</h1><p>每次渲染有两个阶段：Reconciliation(协调render阶段)和Commit(提交阶段)</p>
+<ul>
+<li><p>协调的阶段：可以认为是Diff阶段，这个阶段可以被终止，这个阶段会找出所有节点变更，例如节点新增、删除、属性变更等等，这些变更React称之为副作用。</p>
+</li>
+<li><p>提交阶段：将上一阶段计算出来的需要处理的副作用(effects)一次性执行了。这个阶段必须同步执行，不能被打断。</p>
+</li>
+</ul>
+<h2 id="遍历规则"><a href="#遍历规则" class="headerlink" title="遍历规则"></a>遍历规则</h2><p>深度优先</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://gitee.com/thomaslwq/my-fiber-demo/raw/master/README.assets/1644912023760.png"
+                      alt="1644912023760"
+                ></p>
+<h2 id="模拟实现"><a href="#模拟实现" class="headerlink" title="模拟实现"></a>模拟实现</h2><ol>
+<li>工作单元</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> element = (<span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;A1&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;B1&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;C1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;C2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;B2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line"><span class="keyword">let</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>);</span><br><span class="line"><span class="comment">// 下一个工作单元</span></span><br><span class="line"><span class="comment">// fiber 其实也是一个普通的JS对象</span></span><br><span class="line"><span class="keyword">let</span> workInProgressRoot = &#123;</span><br><span class="line">    <span class="attr">stateNode</span>: root, <span class="comment">// 此fiber对应的DOM节点</span></span><br><span class="line">    <span class="attr">props</span>: &#123;</span><br><span class="line">        <span class="attr">children</span>:[element]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> nextUnitOfWork = workInProgressRoot;</span><br><span class="line"><span class="keyword">const</span>  <span class="variable constant_">PLACEMENT</span> = <span class="string">&quot;PLACEMENT&quot;</span></span><br><span class="line"><span class="comment">// 定义一个工作循环</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">workloop</span>(<span class="params">deadline</span>) &#123; </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;开始工作循环&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span> (nextUnitOfWork&amp;&amp;deadline.<span class="title function_">timeRemaining</span>()&gt;<span class="number">0</span>) &#123; </span><br><span class="line">        nextUnitOfWork =  <span class="title function_">performUnitOfWork</span>(nextUnitOfWork);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!nextUnitOfWork) &#123; </span><br><span class="line">        <span class="title function_">commitRoot</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">commitRoot</span>(<span class="params"></span>) &#123; </span><br><span class="line">    <span class="keyword">let</span> currentFiber = workInProgressRoot.<span class="property">firstEffect</span>;</span><br><span class="line">    <span class="keyword">while</span> (currentFiber) &#123; </span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;commitRoot:&quot;</span>, currentFiber.<span class="property">props</span>.<span class="property">id</span>);</span><br><span class="line">        <span class="keyword">if</span> (currentFiber.<span class="property">effectTag</span> === <span class="string">&quot;PLACEMENT&quot;</span>) &#123; </span><br><span class="line">            currentFiber.<span class="property">return</span>.<span class="property">stateNode</span>.<span class="title function_">appendChild</span>(currentFiber.<span class="property">stateNode</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        currentFiber = currentFiber.<span class="property">nextEffect</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    workInProgressRoot = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * beginWork 1. 创建此Fiber的真实DOM</span></span><br><span class="line"><span class="comment"> * 通过虚拟DOM创建Fiber树结构</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; workingInProgressFiber </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">performUnitOfWork</span>(<span class="params">workingInProgressFiber</span>) &#123; </span><br><span class="line">    <span class="title function_">beginWork</span>(workingInProgressFiber);</span><br><span class="line">    <span class="keyword">if</span> (workingInProgressFiber.<span class="property">child</span>) &#123; </span><br><span class="line">        <span class="keyword">return</span> workingInProgressFiber.<span class="property">child</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (workingInProgressFiber) &#123; </span><br><span class="line">        <span class="comment">// 如果没有儿子当前节点其实就结束了</span></span><br><span class="line">        <span class="title function_">completeUnitOfWork</span>(workingInProgressFiber);</span><br><span class="line">        <span class="keyword">if</span> (workingInProgressFiber.<span class="property">sibling</span>) &#123; </span><br><span class="line">            <span class="keyword">return</span> workingInProgressFiber.<span class="property">sibling</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        workingInProgressFiber = workingInProgressFiber.<span class="property">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">completeUnitOfWork</span>(<span class="params">workingInProgressFiber</span>) &#123; </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;completeUnitOfWork&quot;</span>, workingInProgressFiber.<span class="property">props</span>.<span class="property">id</span>);</span><br><span class="line">    <span class="comment">// 构建副作用链，上面只有副作用的节点</span></span><br><span class="line">    <span class="keyword">let</span> returnFiber = workingInProgressFiber.<span class="property">return</span>;<span class="comment">// A1</span></span><br><span class="line">    <span class="keyword">if</span> (returnFiber) &#123; </span><br><span class="line">        <span class="comment">// 把当前fiber有副作用的子链表挂载到父身上</span></span><br><span class="line">        <span class="keyword">if</span> (!returnFiber.<span class="property">firstEffect</span>) &#123; </span><br><span class="line">            returnFiber.<span class="property">firstEffect</span> = workingInProgressFiber.<span class="property">firstEffect</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (workingInProgressFiber.<span class="property">lastEffect</span>) &#123; </span><br><span class="line">            <span class="keyword">if</span> (returnFiber.<span class="property">lastEffect</span>) &#123; </span><br><span class="line">                returnFiber.<span class="property">lastEffect</span>.<span class="property">nextEffect</span> = workingInProgressFiber.<span class="property">firstEffect</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            returnFiber.<span class="property">lastEffect</span> = workingInProgressFiber.<span class="property">lastEffect</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (workingInProgressFiber.<span class="property">effectTag</span>) &#123; </span><br><span class="line">            <span class="keyword">if</span> (returnFiber.<span class="property">lastEffect</span>) &#123;</span><br><span class="line">                returnFiber.<span class="property">lastEffect</span>.<span class="property">nextEffect</span> = workingInProgressFiber;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">                returnFiber.<span class="property">firstEffect</span> = workingInProgressFiber;</span><br><span class="line">            &#125;</span><br><span class="line">            returnFiber.<span class="property">lastEffect</span> = workingInProgressFiber;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">beginWork</span>(<span class="params">workingInProgressFiber</span>) &#123; </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;beginWork&quot;</span>, workingInProgressFiber.<span class="property">props</span>.<span class="property">id</span>);</span><br><span class="line">    <span class="keyword">if</span> (!workingInProgressFiber.<span class="property">stateNode</span>) &#123; </span><br><span class="line">      workingInProgressFiber.<span class="property">stateNode</span> =   <span class="variable language_">document</span>.<span class="title function_">createElement</span>(workingInProgressFiber.<span class="property">type</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> workingInProgressFiber.<span class="property">props</span>) &#123; </span><br><span class="line">        <span class="keyword">if</span> (key !== <span class="string">&quot;children&quot;</span>)</span><br><span class="line">            workingInProgressFiber.<span class="property">stateNode</span>[key] = workingInProgressFiber.<span class="property">props</span>[key];</span><br><span class="line">    &#125;<span class="comment">// 在beginwork 里面是不挂载的</span></span><br><span class="line">    <span class="comment">// 创建子Fiber</span></span><br><span class="line">    <span class="keyword">let</span> previousFiber;</span><br><span class="line">    <span class="title class_">Array</span>.<span class="title function_">isArray</span>(workingInProgressFiber.<span class="property">props</span>.<span class="property">children</span>)&amp;&amp;workingInProgressFiber.<span class="property">props</span>.<span class="property">children</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">child,index</span>) =&gt;</span> &#123; </span><br><span class="line">        <span class="keyword">let</span> childFiber = &#123;</span><br><span class="line">            <span class="attr">type</span>: child.<span class="property">type</span>,<span class="comment">// DOM节点类型</span></span><br><span class="line">            <span class="attr">props</span>: child.<span class="property">props</span>,</span><br><span class="line">            <span class="attr">return</span>: workingInProgressFiber,</span><br><span class="line">            <span class="attr">effectTag</span>:<span class="variable constant_">PLACEMENT</span>,<span class="comment">// 这个fiber必须要插入到父节点中</span></span><br><span class="line">            <span class="attr">nextEffect</span>: <span class="literal">null</span>,<span class="comment">// 下一个副作用节点</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (index === <span class="number">0</span>) &#123;</span><br><span class="line">            workingInProgressFiber.<span class="property">child</span> = childFiber;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">            previousFiber.<span class="property">sibling</span> = childFiber;</span><br><span class="line">        &#125;</span><br><span class="line">        previousFiber = childFiber;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 空闲时间</span></span><br><span class="line"><span class="title function_">requestIdleCallback</span>(workloop);</span><br></pre></td></tr></table></figure>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">Fiber 原理</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2022-07-23 13:15:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2022/07/23/Fiber原理/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/React/">#React</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/08/05/NextJs/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">NextJs 的预渲染</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/07/07/Fiber%E5%85%A5%E9%97%A8/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Fiber入门</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFFirber"><span class="nav-number">1.</span> <span class="nav-text">什么是Firber</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Fiber%E5%85%B3%E9%94%AE%E7%89%B9%E6%80%A7%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">Fiber关键特性：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-Fiber-%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number"></span> <span class="nav-text">React Fiber 运行流程图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%A7%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number"></span> <span class="nav-text">帧的概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fiber-%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-number"></span> <span class="nav-text">Fiber 结构示意图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#window-requestAnimationFrame"><span class="nav-number"></span> <span class="nav-text">window.requestAnimationFrame</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#requestIdleCallback"><span class="nav-number"></span> <span class="nav-text">requestIdleCallback</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-1"><span class="nav-number">1.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0-1"><span class="nav-number">2.</span> <span class="nav-text">参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MessageChannel"><span class="nav-number"></span> <span class="nav-text">MessageChannel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fiber%E6%89%A7%E8%A1%8C%E9%98%B6%E6%AE%B5"><span class="nav-number"></span> <span class="nav-text">Fiber执行阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E8%A7%84%E5%88%99"><span class="nav-number"></span> <span class="nav-text">遍历规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0"><span class="nav-number"></span> <span class="nav-text">模拟实现</span></a>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        $tools-item-width = 2.2rem
+$tools-item-font-size = 1.1rem
+$tools-item-border-radius = 0.1rem
+
+
+.side-tools-container {
+  position relative
+
+  .tools-item {
+    width $tools-item-width
+    height $tools-item-width
+    margin-bottom 0.2rem
+    color var(--text-color-3)
+    font-size $tools-item-font-size
+    background var(--background-color-1)
+    border-right none
+    border-radius $tools-item-border-radius
+    box-shadow 0.1rem 0.1rem 0.2rem var(--shadow-color)
+    cursor pointer
+
+    i {
+      color var(--text-color-3)
+    }
+
+    &:hover {
+      color var(--background-color-1)
+      background var(--primary-color)
+      box-shadow 0.2rem 0.2rem 0.4rem var(--shadow-color)
+
+      i {
+        color var(--background-color-1)
+      }
+    }
+
+    +keep-tablet() {
+      width $tools-item-width * 0.9
+      height $tools-item-width * 0.9
+      margin-bottom 0.2rem
+      font-size $tools-item-font-size * 0.9
+    }
+
+    &.rss {
+
+      a {
+        width 100%
+        height 100%
+        border-radius $tools-item-border-radius
+
+        &:hover {
+          color var(--background-color-1)
+          background var(--primary-color)
+          box-shadow 0.2rem 0.2rem 0.4rem var(--shadow-color)
+        }
+      }
+    }
+  }
+
+
+  .side-tools-list {
+    transform translateX(100%)
+    opacity 0
+    transition-t("transform, opacity", "0, 0", "0.2, 0.2", "linear, linear")
+
+    &.show {
+      transform translateX(0)
+      opacity 1
+    }
+  }
+
+
+  .exposed-tools-list {
+
+    if (hexo-config('style.scroll.percent') == true) {
+      .tool-scroll-to-top {
+        display none
+
+        &.show {
+          display flex
+        }
+
+        &:hover {
+
+          .percent {
+            display none
+          }
+
+          .arrow-up {
+            display flex
+          }
+        }
+
+        .arrow-up {
+          display none
+        }
+
+        .percent {
+          display flex
+          font-size 1rem
+        }
+      }
+    }
+  }
+}
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        $icon-size = 1.2rem
+$search-header-height = 3rem
+
+.search-pop-overlay {
+  position fixed
+  top 0
+  left 0
+  z-index $z-index-8
+  display flex
+  width 100%
+  height 100%
+  background rgba(0, 0, 0, 0)
+  visibility hidden
+  transition-t("visibility, background", "0, 0", "0.3, 0.3", "ease, ease")
+
+  &.active {
+    background rgba(0, 0, 0, 0.35)
+    visibility visible
+
+    .search-popup {
+      transform scale(1)
+    }
+  }
+
+
+  .search-popup {
+    z-index $z-index-6
+    width 70%
+    height 80%
+    margin auto
+    background var(--background-color-1)
+    border-radius 0.4rem
+    transform scale(0)
+    transition-t("transform", "0", "0.3", "ease")
+
+    +keep-tablet() {
+      width 80%
+    }
+
+    +keep-mobile() {
+      width 90%
+    }
+
+    .search-header {
+      display flex
+      align-items center
+      height $search-header-height
+      padding 0 1rem
+      background var(--text-color-6)
+      border-top-left-radius 0.2rem
+      border-top-right-radius 0.2rem
+
+      .search-input-field-pre {
+        margin-right 0.2rem
+        color var(--text-color-3)
+        font-size 1.3rem
+        cursor pointer
+      }
+
+      .search-input-container {
+        flex-grow 1
+        padding 0.2rem
+
+        .search-input {
+          width 100%
+          color var(--text-color-3)
+          font-size 1.2rem
+          background transparent
+          border 0
+          outline 0
+
+          &::-webkit-search-cancel-button {
+            display none
+          }
+
+          &::-webkit-input-placeholder {
+            color var(--text-color-4)
+            font-size 1rem
+          }
+        }
+      }
+
+
+      .close-popup-btn {
+        color var(--text-color-3)
+        font-size $icon-size
+        cursor pointer
+
+        &:hover {
+          color var(--text-color-1)
+        }
+      }
+    }
+
+
+    #search-result {
+      position relative
+      display flex
+      box-sizing border-box
+      height 'calc(100% - %s)' % $search-header-height
+      padding 0.3rem 1.5rem
+      overflow auto
+
+      .search-result-list {
+        width 100%
+        height 100%
+        font-size 1rem
+
+        li {
+          box-sizing border-box
+          margin 0.8rem 0
+          padding 0.8rem 0
+          border-bottom 0.1rem dashed var(--border-color)
+
+          &:last-child {
+            border-bottom none
+          }
+
+
+          .search-result-title {
+            position relative
+            display flex
+            align-items center
+            margin-bottom 0.8rem
+            padding-left 1rem
+            font-weight bold
+
+            &::after {
+              position absolute
+              top 50%
+              left 0
+              width 0.4rem
+              height 0.4rem
+              background var(--text-color-3)
+              border-radius 50%
+              transform translateY(-50%)
+              content ''
+            }
+          }
+
+
+          .search-result {
+            margin 0
+            padding-left 1rem
+            line-height 2rem
+            word-wrap break-word
+          }
+
+          a {
+            &:hover {
+              color var(--text-color-3)
+            }
+          }
+
+          .search-keyword {
+            color var(--primary-color)
+            font-weight bold
+            border-bottom 0.1rem dashed var(--primary-color)
+          }
+        }
+      }
+
+
+      #no-result {
+        margin auto
+        color var(--text-color-4)
+      }
+    }
+  }
+}
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

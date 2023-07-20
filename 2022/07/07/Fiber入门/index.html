@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            Fiber入门 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Fiber入门</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">工程师</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-07-07 13:15:00</span>
+        <span class="mobile">2022-07-07 13:15</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-20 15:52:42</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/React/">React</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/React/">React</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>9 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span>
+
+<h3 id="你是如何理解fiber的"><a href="#你是如何理解fiber的" class="headerlink" title="你是如何理解fiber的?"></a>你是如何理解fiber的?</h3><p>React Fiber 是一种基于浏览器的<strong>单线程调度算法</strong>。</p>
+<p>React 16之前 ，<code>reconcilation</code> 算法实际上是递归，想要中断递归是很困难的，React 16 开始使用了循环来代替之前的递归。</p>
+<p><code>Fiber</code>：<strong>一种将 <code>recocilation</code> （递归 diff），拆分成无数个小任务的算法；它随时能够停止，恢复。停止恢复的时机取决于当前的一帧（16ms）内，还有没有足够的时间允许计算。</strong></p>
+<h4 id="1）背景"><a href="#1）背景" class="headerlink" title="1）背景"></a>1）背景</h4><p><code>Fiber</code> 产生的根本原因，是**&#x3D;&#x3D;大量的同步计算任务阻塞了浏览器的 UI 渲染&#x3D;&#x3D;**。</p>
+<p>默认情况下，JS 运算、页面布局和页面绘制都是运行在浏览器的主线程当中，他们之间是互斥的关系。如果 JS 运算持续占用主线程，页面就没法得到及时的更新。当我们调用<code>setState</code>更新页面的时候，React 会遍历应用的所有节点，计算出差异，然后再更新 UI。如果页面元素很多，整个过程占用的时机就可能超过 16 毫秒，就容易出现掉帧的现象。</p>
+<h4 id="2）实现原理"><a href="#2）实现原理" class="headerlink" title="2）实现原理"></a>2）实现原理</h4><ul>
+<li>React 内部运转分三层：<ul>
+<li>Virtual DOM 层，描述页面长什么样。</li>
+<li>Reconciler 层，负责调用组件生命周期方法，进行 Diff 运算等。</li>
+<li>Renderer 层，根据不同的平台，渲染出相应的页面，比较常见的是 ReactDOM 和 ReactNative。</li>
+</ul>
+</li>
+</ul>
+<h5 id="Fiber-其实指的是一种数据结构，它可以用一个纯-JS-对象来表示："><a href="#Fiber-其实指的是一种数据结构，它可以用一个纯-JS-对象来表示：" class="headerlink" title="Fiber 其实指的是一种数据结构，它可以用一个纯 JS 对象来表示："></a><code>Fiber 其实指的是一种数据结构，它可以用一个纯 JS 对象来表示</code>：</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fiber = &#123;</span><br><span class="line">    stateNode,    <span class="comment">// 节点实例</span></span><br><span class="line">    child,        <span class="comment">// 子节点</span></span><br><span class="line">    sibling,      <span class="comment">// 兄弟节点</span></span><br><span class="line">    <span class="keyword">return</span>,       <span class="comment">// 父节点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>为了实现不卡顿，就需要有一个调度器 (Scheduler) 来进行任务分配。优先级高的任务（如键盘输入）可以打断优先级低的任务（如Diff）的执行，从而更快的生效。<strong>任务的优先级有六种</strong>：<ul>
+<li>synchronous，与之前的Stack Reconciler操作一样，同步执行</li>
+<li>task，在next tick之前执行</li>
+<li>animation，下一帧之前执行</li>
+<li>high，在不久的将来立即执行</li>
+<li>low，稍微延迟执行也没关系</li>
+<li>offscreen，下一次render时或scroll时才执行</li>
+</ul>
+</li>
+<li>Fiber Reconciler（react ）执行过程分为2个阶段：<ul>
+<li>阶段一，生成 Fiber 树，得出需要更新的节点信息。这一步是一个渐进的过程，可以被打断。阶段一可被打断的特性，让优先级更高的任务先执行，从框架层面大大降低了页面掉帧的概率。</li>
+<li>阶段二，将需要更新的节点一次过批量更新，这个过程不能被打断。</li>
+</ul>
+</li>
+<li>Fiber树：React 在 render 第一次渲染时，会通过 React.createElement 创建一颗 Element 树，可以称之为 Virtual DOM Tree，由于要记录上下文信息，加入了 Fiber，每一个 Element 会对应一个 Fiber Node，将 Fiber Node 链接起来的结构成为 Fiber Tree。&#x3D;&#x3D;Fiber Tree 一个重要的特点是链表结构，将<strong>递归遍历</strong> 变成 <strong>循环遍历</strong>，然后配合 requestIdleCallback API，实现任务拆分、中断与恢复。&#x3D;&#x3D;</li>
+</ul>
+<h3 id="Fiber架构相对于以前的递归更新组件有什么优势？"><a href="#Fiber架构相对于以前的递归更新组件有什么优势？" class="headerlink" title="Fiber架构相对于以前的递归更新组件有什么优势？"></a>Fiber架构相对于以前的递归更新组件有什么优势？</h3><ul>
+<li><p>递归更新组件会让<code>JS</code>调用栈占用很长时间。</p>
+</li>
+<li><p>因为浏览器是单线程的，它将GUI渲染，事件处理，<code>JS</code>执行等等放在了一起，只有将它做完才能做下一件事，如果有足够的时间，浏览器是会对我们的代码进行编译优化（JIT）及进行热代码优化。</p>
+</li>
+<li><p>Fiber架构正是利用这个原理将组件渲染分段执行，提高这样浏览器就有时间优化 <code>JS</code> 代码与修正 <code>reflow</code>！</p>
+</li>
+</ul>
+<h4 id="4-Fiber是将组件分段渲染，那第一段渲染之后，怎么知道下一段从哪个组件开始渲染呢？"><a href="#4-Fiber是将组件分段渲染，那第一段渲染之后，怎么知道下一段从哪个组件开始渲染呢？" class="headerlink" title="4.Fiber是将组件分段渲染，那第一段渲染之后，怎么知道下一段从哪个组件开始渲染呢？"></a>4.Fiber是将组件分段渲染，那第一段渲染之后，怎么知道下一段从哪个组件开始渲染呢？</h4><ul>
+<li>Fiber节点拥有<code>return</code>，<code>child</code>，<code>sibling</code> 三个属性，分别对应父节点， 第一个孩子， 它右边的兄弟， 有了它们就足够将一棵树变成一个链表， 实现深度优化遍历。</li>
+</ul>
+<h4 id="5-怎么决定每次更新的数量？"><a href="#5-怎么决定每次更新的数量？" class="headerlink" title="5.怎么决定每次更新的数量？"></a>5.怎么决定每次更新的数量？</h4><ul>
+<li>将虚拟 DOM 转换为 Fiber 节点，首先它规定一个时间段内，然后在这个时间段能转换多少个FiberNode，就更新多少个。</li>
+<li>因此我们需要将我们的更新逻辑分成两个阶段，第一个阶段是将虚拟DOM转换成Fiber, Fiber转换成组件实例或真实DOM（不插入DOM树，插入DOM树会reflow）。Fiber转换成后两者明显会耗时，需要计算还剩下多少时间。</li>
+<li>比如，可以记录开始更新视图的时间<strong>var now &#x3D; new Date - 0</strong>，假如我们更新试图自定义需要100毫秒，那么定义结束时间是<strong>var deadline &#x3D; new Date + 100</strong> ,所以每次更新一部分视图，就去拿当前时间new Date&lt;deadline做判断，如果没有超过deadline就更新视图，超过了，就进入下一个更新阶段。</li>
+</ul>
+<h4 id="6-如何调度时间才能保证流畅？"><a href="#6-如何调度时间才能保证流畅？" class="headerlink" title="6.如何调度时间才能保证流畅？"></a>6.如何调度时间才能保证流畅？</h4><ul>
+<li>使用浏览器自带的api - requestIdleCallback。</li>
+<li>它的第一个参数是一个回调，回调有一个参数对象，对象有一个timeRemaining方法，就相当于new Date - deadline，并且它是一个高精度数据， 比毫秒更准确。</li>
+<li>这个因为浏览器兼容性问题，react团队自己实现了requestIdleCallback。</li>
+</ul>
+<h4 id="7-fiber带来的新的生命周期是什么？"><a href="#7-fiber带来的新的生命周期是什么？" class="headerlink" title="7.fiber带来的新的生命周期是什么？"></a>7.fiber带来的新的生命周期是什么？</h4><h4 id="创建时："><a href="#创建时：" class="headerlink" title="创建时："></a>创建时：</h4><ul>
+<li>constructor -&gt;</li>
+<li>getDerivedStateFromProps(参数nextProps, prevState,注意里面this不指向组件的实例)-&gt;</li>
+<li>render -&gt;</li>
+<li>componentDidMount</li>
+</ul>
+<h4 id="更新时："><a href="#更新时：" class="headerlink" title="更新时："></a>更新时：</h4><ul>
+<li>getDerivedStateFromProps(这个是props更新才调用，setState时不调用这个生命周期， 参数nextProps, prevState) -&gt;</li>
+<li>shouldComponentUpdate(setState时调用参数nextProps, nextState)-&gt;</li>
+<li>render-&gt;</li>
+<li>getSnapsshotBeforeUpdate(替换 componentWillUpdate)</li>
+<li>componentDidUpdate(参数prevProps, prevState, snapshot)</li>
+</ul>
+<h3 id="8-请简单谈一下react的事件机制"><a href="#8-请简单谈一下react的事件机制" class="headerlink" title="8.请简单谈一下react的事件机制"></a>8.请简单谈一下react的事件机制</h3><ul>
+<li>当用户在为onClick添加函数时，React并没有将Click事件绑定在DOM上面。</li>
+<li>而是在document处监听所有支持的事件，当事件发生并冒泡至document处时，React将事件内容封装交给中间层SyntheticEvent（负责所有事件合成）。</li>
+<li>所以当事件触发的时候，对使用统一的分发函数dispatchEvent将指定函数执行。</li>
+</ul>
+<h3 id="9-为什么列表循环渲染的key最好不要用index"><a href="#9-为什么列表循环渲染的key最好不要用index" class="headerlink" title="9.为什么列表循环渲染的key最好不要用index"></a>9.为什么列表循环渲染的key最好不要用index</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变化前数组的值是[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]，key就是对应的下标：<span class="number">0</span>，<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span></span><br><span class="line">变化后数组的值是[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]，key对应的下标也是：<span class="number">0</span>，<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>那么diff算法在变化前的数组找到key &#x3D; 0的值是1，在变化后数组里找到的key &#x3D; 0的值是4;</li>
+<li>因为子元素不一样就重新删除并更新;</li>
+<li>但是如果加了唯一的key,如下</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变化前数组的值是[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]，key就是对应的下标：id0，id1，id2，id3</span><br><span class="line">变化后数组的值是[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]，key对应的下标也是：id3，id2，id1，id0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>那么diff算法在变化前的数组找到key &#x3D; id0的值是1，在变化后数组里找到的key&#x3D; id0的值也是1;</li>
+<li>因为子元素相同，就不删除并更新，只做移动操作，这就提升了性能;</li>
+</ul>
+<h2 id="fiber架构"><a href="#fiber架构" class="headerlink" title="fiber架构"></a>fiber架构</h2><p><strong>Fiber的可中断、可恢复怎么实现的</strong></p>
+<p><strong>fiber</strong>是协程，是比线程更小的单元，可以被人为中断和恢复，当react更新时间超过1帧时，会产生视觉卡顿的效果，因此我们可以通过fiber把浏览器渲染过程分段执行，每执行一会就让出主线程控制权，执行优先级更高的任务</p>
+<p>&#x3D;&#x3D;fiber是一个链表结构，它有三个指针，分别记录了当前节点的下一个兄弟节点，子节点，父节点。当遍历中断时，它是可以恢复的，只需要保留当前节点的索引，就能根据索引找到对应的节点&#x3D;&#x3D;</p>
+<p><strong>Fiber更新机制</strong></p>
+<p><strong>初始化</strong></p>
+<ol>
+<li>创建fiberRoot（React根元素）和rootFiber(通过ReactDOM.render或者ReactDOM.createRoot创建出来的)</li>
+<li>进入beginWork</li>
+</ol>
+<p><strong>workInProgress</strong>: 正在内存中构建的fiber树叫workInProgress fiber，在第一次更新时，所有的更新都发生在workInProgress树，在第一次更新后，workInProgress树上的状态是最新状态，它会替换current树</p>
+<p><strong>current</strong>: 正在视图层渲染的树叫current fiber树</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">currentFiber.alternate</span> = workInProgressFiber</span><br><span class="line"><span class="attr">workInProgressFiber.alternate</span> = currentFiber</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>深度调和子节点，渲染视图</li>
+</ol>
+<p>在新建的alternate树上，完成整个子节点的遍历，包括fiber的创建，最后会以workInProgress树最为最新的渲染树，fiberRoot的current指针指向workInProgress使其变成current fiber，完成初始化流程</p>
+<p><strong>更新</strong></p>
+<ol>
+<li>重新创建workInProgress树，复用当前current树上的alternate，作为新的workInProgress</li>
+</ol>
+<p>渲染完成后，workInProgress树又变成current树</p>
+<p><strong>双缓冲模式</strong></p>
+<p>话剧演出中，演员需要切换不同的场景，以一个一小时话剧来说，在舞台中切换场景，时间来不及。一般是准备两个舞台，切换场景从左边舞台到右边舞台演出</p>
+<p>在计算机图形领域，通过让图形硬件交替读取两套缓冲数据，可以实现画面的无缝切换，减少视觉的抖动甚至卡顿。</p>
+<p>react的current树和workInProgress树使用双缓冲模式，可以减少fiber节点的开销，减少性能损耗</p>
+<p><strong>React渲染流程</strong></p>
+<p>如图，React用JSX描述页面，JSX经过babel编译为render function，执行后产生VDOM，VDOM不是直接渲染的，会先转换为fiber，再进行渲染。vdom转换为fiber的过程叫reconcile，转换过程会创建DOM，全部转换完成后会一次性commit到DOM，这个过程不是一次性的，而是可打断的，这就是fiber架构的渲染流程</p>
+<p>![image-20230510160353449](&#x2F;Users&#x2F;xiongchao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230510160353449.png)</p>
+<p>vdom（React Element对象）中只记录了子节点，没有记录兄弟节点，因此渲染不可打断</p>
+<p>fiber（fiberNode对象）是一个链表，它记录了父节点、兄弟节点、子节点，因此是可以打断的</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">Fiber入门</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2022-07-07 13:15:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2022/07/07/Fiber入门/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/React/">#React</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/07/23/Fiber%E5%8E%9F%E7%90%86/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Fiber 原理</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/06/24/React%20VS%20Vue/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">React VS Vue</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3fiber%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">你是如何理解fiber的?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%EF%BC%89%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">1）背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%EF%BC%89%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">2）实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Fiber-%E5%85%B6%E5%AE%9E%E6%8C%87%E7%9A%84%E6%98%AF%E4%B8%80%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%8C%E5%AE%83%E5%8F%AF%E4%BB%A5%E7%94%A8%E4%B8%80%E4%B8%AA%E7%BA%AF-JS-%E5%AF%B9%E8%B1%A1%E6%9D%A5%E8%A1%A8%E7%A4%BA%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">Fiber 其实指的是一种数据结构，它可以用一个纯 JS 对象来表示：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fiber%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%AF%B9%E4%BA%8E%E4%BB%A5%E5%89%8D%E7%9A%84%E9%80%92%E5%BD%92%E6%9B%B4%E6%96%B0%E7%BB%84%E4%BB%B6%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">Fiber架构相对于以前的递归更新组件有什么优势？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Fiber%E6%98%AF%E5%B0%86%E7%BB%84%E4%BB%B6%E5%88%86%E6%AE%B5%E6%B8%B2%E6%9F%93%EF%BC%8C%E9%82%A3%E7%AC%AC%E4%B8%80%E6%AE%B5%E6%B8%B2%E6%9F%93%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%80%8E%E4%B9%88%E7%9F%A5%E9%81%93%E4%B8%8B%E4%B8%80%E6%AE%B5%E4%BB%8E%E5%93%AA%E4%B8%AA%E7%BB%84%E4%BB%B6%E5%BC%80%E5%A7%8B%E6%B8%B2%E6%9F%93%E5%91%A2%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">4.Fiber是将组件分段渲染，那第一段渲染之后，怎么知道下一段从哪个组件开始渲染呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%80%8E%E4%B9%88%E5%86%B3%E5%AE%9A%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E7%9A%84%E6%95%B0%E9%87%8F%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">5.怎么决定每次更新的数量？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%A6%82%E4%BD%95%E8%B0%83%E5%BA%A6%E6%97%B6%E9%97%B4%E6%89%8D%E8%83%BD%E4%BF%9D%E8%AF%81%E6%B5%81%E7%95%85%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">6.如何调度时间才能保证流畅？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-fiber%E5%B8%A6%E6%9D%A5%E7%9A%84%E6%96%B0%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">7.fiber带来的新的生命周期是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%97%B6%EF%BC%9A"><span class="nav-number">2.5.</span> <span class="nav-text">创建时：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%97%B6%EF%BC%9A"><span class="nav-number">2.6.</span> <span class="nav-text">更新时：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E8%AF%B7%E7%AE%80%E5%8D%95%E8%B0%88%E4%B8%80%E4%B8%8Breact%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">8.请简单谈一下react的事件机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%97%E8%A1%A8%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93%E7%9A%84key%E6%9C%80%E5%A5%BD%E4%B8%8D%E8%A6%81%E7%94%A8index"><span class="nav-number">4.</span> <span class="nav-text">9.为什么列表循环渲染的key最好不要用index</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fiber%E6%9E%B6%E6%9E%84"><span class="nav-number"></span> <span class="nav-text">fiber架构</span></a>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        $tools-item-width = 2.2rem
+$tools-item-font-size = 1.1rem
+$tools-item-border-radius = 0.1rem
+
+
+.side-tools-container {
+  position relative
+
+  .tools-item {
+    width $tools-item-width
+    height $tools-item-width
+    margin-bottom 0.2rem
+    color var(--text-color-3)
+    font-size $tools-item-font-size
+    background var(--background-color-1)
+    border-right none
+    border-radius $tools-item-border-radius
+    box-shadow 0.1rem 0.1rem 0.2rem var(--shadow-color)
+    cursor pointer
+
+    i {
+      color var(--text-color-3)
+    }
+
+    &:hover {
+      color var(--background-color-1)
+      background var(--primary-color)
+      box-shadow 0.2rem 0.2rem 0.4rem var(--shadow-color)
+
+      i {
+        color var(--background-color-1)
+      }
+    }
+
+    +keep-tablet() {
+      width $tools-item-width * 0.9
+      height $tools-item-width * 0.9
+      margin-bottom 0.2rem
+      font-size $tools-item-font-size * 0.9
+    }
+
+    &.rss {
+
+      a {
+        width 100%
+        height 100%
+        border-radius $tools-item-border-radius
+
+        &:hover {
+          color var(--background-color-1)
+          background var(--primary-color)
+          box-shadow 0.2rem 0.2rem 0.4rem var(--shadow-color)
+        }
+      }
+    }
+  }
+
+
+  .side-tools-list {
+    transform translateX(100%)
+    opacity 0
+    transition-t("transform, opacity", "0, 0", "0.2, 0.2", "linear, linear")
+
+    &.show {
+      transform translateX(0)
+      opacity 1
+    }
+  }
+
+
+  .exposed-tools-list {
+
+    if (hexo-config('style.scroll.percent') == true) {
+      .tool-scroll-to-top {
+        display none
+
+        &.show {
+          display flex
+        }
+
+        &:hover {
+
+          .percent {
+            display none
+          }
+
+          .arrow-up {
+            display flex
+          }
+        }
+
+        .arrow-up {
+          display none
+        }
+
+        .percent {
+          display flex
+          font-size 1rem
+        }
+      }
+    }
+  }
+}
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        $icon-size = 1.2rem
+$search-header-height = 3rem
+
+.search-pop-overlay {
+  position fixed
+  top 0
+  left 0
+  z-index $z-index-8
+  display flex
+  width 100%
+  height 100%
+  background rgba(0, 0, 0, 0)
+  visibility hidden
+  transition-t("visibility, background", "0, 0", "0.3, 0.3", "ease, ease")
+
+  &.active {
+    background rgba(0, 0, 0, 0.35)
+    visibility visible
+
+    .search-popup {
+      transform scale(1)
+    }
+  }
+
+
+  .search-popup {
+    z-index $z-index-6
+    width 70%
+    height 80%
+    margin auto
+    background var(--background-color-1)
+    border-radius 0.4rem
+    transform scale(0)
+    transition-t("transform", "0", "0.3", "ease")
+
+    +keep-tablet() {
+      width 80%
+    }
+
+    +keep-mobile() {
+      width 90%
+    }
+
+    .search-header {
+      display flex
+      align-items center
+      height $search-header-height
+      padding 0 1rem
+      background var(--text-color-6)
+      border-top-left-radius 0.2rem
+      border-top-right-radius 0.2rem
+
+      .search-input-field-pre {
+        margin-right 0.2rem
+        color var(--text-color-3)
+        font-size 1.3rem
+        cursor pointer
+      }
+
+      .search-input-container {
+        flex-grow 1
+        padding 0.2rem
+
+        .search-input {
+          width 100%
+          color var(--text-color-3)
+          font-size 1.2rem
+          background transparent
+          border 0
+          outline 0
+
+          &::-webkit-search-cancel-button {
+            display none
+          }
+
+          &::-webkit-input-placeholder {
+            color var(--text-color-4)
+            font-size 1rem
+          }
+        }
+      }
+
+
+      .close-popup-btn {
+        color var(--text-color-3)
+        font-size $icon-size
+        cursor pointer
+
+        &:hover {
+          color var(--text-color-1)
+        }
+      }
+    }
+
+
+    #search-result {
+      position relative
+      display flex
+      box-sizing border-box
+      height 'calc(100% - %s)' % $search-header-height
+      padding 0.3rem 1.5rem
+      overflow auto
+
+      .search-result-list {
+        width 100%
+        height 100%
+        font-size 1rem
+
+        li {
+          box-sizing border-box
+          margin 0.8rem 0
+          padding 0.8rem 0
+          border-bottom 0.1rem dashed var(--border-color)
+
+          &:last-child {
+            border-bottom none
+          }
+
+
+          .search-result-title {
+            position relative
+            display flex
+            align-items center
+            margin-bottom 0.8rem
+            padding-left 1rem
+            font-weight bold
+
+            &::after {
+              position absolute
+              top 50%
+              left 0
+              width 0.4rem
+              height 0.4rem
+              background var(--text-color-3)
+              border-radius 50%
+              transform translateY(-50%)
+              content ''
+            }
+          }
+
+
+          .search-result {
+            margin 0
+            padding-left 1rem
+            line-height 2rem
+            word-wrap break-word
+          }
+
+          a {
+            &:hover {
+              color var(--text-color-3)
+            }
+          }
+
+          .search-keyword {
+            color var(--primary-color)
+            font-weight bold
+            border-bottom 0.1rem dashed var(--primary-color)
+          }
+        }
+      }
+
+
+      #no-result {
+        margin auto
+        color var(--text-color-4)
+      }
+    }
+  }
+}
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

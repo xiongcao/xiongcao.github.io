@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="知识在世界的某个角落等你">
+    <meta name="author" content="Chao">
+    
+    <title>
+        
+            Jest 单元测试-基础 |
+        
+        XChao&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"xiongcao.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/avatar.jpg","favicon":"/images/avatar.jpg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"黄色的森林分出两条路，我选择人迹更少的那一条，从此决定我一生的道路。","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app","reaction":true,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Trainee","Engineer","Architect","实习生","工程师","架构师","程序鼓励师"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               XChao&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Jest 单元测试-基础</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Chao</span>
+                            
+                                <span class="author-label">工程师</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-08-19 13:15:00</span>
+        <span class="mobile">2022-08-19 13:15</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-20 15:54:42</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%B5%8B%E8%AF%95/">测试</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Jest/">Jest</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span>
+
+<h3 id="1、一个简单的测试例子"><a href="#1、一个简单的测试例子" class="headerlink" title="1、一个简单的测试例子"></a>1、一个简单的测试例子</h3><p>创建项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn init -y</span><br></pre></td></tr></table></figure>
+
+<p>安装jest库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add jest -D</span><br></pre></td></tr></table></figure>
+
+<p>jest不支持<code>es-module</code>，可添加如下包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add --dev babel-jest @babel/core @babel/preset-env</span><br></pre></td></tr></table></figure>
+
+<p>添加<code>.babelrc</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;presets&quot;</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;@babel/preset-env&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">&quot;targets&quot;</span>: &#123;</span><br><span class="line">          <span class="string">&quot;node&quot;</span>: <span class="string">&quot;current&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>package.json</code>添加命令：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jest&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<p>新建一个math.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">sum</span> = (<span class="params">a, b</span>) =&gt; a + b;</span><br><span class="line"><span class="comment">// module.exports = &#123; sum &#125;</span></span><br><span class="line"><span class="keyword">export</span> &#123; sum &#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建一个<code>math.test.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// const &#123; sum &#125; = require(&#x27;./math.js&#x27;);</span></span><br><span class="line"><span class="keyword">import</span> &#123; sum &#125; <span class="keyword">from</span> <span class="string">&#x27;./math.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;Math module&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">test</span>(<span class="string">&#x27;should return sum result when two number plus&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> b = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="title function_">sum</span>(a, b);</span><br><span class="line"></span><br><span class="line">    <span class="title function_">expect</span>(result).<span class="title function_">toBe</span>(<span class="number">3</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>yarn test</code>，测试通过。</p>
+<h4 id="常用方法："><a href="#常用方法：" class="headerlink" title="常用方法："></a>常用方法：</h4><ul>
+<li><strong>.toBe(value)</strong>	严格相等</li>
+<li><strong>.toEqual(vlaue)</strong>	对象之间的值是否相等，而不是引用相等</li>
+<li><strong>.toBeFalsy()</strong>	判断boolean值</li>
+<li><strong>.toHaveLength(number)</strong>	数组长度</li>
+<li><strong>.toHaveBeenCalled()</strong>	当前方法是否被调换用</li>
+<li><strong>.toHaveBeenCalledTimes(number)</strong>	当前方法被调换用的次数</li>
+<li><strong>.toThrow(error?)</strong>	是否有没有异常</li>
+<li><strong>.toMatchSnapshot(propertyMatchchers?, hint?)</strong>	与上一次快照结果是否相等</li>
+<li><strong>.toMatchInlineSnapshot(propertyMatchers?, inlineSnapshot)</strong></li>
+<li><strong>expect.extend(matchers)</strong>	扩展断言器</li>
+</ul>
+<h3 id="2、jest-mock"><a href="#2、jest-mock" class="headerlink" title="2、jest.mock"></a>2、jest.mock</h3><p>作用：<br>1.可以mock掉 某个依赖文件中的方法</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>新建两个文件</p>
+<p><code>service.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">getNames</span> = (<span class="params"></span>) =&gt; []</span><br></pre></td></tr></table></figure>
+
+<p><code>searchName.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表示接口数据，这里的为空数组 []</span></span><br><span class="line"><span class="keyword">import</span> &#123; getNames &#125; <span class="keyword">from</span> <span class="string">&quot;./service&quot;</span> /</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据关键字搜索name，结果最多显示3个</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">searchNames</span> = (<span class="params">term</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> matches = <span class="title function_">getNames</span>().<span class="title function_">filter</span>(<span class="function"><span class="params">names</span> =&gt;</span> names.<span class="title function_">includes</span>(term));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> matches.<span class="property">length</span> &gt; <span class="number">3</span> ? matches.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">3</span>) : matches;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">functionNotTested</span> = (<span class="params">term</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`Hello <span class="subst">$&#123;term&#125;</span>`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>编写测试用例 <code>searchName.test.js</code>：</p>
+<p>用例一：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; searchNames &#125; <span class="keyword">from</span> <span class="string">&quot;./searchName&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;should return search results&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> keyword = <span class="string">&#x27;Frank&#x27;</span>;</span><br><span class="line">  <span class="keyword">const</span> result = <span class="title function_">searchNames</span>(keyword);</span><br><span class="line">  <span class="title function_">expect</span>(result).<span class="title function_">toEqual</span>([]);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>用例二：<strong>jest.mock</strong>。只想测试<code>searchNames</code>的功能，并不想知道它所依赖的<code>service.js</code>里面的<code>getNames</code>是怎么实现的，这时候可以用的<code>jest.mock</code>来<code>mock</code>掉<code>service.js</code>里面的<code>getNames</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jest.<span class="title function_">mock</span>(<span class="string">&#x27;./service.js&#x27;</span>, <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">getNames</span>: jest.<span class="title function_">fn</span>(<span class="function">() =&gt;</span> [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;Paul&#x27;</span>, <span class="string">&#x27;George&#x27;</span>, <span class="string">&#x27;Ringo&#x27;</span>])</span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;should return target result when found search&#x27;&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> keyword = <span class="string">&#x27;John&#x27;</span>;</span><br><span class="line">  <span class="keyword">const</span> result = <span class="title function_">searchNames</span>(keyword);</span><br><span class="line">  <span class="title function_">expect</span>(result).<span class="title function_">toEqual</span>([<span class="string">&#x27;John&#x27;</span>]);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、fn-mockImplementation"><a href="#3、fn-mockImplementation" class="headerlink" title="3、fn.mockImplementation"></a>3、fn.mockImplementation</h3><p>使用<strong>fn.mockImplementation</strong>通过实现的方式给方法初始值。</p>
+<p>重写以上代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; searchNames &#125; <span class="keyword">from</span> <span class="string">&quot;./searchName&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; getNames &#125; <span class="keyword">from</span> <span class="string">&quot;./service&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">jest.<span class="title function_">mock</span>(<span class="string">&#x27;./service.js&#x27;</span>, <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">getNames</span>: jest.<span class="title function_">fn</span>()</span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;should return search result&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> keyword = <span class="string">&#x27;Frank&#x27;</span>;</span><br><span class="line">  getNames.<span class="title function_">mockImplementation</span>(<span class="function">() =&gt;</span> []);</span><br><span class="line">  <span class="keyword">const</span> result = <span class="title function_">searchNames</span>(keyword);</span><br><span class="line">  <span class="title function_">expect</span>(result).<span class="title function_">toEqual</span>([]);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;should return target result when found search&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> keyword = <span class="string">&#x27;John&#x27;</span>;</span><br><span class="line">  getNames.<span class="title function_">mockImplementation</span>(<span class="function">() =&gt;</span> [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;Paul&#x27;</span>, <span class="string">&#x27;George&#x27;</span>, <span class="string">&#x27;Ringo&#x27;</span>]);</span><br><span class="line">  <span class="keyword">const</span> result = <span class="title function_">searchNames</span>(keyword);</span><br><span class="line">  <span class="title function_">expect</span>(result).<span class="title function_">toEqual</span>([<span class="string">&#x27;John&#x27;</span>]);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>剩下几种情况的测试用例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&quot;should not return more than 3 matches&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> keyword = <span class="string">&#x27;John&#x27;</span>;</span><br><span class="line">  getNames.<span class="title function_">mockImplementation</span>(<span class="function">() =&gt;</span> [</span><br><span class="line">    <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;John Wick 1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;John Wick 2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;John Wick 3&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Paul&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;George&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Ringo&#x27;</span></span><br><span class="line">  ])</span><br><span class="line">  <span class="keyword">const</span> result = <span class="title function_">searchNames</span>(keyword);</span><br><span class="line">  <span class="title function_">expect</span>(result).<span class="title function_">toHaveLength</span>(<span class="number">3</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;should handle null or undefined as input&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  getNames.<span class="title function_">mockImplementation</span>(<span class="function">() =&gt;</span> []);</span><br><span class="line">  <span class="title function_">expect</span>(<span class="title function_">searchNames</span>(<span class="literal">undefined</span>)).<span class="title function_">toEqual</span>([])</span><br><span class="line">  <span class="title function_">expect</span>(<span class="title function_">searchNames</span>(<span class="literal">null</span>)).<span class="title function_">toEqual</span>([])</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;should return serach result is case sensitive&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  getNames.<span class="title function_">mockImplementation</span>(<span class="function">() =&gt;</span> [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;Paul&#x27;</span>, <span class="string">&#x27;George&#x27;</span>, <span class="string">&#x27;Ringo&#x27;</span>]);</span><br><span class="line">  <span class="title function_">expect</span>(<span class="title function_">searchNames</span>(<span class="string">&#x27;john&#x27;</span>)).<span class="title function_">toEqual</span>([])</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;should return serach result is case sensitive&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(<span class="title function_">functionNotTested</span>(<span class="string">&#x27;John&#x27;</span>)).<span class="title function_">toEqual</span>(<span class="string">&#x27;Hello John&#x27;</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、toMatchInlineSnapshot"><a href="#4、toMatchInlineSnapshot" class="headerlink" title="4、toMatchInlineSnapshot()"></a>4、toMatchInlineSnapshot()</h3><p>toMatchSnapshot：生成测试快照文件；</p>
+<p>toMatchInlineSnapshot：避免生成比较大的测试文件</p>
+<p>使用toMatchInlineSnapshot快照测试，将预期值直接填入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;should say hi when search&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> result = <span class="title function_">functionNotTested</span>(<span class="string">&#x27;John&#x27;</span>);</span><br><span class="line">  <span class="title function_">expect</span>(result).<span class="title function_">toMatchInlineSnapshot</span>();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>运行 <code>yarn test</code> 之后就，会得到一下代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;should say hi when search&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> result = <span class="title function_">functionNotTested</span>(<span class="string">&#x27;John&#x27;</span>);</span><br><span class="line">	<span class="title function_">expect</span>(result).<span class="title function_">toMatchInlineSnapshot</span>(<span class="string">`&quot;Hello John&quot;`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5、介绍一个新命令，可以查看测试覆盖率："><a href="#5、介绍一个新命令，可以查看测试覆盖率：" class="headerlink" title="5、介绍一个新命令，可以查看测试覆盖率："></a>5、介绍一个新命令，可以查看测试覆盖率：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn <span class="built_in">test</span> --coverage</span><br></pre></td></tr></table></figure>
+
+<p>同时，会在项目目录下生成一个<code>coverage</code>文件夹，可以打开<code>lcov-report/index.html</code>查看测试覆盖率</p>
+<p>使用<strong>testing-library</strong>做UI测试</p>
+<p>查询组件渲染元素的方法：</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>No Match</th>
+<th>1 Match</th>
+<th>1+Match</th>
+<th>Await?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>getBy</td>
+<td>throw</td>
+<td>return</td>
+<td>throw</td>
+<td>No</td>
+</tr>
+<tr>
+<td>findBy</td>
+<td>throw</td>
+<td>return</td>
+<td>throw</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>queryBy</td>
+<td>null</td>
+<td>return</td>
+<td>throw</td>
+<td>No</td>
+</tr>
+<tr>
+<td>getAllBy</td>
+<td>throw</td>
+<td>array</td>
+<td>array</td>
+<td>No</td>
+</tr>
+<tr>
+<td>findAllBy</td>
+<td>throw</td>
+<td>array</td>
+<td>array</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>queryAllBy</td>
+<td>[]</td>
+<td>array</td>
+<td>array</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">userEvent.<span class="title function_">click</span>();</span><br><span class="line">userEvent.<span class="title function_">dbClick</span>();</span><br><span class="line">userEvent.<span class="title function_">type</span>();</span><br><span class="line">userEvent.<span class="title function_">keyboard</span>();</span><br><span class="line">userEvent.<span class="title function_">upload</span>();</span><br><span class="line">userEvent.<span class="title function_">clear</span>();</span><br><span class="line">userEvent.<span class="title function_">selectOptions</span>();</span><br><span class="line">userEvent.<span class="title function_">deSelectOptions</span>();</span><br><span class="line">userEvent.<span class="title function_">tab</span>();</span><br><span class="line">userEvent.<span class="title function_">hover</span>();</span><br><span class="line">userEvent.<span class="title function_">unhover</span>();</span><br><span class="line">userEvent.<span class="title function_">paste</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">Jest 单元测试-基础</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">Chao</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2022-08-19 13:15:00</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2022/08/19/Jest单元测试-基础/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Jest/">#Jest</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/09/22/Git/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">理解 Git 工作流</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/08/05/NextJs/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">NextJs 的预渲染</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://bear-blog-comment-8yis8zzwo-xiongcao.vercel.app',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%B5%8B%E8%AF%95%E4%BE%8B%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">1、一个简单的测试例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">常用方法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81jest-mock"><span class="nav-number">2.</span> <span class="nav-text">2、jest.mock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81fn-mockImplementation"><span class="nav-number">3.</span> <span class="nav-text">3、fn.mockImplementation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81toMatchInlineSnapshot"><span class="nav-number">4.</span> <span class="nav-text">4、toMatchInlineSnapshot()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%AA%E6%96%B0%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">5、介绍一个新命令，可以查看测试覆盖率：</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2017</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Chao</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+            <div class="icp-info info-item">
+                <a target="_blank" rel="nofollow"
+                   href="https://beian.miit.gov.cn"
+                >
+                    鄂ICP证000000001号
+                </a>
+            </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        $tools-item-width = 2.2rem
+$tools-item-font-size = 1.1rem
+$tools-item-border-radius = 0.1rem
+
+
+.side-tools-container {
+  position relative
+
+  .tools-item {
+    width $tools-item-width
+    height $tools-item-width
+    margin-bottom 0.2rem
+    color var(--text-color-3)
+    font-size $tools-item-font-size
+    background var(--background-color-1)
+    border-right none
+    border-radius $tools-item-border-radius
+    box-shadow 0.1rem 0.1rem 0.2rem var(--shadow-color)
+    cursor pointer
+
+    i {
+      color var(--text-color-3)
+    }
+
+    &:hover {
+      color var(--background-color-1)
+      background var(--primary-color)
+      box-shadow 0.2rem 0.2rem 0.4rem var(--shadow-color)
+
+      i {
+        color var(--background-color-1)
+      }
+    }
+
+    +keep-tablet() {
+      width $tools-item-width * 0.9
+      height $tools-item-width * 0.9
+      margin-bottom 0.2rem
+      font-size $tools-item-font-size * 0.9
+    }
+
+    &.rss {
+
+      a {
+        width 100%
+        height 100%
+        border-radius $tools-item-border-radius
+
+        &:hover {
+          color var(--background-color-1)
+          background var(--primary-color)
+          box-shadow 0.2rem 0.2rem 0.4rem var(--shadow-color)
+        }
+      }
+    }
+  }
+
+
+  .side-tools-list {
+    transform translateX(100%)
+    opacity 0
+    transition-t("transform, opacity", "0, 0", "0.2, 0.2", "linear, linear")
+
+    &.show {
+      transform translateX(0)
+      opacity 1
+    }
+  }
+
+
+  .exposed-tools-list {
+
+    if (hexo-config('style.scroll.percent') == true) {
+      .tool-scroll-to-top {
+        display none
+
+        &.show {
+          display flex
+        }
+
+        &:hover {
+
+          .percent {
+            display none
+          }
+
+          .arrow-up {
+            display flex
+          }
+        }
+
+        .arrow-up {
+          display none
+        }
+
+        .percent {
+          display flex
+          font-size 1rem
+        }
+      }
+    }
+  }
+}
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        $icon-size = 1.2rem
+$search-header-height = 3rem
+
+.search-pop-overlay {
+  position fixed
+  top 0
+  left 0
+  z-index $z-index-8
+  display flex
+  width 100%
+  height 100%
+  background rgba(0, 0, 0, 0)
+  visibility hidden
+  transition-t("visibility, background", "0, 0", "0.3, 0.3", "ease, ease")
+
+  &.active {
+    background rgba(0, 0, 0, 0.35)
+    visibility visible
+
+    .search-popup {
+      transform scale(1)
+    }
+  }
+
+
+  .search-popup {
+    z-index $z-index-6
+    width 70%
+    height 80%
+    margin auto
+    background var(--background-color-1)
+    border-radius 0.4rem
+    transform scale(0)
+    transition-t("transform", "0", "0.3", "ease")
+
+    +keep-tablet() {
+      width 80%
+    }
+
+    +keep-mobile() {
+      width 90%
+    }
+
+    .search-header {
+      display flex
+      align-items center
+      height $search-header-height
+      padding 0 1rem
+      background var(--text-color-6)
+      border-top-left-radius 0.2rem
+      border-top-right-radius 0.2rem
+
+      .search-input-field-pre {
+        margin-right 0.2rem
+        color var(--text-color-3)
+        font-size 1.3rem
+        cursor pointer
+      }
+
+      .search-input-container {
+        flex-grow 1
+        padding 0.2rem
+
+        .search-input {
+          width 100%
+          color var(--text-color-3)
+          font-size 1.2rem
+          background transparent
+          border 0
+          outline 0
+
+          &::-webkit-search-cancel-button {
+            display none
+          }
+
+          &::-webkit-input-placeholder {
+            color var(--text-color-4)
+            font-size 1rem
+          }
+        }
+      }
+
+
+      .close-popup-btn {
+        color var(--text-color-3)
+        font-size $icon-size
+        cursor pointer
+
+        &:hover {
+          color var(--text-color-1)
+        }
+      }
+    }
+
+
+    #search-result {
+      position relative
+      display flex
+      box-sizing border-box
+      height 'calc(100% - %s)' % $search-header-height
+      padding 0.3rem 1.5rem
+      overflow auto
+
+      .search-result-list {
+        width 100%
+        height 100%
+        font-size 1rem
+
+        li {
+          box-sizing border-box
+          margin 0.8rem 0
+          padding 0.8rem 0
+          border-bottom 0.1rem dashed var(--border-color)
+
+          &:last-child {
+            border-bottom none
+          }
+
+
+          .search-result-title {
+            position relative
+            display flex
+            align-items center
+            margin-bottom 0.8rem
+            padding-left 1rem
+            font-weight bold
+
+            &::after {
+              position absolute
+              top 50%
+              left 0
+              width 0.4rem
+              height 0.4rem
+              background var(--text-color-3)
+              border-radius 50%
+              transform translateY(-50%)
+              content ''
+            }
+          }
+
+
+          .search-result {
+            margin 0
+            padding-left 1rem
+            line-height 2rem
+            word-wrap break-word
+          }
+
+          a {
+            &:hover {
+              color var(--text-color-3)
+            }
+          }
+
+          .search-keyword {
+            color var(--primary-color)
+            font-weight bold
+            border-bottom 0.1rem dashed var(--primary-color)
+          }
+        }
+      }
+
+
+      #no-result {
+        margin auto
+        color var(--text-color-4)
+      }
+    }
+  }
+}
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
